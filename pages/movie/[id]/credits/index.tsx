@@ -1,22 +1,19 @@
 import { Tab } from "@headlessui/react";
 import { GetServerSidePropsContext } from "next";
-import { Dispatch, Fragment, RefObject, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
+import React, { Dispatch, Fragment, RefObject, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
 import { Navbar } from "../../../../components/Navbar";
-import { MultiSearchPersonCard } from "../../../../components/Search/MultiSearchCards";
 import { PosterLoader } from "../../../../PosterLoader";
-import { Cast } from "../../../../types/Cast";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import Image from "next/future/image";
 import Placeholder from "../../../../assets/MovieSVG.svg";
 import Link from "next/link";
 import { Crew } from "../../../../types/Crew";
 import { splitElementsInEqualArrays } from "../../../../Utils";
+import { MovieCreditsCastWidget } from "../../../../components/movie/credits/MovieCreditsCastWidget";
 
 const MovieCredits = ({ data }: { data: CreditsResponse }) => {
 
 
-    //TODO: FINISH THIS LATER
-    //TODO: ADD PAGINATION SINCE CREW AND CAST CAN GET MASSIVE
     //TODO: CREATE COMPONENTS TAILORED TO THIS PAGE OR ADAPT MULTISEARCHPERSON TO BE MODULAR
     console.log(data);
 
@@ -53,17 +50,6 @@ const MovieCredits = ({ data }: { data: CreditsResponse }) => {
     );
 }
 
-const MovieCreditsCastWidget = ({ cast }: { cast: Cast[] }) => {
-    const [page, setPage] = useState(1);
-
-    return (
-        <Fragment>
-            <PageBox page={page} pageLimit={Math.ceil(cast.length / 12)} key={"movie-credits-cast-pagebox"} setPage={setPage} />
-            <MovieCreditsCastContent cast={cast} page={page} />
-        </Fragment >
-    )
-}
-
 const MovieCreditsCrewWidget = ({ crew }: { crew: Crew[] }) => {
     const [page, setPage] = useState(1);
 
@@ -80,7 +66,7 @@ const MovieCreditsCrewContent = ({ crew, page }: { crew: Crew[], page: number })
     let crewPages: Array<Crew[]> = useMemo(() => [], []);
     crewPages = useMemo(() => splitElementsInEqualArrays(crew), [crew]);
 
-
+    //TODO: make a skeleton Element
     if (!crewPages) return <p>loading...</p>;
     return (
         <div className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
@@ -91,24 +77,8 @@ const MovieCreditsCrewContent = ({ crew, page }: { crew: Crew[], page: number })
     );
 }
 
-const MovieCreditsCastContent = ({ cast, page }: { cast: Cast[], page: number }) => {
 
-    let castPages: Array<Cast[]> = useMemo(() => [], []);
-    castPages = useMemo(() => splitElementsInEqualArrays(cast), [cast]);
-
-
-    if (!castPages) return <p>loading...</p>;
-    return (
-        <div className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
-            {castPages[page - 1].map((castee) => (
-                <MovieCreditsCasteeCard key={castee.cast_id} castee={castee} />
-            ))}
-        </div>
-    );
-}
-
-
-const PageBox = ({ page, pageLimit, setPage }:
+export const PageBox = ({ page, pageLimit, setPage }:
     { page: number, pageLimit: number, setPage: Dispatch<SetStateAction<number>> }) => {
 
     // Used for the shadow Page changing without messing with the actual Page
@@ -195,35 +165,6 @@ const MovieCreditsCrewCard = ({ crew }: { crew: Crew, }) => {
         </Link>
     );
 }
-
-
-const MovieCreditsCasteeCard = ({ castee }: { castee: Cast }) => {
-
-    return (
-        <Link key={castee.id} href={`/person/${castee.id}`} passHref>
-            <a className="flex flex-row rounded-md p-3 hover:bg-neutral-900 gap-1">
-                <Image
-                    src={castee.profile_path ? castee.profile_path : Placeholder.src}
-                    loader={PosterLoader}
-                    alt={`Poster of ${castee.name}`}
-                    width={125}
-                    height={187}
-                    className="rounded-md w-[125px] h-[187px]"
-                    loading="lazy" />
-                <div className="grow flex flex-col justify-between font-medium text-base ml-2 mt-2">
-                    <div>
-                        <p>{castee.name}</p>
-                        <div className="text-neutral-400">
-                            <p>{castee.character}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </Link>
-    );
-};
-
-
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     let data: CreditsResponse;
