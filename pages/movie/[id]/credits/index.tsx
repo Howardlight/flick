@@ -10,6 +10,7 @@ import Image from "next/future/image";
 import Placeholder from "../../../../assets/MovieSVG.svg";
 import Link from "next/link";
 import { Crew } from "../../../../types/Crew";
+import { splitElementsInEqualArrays } from "../../../../Utils";
 
 const MovieCredits = ({ data }: { data: CreditsResponse }) => {
 
@@ -90,22 +91,6 @@ const MovieCreditsCrewContent = ({ crew, page }: { crew: Crew[], page: number })
     );
 }
 
-/**
- *  Splits a Massive array into multiple 12 Elements Arrays
- * @param arr Array with any type of object
- * @returns The same Array Split in 12 Elements over different Numbers of Arrays
- */
-function splitElementsInEqualArrays(arr: Array<any>) {
-    let out: Array<any> = [];
-    let arrCopy = JSON.parse(JSON.stringify(arr));
-    const arrNumber = Math.ceil(arrCopy.length / 12);
-
-    for (let i = 0; i < arrNumber; i++) {
-        out.push(arrCopy.splice(0, 12))
-    }
-    return out;
-}
-
 const MovieCreditsCastContent = ({ cast, page }: { cast: Cast[], page: number }) => {
 
     let castPages: Array<Cast[]> = useMemo(() => [], []);
@@ -174,7 +159,7 @@ const PageBox = ({ page, pageLimit, setPage }:
 }
 
 
-const MovieCreditsCrewCard = ({ crew, page }: { crew: Crew, }) => {
+const MovieCreditsCrewCard = ({ crew }: { crew: Crew, }) => {
 
     function HandleKnownForDepartment({ department, gender }: { department: string, gender: number }) {
 
