@@ -43,12 +43,8 @@ const MovieCredits = ({ data }: { data: CreditsResponse }) => {
                     <Tab.Panel>
                         <MovieCreditsCastWidget cast={data.cast} />
                     </Tab.Panel>
-                    <Tab.Panel className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
-                        {data.crew.map((crew, index) => {
-                            if (index <= 10) return (
-                                <MovieCreditsCrewCard key={crew.credit_id} crew={crew} />
-                            )
-                        })}
+                    <Tab.Panel>
+                        <MovieCreditsCrewWidget crew={data.crew} />
                     </Tab.Panel>
                 </Tab.Panels>
             </Tab.Group>
@@ -61,10 +57,37 @@ const MovieCreditsCastWidget = ({ cast }: { cast: Cast[] }) => {
 
     return (
         <Fragment>
-            <PageBox page={page} pageLimit={Math.ceil(cast.length / 12)} key={"movie-credits-pagebox"} setPage={setPage} />
+            <PageBox page={page} pageLimit={Math.ceil(cast.length / 12)} key={"movie-credits-cast-pagebox"} setPage={setPage} />
             <MovieCreditsCastContent cast={cast} page={page} />
         </Fragment >
     )
+}
+
+const MovieCreditsCrewWidget = ({ crew }: { crew: Crew[] }) => {
+    const [page, setPage] = useState(1);
+
+    return (
+        <Fragment>
+            <PageBox page={page} pageLimit={Math.ceil(crew.length / 12)} key={"movie-credits-crew-pagebox"} setPage={setPage} />
+            <MovieCreditsCrewContent crew={crew} page={page} />
+        </Fragment>
+    );
+}
+
+const MovieCreditsCrewContent = ({ crew, page }: { crew: Crew[], page: number }) => {
+
+    let crewPages: Array<Crew[]> = useMemo(() => [], []);
+    crewPages = useMemo(() => splitElementsInEqualArrays(crew), [crew]);
+
+
+    if (!crewPages) return <p>loading...</p>;
+    return (
+        <div className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
+            {crewPages[page - 1].map((crewPerson) => (
+                <MovieCreditsCrewCard key={`${crewPerson.id}-${crewPerson.job}`} crew={crewPerson} />
+            ))}
+        </div>
+    );
 }
 
 /**
@@ -151,7 +174,7 @@ const PageBox = ({ page, pageLimit, setPage }:
 }
 
 
-const MovieCreditsCrewCard = ({ crew }: { crew: Crew }) => {
+const MovieCreditsCrewCard = ({ crew, page }: { crew: Crew, }) => {
 
     function HandleKnownForDepartment({ department, gender }: { department: string, gender: number }) {
 
