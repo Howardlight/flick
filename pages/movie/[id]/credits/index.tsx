@@ -199,16 +199,6 @@ const MovieCreditsCrewCard = ({ crew }: { crew: Crew, }) => {
 
 const MovieCreditsCasteeCard = ({ castee }: { castee: Cast }) => {
 
-    // function HandleKnownForDepartment({department, gender}: {department: string, gender: number }) {
-
-    //     if (department === "Acting") return <p>{gender == 1 ? "Actress" : "Actor"}</p>;
-    //     if (department === "Production") return <p>Producer</p>;
-    //     if (department === "Visual Effects") return <p>Visual Effects Designer</p>;
-    //     if (department === "Sound") return <p>Sound Designer</p>;
-    //     if (department === "Writing") return <p>Writer</p>;
-    //     else return <p>Unknown Department</p>;
-    // }
-
     return (
         <Link key={castee.id} href={`/person/${castee.id}`} passHref>
             <a className="flex flex-row rounded-md p-3 hover:bg-neutral-900 gap-1">
