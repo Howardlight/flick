@@ -1,13 +1,13 @@
 import { GetServerSidePropsContext } from "next";
 import Image from "next/future/image";
-import { PosterLoader } from "../../PosterLoader";
-import { Navbar } from "../../components/Navbar";
+import { PosterLoader } from "../../../PosterLoader";
+import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
-import Placeholder from "../../assets/MovieSVG.svg";
+import Placeholder from "../../../assets/MovieSVG.svg";
 import { Fragment } from "react";
-import { TVShow } from "../../types/TVShow";
-import { CastWidget } from "../../components/CastWidget";
-import { CreatorWidget } from "../../components/CreatorWidget";
+import { TVShow } from "../../../types/TVShow";
+import { CastWidget } from "../../../components/CastWidget";
+import { CreatorWidget } from "../../../components/CreatorWidget";
 
 //TODO: Add case for when The movie is not released yet
 //TODO: Add placeholder image for movie poster
