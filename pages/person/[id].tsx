@@ -51,13 +51,13 @@ const PersonPageContent = ({ data }: { data: Person }) => {
                 </div>
             </div>
 
-            <div className="ml-4 mr-4 mt-10">
+            <div className="ml-4 mr-4 mt-10 mb-10">
 
                 <PersonalDetails data={data} />
 
                 <Biography biography={data.biography} />
             </div>
-        </Fragment >
+        </Fragment>
     )
 }
 
