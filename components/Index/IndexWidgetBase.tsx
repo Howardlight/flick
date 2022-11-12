@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { ReactNode } from "react";
 
 export const IndexWidgetBase = ({ className, title, children }: { className?: string, title: string, children: React.ReactNode }): React.ReactElement => {
@@ -52,6 +53,18 @@ export const IndexWidgetError = () => {
             <p className='font-base text-lg text-neutral-400'>Please check your internet connection</p>
         </div>
     )
+}
+
+export const IndexWidgetContentWrapper = ({ resultID, mediaType, children }: { resultID: number, mediaType: string, children: ReactNode }) => {
+    return (
+        <div key={resultID} className="grid auto-cols-max mr-2 ml-2 p-2 rounded-sm w-[266px] h-[463px] text-xsm transition-all delay-10 hover:bg-neutral-900">
+            <Link href={`/${mediaType}/${resultID}`} passHref>
+                <a className="flex flex-col">
+                    {children}
+                </a>
+            </Link>
+        </div>
+    );
 }
 
 export const IndexWidgetScrollBar = ({ children }: { children: ReactNode }) => {
