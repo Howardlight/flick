@@ -24,8 +24,8 @@ export const MultiSearchTVShowCard = ({ result }: { result: TVShow }) => {
 
                 <div>
                     <p>{result.name}</p>
-                    <p>TV Show</p>
-                    <div>
+                    <p className="text-neutral-400">TV Show</p>
+                    <div className="text-neutral-400">
                         <p className="inline">First aired on </p>
                         <p className="inline">{moment(result.first_air_date).format("LL")}</p>
                     </div>
@@ -38,6 +38,7 @@ export const MultiSearchTVShowCard = ({ result }: { result: TVShow }) => {
 };
 
 export const MultiSearchMovieCard = ({ result }: { result: Movie }) => {
+    console.log(result);
     return (
         <MultiSearchCardBase resultID={result.id} mediaType={"movie"}>
             <Image
@@ -52,11 +53,18 @@ export const MultiSearchMovieCard = ({ result }: { result: Movie }) => {
 
                 <div>
                     <p>{result.title}</p>
-                    <p>Movie</p>
-                    <div>
-                        <p className="inline">Released on </p>
-                        <p className="inline">{moment(result.release_date).format("LL")}</p>
+                    <p className="text-neutral-400">Movie</p>
+                    <div className="text-neutral-400">
+                        {result.release_date ?
+                            <div>
+                                <p className="inline">Released on </p>
+                                <p className="inline">{moment(result.release_date).format("LL")}</p>
+                            </div>
+                            : <p>Unknown Release Date</p>
+                        }
                     </div>
+
+
                 </div>
 
                 {isReleased(result.release_date) ? <p>In Production</p> : <Metrics vote_average={result.vote_average} />}
@@ -90,7 +98,9 @@ export const MultiSearchPersonCard = ({ result }: { result: Person | Cast }) => 
             <div className="grow flex flex-col justify-between font-medium text-base ml-2 mt-2">
                 <div>
                     <p>{result.name}</p>
-                    <HandleKnownForDepartment department={result.known_for_department} gender={result.gender} />
+                    <div className="text-neutral-400">
+                        <HandleKnownForDepartment department={result.known_for_department} gender={result.gender} />
+                    </div>
                 </div>
             </div>
         </MultiSearchCardBase>
