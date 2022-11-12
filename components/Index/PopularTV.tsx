@@ -27,7 +27,6 @@ const PopularTVContent = () => {
             {data.results.map((tv: TVResult) => {
                 return (
                     <IndexWidgetContentWrapper key={tv.id} mediaType="tv" resultID={tv.id}>
-                        {/* <a className="flex flex-col"> */}
                             <Image
                                 src={tv.poster_path ? tv.poster_path : Placeholder.src}
                                 loader={PosterLoader}
@@ -41,7 +40,6 @@ const PopularTVContent = () => {
                                 <p className='font-medium text-lg ml-2 pb-2 text-gray-100 truncate'>{tv.name}</p>
                                 <Metrics vote_average={tv.vote_average} />
                             </div>
-                        {/* </a> */}
                     </IndexWidgetContentWrapper>
                 )
             })}
