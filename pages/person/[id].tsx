@@ -136,7 +136,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
         props: {
             data: data,
-            status: request.status
+            requestStatus: request.status
         }
     }
 }
