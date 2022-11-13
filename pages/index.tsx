@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         title='Home'
       />
       <Navbar />
-      <main className='bg-black'>
+      <main className='bg-black mb-10'>
         <div className='flex flex-col justify-center h-[50vh] bg-black'>
           <p className="font-semibold text-neutral-100 self-center text-xl mb-5">All kinds of Shows that you&apos;ll enjoy</p>
           <SearchBar />
