@@ -10,7 +10,7 @@ import { Page404 } from "../../../components/Page404";
 //TODO: Add case for when The movie is not released yet
 //TODO: Add placeholder image for movie poster
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
-    console.log(data);
+    // console.log(data);
 
     if (requestStatus != 200) return <Page404 />;
     return (
