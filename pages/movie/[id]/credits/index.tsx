@@ -17,7 +17,7 @@ const MovieCredits = ({ data, requestStatus, movieName }: { data: CreditsRespons
     if (requestStatus != 200) return <Page404 />;
     return (
         <Fragment>
-            <NextSeo 
+            <NextSeo
                 title={`${movieName} - Credits`}
             />
             <Navbar />
