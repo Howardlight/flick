@@ -7,6 +7,7 @@ import { Navbar } from "../../components/Navbar";
 import React from "react";
 import Placeholder from "../../assets/MovieSVG.svg";
 import { Page404 } from "../../components/Page404";
+import { NextSeo } from "next-seo";
 
 export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatus: number }) => {
 
@@ -17,6 +18,9 @@ export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatu
     if (requestStatus != 200) return <Page404 />;
     return (
         <Fragment>
+            <NextSeo
+                title={`${data.name} - Project Movies`}
+            />
             <Navbar />
             <PersonPageContent data={data} />
         </Fragment>
