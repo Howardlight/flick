@@ -5,7 +5,7 @@ import { GetPopularTV, TVResult } from "../../types/GetPopularTVTypes";
 import { IndexWidgetBase, IndexWidgetContentWrapper, IndexWidgetError, IndexWidgetScrollBar, IndexWidgetSkeletons, Metrics } from "./IndexWidgetBase";
 import Placeholder from "../../assets/MovieSVG.svg";
 import Link from "next/link";
-import Image from "next/future/image";
+import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import styles from "../../styles/IndexWidget.module.css";
 

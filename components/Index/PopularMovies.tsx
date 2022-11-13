@@ -1,4 +1,4 @@
-import Image from 'next/future/image';
+import Image from 'next/image';
 import useSWR, { SWRResponse } from 'swr';
 import { PosterLoader } from '../../PosterLoader';
 import { PopularResponse, PopularResult } from '../../types/GetPopularMoviesTypes';
