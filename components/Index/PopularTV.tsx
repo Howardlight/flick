@@ -35,7 +35,7 @@ const PopularTVContent = () => {
                             width={250}
                             height={375}
                             loading="lazy"
-                            className={["rounded-md", styles.autoWidth].join(" ")}
+                            className={["rounded-md h-[375px]", styles.autoWidth].join(" ")}
                         />
                         <div className='flex flex-col justify-end grow mt-2 max-w-[250px]'>
                             <p className='font-medium text-lg ml-2 pb-2 text-gray-100 truncate'>{tv.name}</p>
