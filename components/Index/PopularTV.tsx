@@ -34,6 +34,7 @@ const PopularTVContent = () => {
                                 width={250}
                                 height={375}
                                 loading="lazy"
+                                style={{width: "auto"}}
                                 className="rounded-md"
                             />
                             <div className='flex flex-col justify-end grow mt-2 max-w-[250px]'>
