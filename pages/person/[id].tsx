@@ -6,7 +6,7 @@ import { PosterLoader } from "../../PosterLoader";
 import { Navbar } from "../../components/Navbar";
 import React from "react";
 import Placeholder from "../../assets/MovieSVG.svg";
-import { Page404 } from "../../components/Page404";
+import Custom404 from "../404";
 import { NextSeo } from "next-seo";
 
 export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatus: number }) => {
@@ -15,7 +15,7 @@ export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatu
 
     //TODO: Handle case Peron Page does not exist
     console.log(data);
-    if (requestStatus != 200) return <Page404 />;
+    if (requestStatus != 200) return <Custom404  />;
     return (
         <Fragment>
             <NextSeo
