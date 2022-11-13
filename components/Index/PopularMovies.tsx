@@ -5,7 +5,7 @@ import { PopularResponse, PopularResult } from '../../types/GetPopularMoviesType
 import Link from 'next/link';
 import fetcher from '../../Fetcher';
 import { IndexWidgetBase, IndexWidgetScrollBar, IndexWidgetError, IndexWidgetSkeletons, Metrics, IndexWidgetContentWrapper } from './IndexWidgetBase';
-import { Fragment } from 'react';
+import styles from "../../styles/IndexWidget.module.css";
 
 export const PopularMovies = ({ className }: { className?: string }): React.ReactElement => {
   return (
@@ -33,8 +33,8 @@ const PopularWidgetContent = (): React.ReactElement => {
               width={250}
               height={375}
               loading="lazy"
-              style={{ width: "auto" }}
-              className="rounded-md" />
+              className={["rounded-md", styles.autoWidth].join(" ")}
+            />
             <div className='flex flex-col grow justify-end mt-2 max-w-[250px]'>
               <p className='font-medium text-lg ml-2 pb-2 text-gray-100 truncate'>{item.title}</p>
               <Metrics vote_average={item.vote_average} />

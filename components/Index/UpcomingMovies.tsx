@@ -7,6 +7,7 @@ import { UpcomingResponse, UpcomingResult } from '../../types/GetUpcomingTypes';
 import React, { Fragment } from 'react';
 import moment from 'moment';
 import { IndexWidgetBase, IndexWidgetContentWrapper, IndexWidgetError, IndexWidgetScrollBar, IndexWidgetSkeletons } from './IndexWidgetBase';
+import styles from "../../styles/IndexWidget.module.css";
 
 export const UpcomingMovies = ({ className }: { className?: string }): React.ReactElement => {
   return (
@@ -33,8 +34,8 @@ const UpcomingWidgetContent = (): React.ReactElement => {
                 width={250}
                 height={375}
                 loading={"lazy"}
-                style={{ width: "auto" }}
-                className="rounded-md h-[375px] max-w-[250px]" />
+                className={["rounded-md h-[375px] max-w-[250px]", styles.autoWidth].join(" ")}
+              />
               <div className='flex flex-col justify-end grow mt-2 max-w-[250px]'>
                 <p className='font-medium text-lg ml-2 pb-2 text-gray-100 truncate'>{item.title}</p>
                 <p className='font-medium text-md ml-2 pb-2 text-gray-300 justify-end'>{moment(item.release_date).startOf("day").fromNow()}</p>
