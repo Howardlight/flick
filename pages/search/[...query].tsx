@@ -111,6 +111,8 @@ const SearchBox = ({ prevQuery, pageLimit, page, setPage }: { prevQuery: string,
 
     const handleOnSearchBtnClick = (e: any) => {
         e.preventDefault();
+
+        if(query === prevQuery) return;
         router.push({ pathname: "/search/[query]", query: { query: query } });
     }
 
