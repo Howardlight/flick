@@ -14,7 +14,7 @@ export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatu
 
     //TODO: Handle case Peron Page does not exist
     console.log(data);
-    if(requestStatus != 200) return <Page404 />;
+    if (requestStatus != 200) return <Page404 />;
     return (
         <Fragment>
             <Navbar />

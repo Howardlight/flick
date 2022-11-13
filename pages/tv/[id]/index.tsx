@@ -14,7 +14,7 @@ import { Page404 } from "../../Page404";
 //TODO: Add placeholder image for movie poster
 export default function MoviePage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     console.log(data);
-    if(requestStatus != 200) return <Page404 />;
+    if (requestStatus != 200) return <Page404 />;
     return (
         <div>
             <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>

@@ -12,7 +12,7 @@ const MovieCredits = ({ data, requestStatus }: { data: CreditsResponse, requestS
 
     // console.log(data);
 
-    if(requestStatus != 200) return <Page404 />;
+    if (requestStatus != 200) return <Page404 />;
     return (
         <Fragment>
             <Navbar />
