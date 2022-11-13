@@ -8,12 +8,13 @@ import { Fragment } from "react";
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/CastWidget";
 import { CreatorWidget } from "../../../components/CreatorWidget";
+import { Page404 } from "../../Page404";
 
 //TODO: Add case for when The movie is not released yet
 //TODO: Add placeholder image for movie poster
-export default function MoviePage({ data, mediaType }: { data: TVShow, mediaType: string }) {
+export default function MoviePage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     console.log(data);
-    // return <p>Loading...</p>;
+    if(requestStatus != 200) return <Page404 />;
     return (
         <div>
             <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
@@ -103,7 +104,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
         props: {
             data: data,
-            mediaType: "tv"
+            mediaType: "tv",
+            requestStatus: request.status,
         }
     }
 }

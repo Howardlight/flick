@@ -6,31 +6,21 @@ import { PosterLoader } from "../../PosterLoader";
 import { Navbar } from "../../components/Navbar";
 import React from "react";
 import Placeholder from "../../assets/MovieSVG.svg";
+import { Page404 } from "../Page404";
 
-export const PersonPage = ({ data }: { data: Person }) => {
+export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatus: number }) => {
 
     //TODO: ADD ERROR BOUNDARIES
 
     //TODO: Handle case Peron Page does not exist
     console.log(data);
+    if(requestStatus != 200) return <Page404 />;
     return (
         <Fragment>
             <Navbar />
-            {
-                data == null ?
-                    <NotFound />
-                    : <PersonPageContent data={data} />
-            }
+            <PersonPageContent data={data} />
         </Fragment>
     );
-}
-
-const NotFound = () => {
-    return (
-        <Fragment>
-            <p>404 Page Not found</p>
-        </Fragment>
-    )
 }
 
 const PersonPageContent = ({ data }: { data: Person }) => {
@@ -145,7 +135,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     return {
         props: {
-            data: data
+            data: data,
+            status: request.status
         }
     }
 }

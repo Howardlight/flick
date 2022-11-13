@@ -1,23 +1,18 @@
 import { GetServerSidePropsContext } from "next";
-import useSWR, { SWRResponse } from "swr";
 import { Movie } from "../../../types/Movie";
 import Image from "next/future/image";
 import { PosterLoader } from "../../../PosterLoader";
 import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
-import fetcher from "../../../Fetcher";
-import { CreditsResponse } from "../../../types/GetCreditsTypes";
-import Placeholder from "../../assets/MovieSVG.svg";
-import Link from "next/link";
-import { Fragment, useEffect, useState } from "react";
 import { CastWidget } from "../../../components/CastWidget";
-import { Cast } from "../../../types/Cast";
-import { isMovieResult } from "../../../types/MultiSearchTypes";
+import { Page404 } from "../../Page404";
 
 //TODO: Add case for when The movie is not released yet
 //TODO: Add placeholder image for movie poster
-export default function MoviePage({ data, mediaType }: { data: Movie, mediaType: string }) {
+export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
     console.log(data);
+
+    if (requestStatus != 200) return <Page404 />;
     return (
         <div>
             <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
@@ -104,12 +99,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     let data: Movie;
 
     const request = await fetch(`https://api.themoviedb.org/3/movie/${context!.params!.id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
+    // console.log(request.status);
     data = await request.json();
 
     return {
         props: {
             data: data,
-            mediaType: "movie"
+            mediaType: "movie",
+            status: request.status
         }
     }
 }

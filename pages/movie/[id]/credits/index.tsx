@@ -5,13 +5,14 @@ import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { MovieCreditsCastWidget } from "../../../../components/movie/credits/MovieCreditsCastWidget";
 import { MovieCreditsCrewWidget } from "../../../../components/movie/credits/MovieCreditsCrewWidget";
+import { Page404 } from "../../../Page404";
 
-const MovieCredits = ({ data }: { data: CreditsResponse }) => {
+const MovieCredits = ({ data, requestStatus }: { data: CreditsResponse, requestStatus: number }) => {
 
 
-    //TODO: CREATE COMPONENTS TAILORED TO THIS PAGE OR ADAPT MULTISEARCHPERSON TO BE MODULAR
-    console.log(data);
+    // console.log(data);
 
+    if(requestStatus != 200) return <Page404 />;
     return (
         <Fragment>
             <Navbar />
@@ -53,7 +54,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     return {
         props: {
-            data: data
+            data: data,
+            requestStatus: request.status,
         }
     }
 }
