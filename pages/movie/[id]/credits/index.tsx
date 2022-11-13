@@ -5,16 +5,16 @@ import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { MovieCreditsCastWidget } from "../../../../components/movie/credits/MovieCreditsCastWidget";
 import { MovieCreditsCrewWidget } from "../../../../components/movie/credits/MovieCreditsCrewWidget";
-import { Page404 } from "../../../../components/Page404";
-import { NextSeo } from "next-seo";
+import Custom404 from "../../../404";
 import { Movie } from "../../../../types/Movie";
+import { NextSeo } from "next-seo";
 
 const MovieCredits = ({ data, requestStatus, movieName }: { data: CreditsResponse, requestStatus: number, movieName: string }) => {
 
 
     // console.log(data);
 
-    if (requestStatus != 200) return <Page404 />;
+    if (requestStatus != 200) return <Custom404 />;
     return (
         <Fragment>
             <NextSeo
