@@ -1,4 +1,4 @@
-import { Navbar } from "../components/Navbar";
+import { Navbar } from "./Navbar";
 import { Fragment } from "react";
 
 export const Page404 = () => {
