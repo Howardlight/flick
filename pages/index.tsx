@@ -6,17 +6,15 @@ import { UpcomingMovies } from '../components/Index/UpcomingMovies';
 import { FormEventHandler, useState } from 'react';
 import { useRouter } from 'next/router';
 import { PopularTV } from '../components/Index/PopularTV';
+import { NextSeo } from 'next-seo';
 
 const Home: NextPage = () => {
 
   return (
     <div>
-      <Head>
-        <title>Project Movies</title>
-        <meta name="description" content="Project Movies - This is a placeholder" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+      <NextSeo
+        title='Home'
+      />
       <Navbar />
       <main className='bg-black'>
         <div className='flex flex-col justify-center h-[50vh] bg-black'>
@@ -26,7 +24,7 @@ const Home: NextPage = () => {
 
         <PopularMovies />
         <UpcomingMovies className={"mt-10"} />
-        <PopularTV  className='mt-10'/>
+        <PopularTV className='mt-10' />
       </main>
     </div>
   )
