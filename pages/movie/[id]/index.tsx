@@ -6,6 +6,7 @@ import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
 import { CastWidget } from "../../../components/CastWidget";
 import { Page404 } from "../../../components/Page404";
+import { NextSeo } from "next-seo";
 
 //TODO: Add case for when The movie is not released yet
 //TODO: Add placeholder image for movie poster
@@ -15,6 +16,9 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
     if (requestStatus != 200) return <Page404 />;
     return (
         <div>
+            <NextSeo
+                title={`${data.title} | Project Movies`}
+            />
             <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />
                 <div className="flex flex-col justify-center items-center p-5">
