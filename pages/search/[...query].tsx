@@ -28,7 +28,7 @@ export const Search = ({ query }: { query: string }) => {
 const SearchPage404 = () => {
     return (
         <div className="flex flex-col justify-center items-center grow">
-            <p className="text-3xl text-neutral-200">Nothing found</p>
+            <p className="text-3xl text-neutral-200 font-semibold">Nothing found</p>
             <p className="text-base text-neutral-400">Check the spelling of the movie you searched for</p>
         </div>
     )
