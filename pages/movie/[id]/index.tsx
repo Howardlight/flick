@@ -5,7 +5,7 @@ import { PosterLoader } from "../../../PosterLoader";
 import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
 import { CastWidget } from "../../../components/CastWidget";
-import { Page404 } from "../../../components/Page404";
+import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 
 //TODO: Add case for when The movie is not released yet
@@ -13,7 +13,7 @@ import { NextSeo } from "next-seo";
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
     // console.log(data);
 
-    if (requestStatus != 200) return <Page404 />;
+    if (requestStatus != 200) return <Custom404 />;
     return (
         <div>
             <NextSeo
