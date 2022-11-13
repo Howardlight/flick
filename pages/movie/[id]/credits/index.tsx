@@ -6,8 +6,10 @@ import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { MovieCreditsCastWidget } from "../../../../components/movie/credits/MovieCreditsCastWidget";
 import { MovieCreditsCrewWidget } from "../../../../components/movie/credits/MovieCreditsCrewWidget";
 import { Page404 } from "../../../../components/Page404";
+import { NextSeo } from "next-seo";
+import { Movie } from "../../../../types/Movie";
 
-const MovieCredits = ({ data, requestStatus }: { data: CreditsResponse, requestStatus: number }) => {
+const MovieCredits = ({ data, requestStatus, movieName }: { data: CreditsResponse, requestStatus: number, movieName: string }) => {
 
 
     // console.log(data);
@@ -15,6 +17,9 @@ const MovieCredits = ({ data, requestStatus }: { data: CreditsResponse, requestS
     if (requestStatus != 200) return <Page404 />;
     return (
         <Fragment>
+            <NextSeo 
+                title={`${movieName} | Credits`}
+            />
             <Navbar />
             <Tab.Group>
                 <Tab.List className={"flex flex-row justify-around font-bold text-xl md:text-2xl gap-2 mt-4 pb-2"}>
@@ -48,14 +53,20 @@ const MovieCredits = ({ data, requestStatus }: { data: CreditsResponse, requestS
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     let data: CreditsResponse;
+    let movieData: Movie;
 
     const request = await fetch(`https://api.themoviedb.org/3/movie/${context.query.id}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
     data = await request.json();
+    // console.log(data);
+
+    const MovieNamerequest = await fetch(`https://api.themoviedb.org/3/movie/${context!.params!.id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
+    movieData = await MovieNamerequest.json();
 
     return {
         props: {
             data: data,
             requestStatus: request.status,
+            movieName: movieData.title ? movieData.title : "undefined",
         }
     }
 }
