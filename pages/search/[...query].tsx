@@ -17,10 +17,19 @@ export const Search = ({ query }: { query: string }) => {
     const { data, error }: SWRResponse<MultiSearchResponse, Error> = useSWR(`/api/multisearch/${query}/${page}`, fetcher, { loadingTimeout: 2000 });
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[100vw] h-[100vh]">
             <Navbar />
             <SearchBox prevQuery={query} pageLimit={data ? data?.total_pages : 0} setPage={setPage} page={page} />
             <SearchContent data={data} error={error} />
+        </div>
+    )
+}
+
+const SearchPage404 = () => {
+    return (
+        <div className="flex flex-col justify-center items-center grow">
+            <p className="text-3xl text-neutral-200">Nothing found</p>
+            <p className="text-base text-neutral-400">Check the spelling of the movie you searched for</p>
         </div>
     )
 }
@@ -30,7 +39,8 @@ const SearchContent = ({ data, error }: { data: MultiSearchResponse | undefined,
 
     // console.log("data: ", data);
     if (!data && !error) return <MultiSearchSkeletons />;
-    if (!data) return <p>Error</p>;
+    if (!data) return <p>Error, This should not appear</p>;
+    if (data.results.length == 0) return <SearchPage404 />;
     return (
         <div className="grid auto-cols-auto grid-cols-1 md:grid-cols-2">
             {
@@ -88,14 +98,15 @@ const SearchBox = ({ prevQuery, pageLimit, page, setPage }: { prevQuery: string,
     const router = useRouter();
     const pageRef: RefObject<HTMLInputElement> = useRef(null);
 
+    //TODO: Optimize the F out of this
+    // It is very inefficient
+
     const handlePageButtons = (e: any) => {
 
         //checks ID, depending on ID, Updates Page
         if (e.target.id === 'right') setPage(page + 1);
         else if (e.target.id === "left") setPage(page - 1);
         else if (e.target.id === "jump") setPage(localPage);
-        // TODO: When you do decide to implement the function
-        // GIVE THE DATA LOAD A DELAY SO THAT THE USER DOES NOT SPAM THE BUTTON SENDING POINTLESS REQUESTS
     }
 
     const handleOnSearchBtnClick = (e: any) => {
@@ -134,13 +145,14 @@ const SearchBox = ({ prevQuery, pageLimit, page, setPage }: { prevQuery: string,
                             <p className="inline">{`Page`}</p>
                             <button className={["text-xl font-medium rounded-sm ml-2 mr-1 pb-1 pl-1 pr-1 bg-red-600 text-neutral-100 disabled:bg-neutral-700"].join(" ")} disabled={page == 1 ? true : false} id="left" onClick={handlePageButtons}>{"<"}</button>
                             <input type={"number"} defaultValue={page} onChange={(e) => setLocalPage(parseInt(e.target.value))} min={1} max={pageLimit ? pageLimit : 1000} title="page" ref={pageRef} className="text-center text-xl font-semibold ml-2 mr-2 text-red-600 inline w-10 bg-transparent" />
-                            <button className="text-xl font-medium rounded-sm ml-1 mr-1 pb-1 pl-1 pr-1 bg-red-600 text-neutral-100 disabled:bg-neutral-700" id="right" disabled={page == pageLimit ? true : false} onClick={handlePageButtons}>{">"}</button>
+                            <button className="text-xl font-medium rounded-sm ml-1 mr-1 pb-1 pl-1 pr-1 bg-red-600 text-neutral-100 disabled:bg-neutral-700" id="right" disabled={page >= pageLimit ? true : false} onClick={handlePageButtons}>{">"}</button>
                         </div>
 
-                        <button id={"jump"} className="bg-red-500 text-neutral-100 pl-3 pr-3 pt-1 pb-1 rounded-sm disabled:bg-neutral-700" disabled={localPage > pageLimit || localPage == page} onClick={handlePageButtons}>Jump to Page</button>
+                        <button id={"jump"} className="bg-red-500 text-neutral-100 pl-3 pr-3 pt-1 pb-1 rounded-sm disabled:bg-neutral-700" disabled={localPage > pageLimit || localPage == page || Number.isNaN(localPage)} onClick={handlePageButtons}>Jump to Page</button>
                     </form>
                     <p className="text-sm font-normal text-neutral-400">{
-                        pageLimit ? `${pageLimit} Total Pages`
+                        pageLimit ?
+                            `${pageLimit} Total Pages`
                             : "loading..."
                     }</p>
                 </div>
