@@ -18,7 +18,7 @@ const MovieCredits = ({ data, requestStatus, movieName }: { data: CreditsRespons
     return (
         <Fragment>
             <NextSeo 
-                title={`${movieName} | Credits`}
+                title={`${movieName} - Credits`}
             />
             <Navbar />
             <Tab.Group>
