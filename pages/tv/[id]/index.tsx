@@ -8,14 +8,14 @@ import { Fragment } from "react";
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/CastWidget";
 import { CreatorWidget } from "../../../components/CreatorWidget";
-import { Page404 } from "../../../components/Page404";
+import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 
 //TODO: Add case for when The movie is not released yet
 //TODO: Add placeholder image for movie poster
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     // console.log(data);
-    if (requestStatus != 200) return <Page404 />;
+    if (requestStatus != 200) return <Custom404 />;
     return (
         <div>
             <NextSeo 
