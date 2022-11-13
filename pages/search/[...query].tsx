@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../Fetcher";
 import { MultiSearchMovieCard, MultiSearchTVShowCard, MultiSearchPersonCard } from "../../components/Search/MultiSearchCards";
+import { NextSeo } from "next-seo";
 
 export function isReleased(release_date: Date) { return moment() < moment(release_date); }
 
@@ -18,6 +19,9 @@ export const Search = ({ query }: { query: string }) => {
 
     return (
         <div className="flex flex-col w-[100vw] h-[100vh]">
+            <NextSeo
+                title={`Searched for ${query} - Project Movies`}
+            />
             <Navbar />
             <SearchBox prevQuery={query} pageLimit={data ? data?.total_pages : 0} setPage={setPage} page={page} />
             <SearchContent data={data} error={error} />
@@ -112,7 +116,7 @@ const SearchBox = ({ prevQuery, pageLimit, page, setPage }: { prevQuery: string,
     const handleOnSearchBtnClick = (e: any) => {
         e.preventDefault();
 
-        if(query === prevQuery) return;
+        if (query === prevQuery) return;
         router.push({ pathname: "/search/[query]", query: { query: query } });
     }
 
