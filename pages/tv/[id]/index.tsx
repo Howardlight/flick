@@ -8,7 +8,7 @@ import { Fragment } from "react";
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/CastWidget";
 import { CreatorWidget } from "../../../components/CreatorWidget";
-import { Page404 } from "../../Page404";
+import { Page404 } from "../../../components/Page404";
 
 //TODO: Add case for when The movie is not released yet
 //TODO: Add placeholder image for movie poster

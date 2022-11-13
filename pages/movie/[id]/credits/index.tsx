@@ -5,7 +5,7 @@ import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { MovieCreditsCastWidget } from "../../../../components/movie/credits/MovieCreditsCastWidget";
 import { MovieCreditsCrewWidget } from "../../../../components/movie/credits/MovieCreditsCrewWidget";
-import { Page404 } from "../../../Page404";
+import { Page404 } from "../../../../components/Page404";
 
 const MovieCredits = ({ data, requestStatus }: { data: CreditsResponse, requestStatus: number }) => {
 

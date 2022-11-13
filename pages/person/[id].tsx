@@ -6,7 +6,7 @@ import { PosterLoader } from "../../PosterLoader";
 import { Navbar } from "../../components/Navbar";
 import React from "react";
 import Placeholder from "../../assets/MovieSVG.svg";
-import { Page404 } from "../Page404";
+import { Page404 } from "../../components/Page404";
 
 export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatus: number }) => {
 

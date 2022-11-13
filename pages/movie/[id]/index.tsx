@@ -5,7 +5,7 @@ import { PosterLoader } from "../../../PosterLoader";
 import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
 import { CastWidget } from "../../../components/CastWidget";
-import { Page404 } from "../../Page404";
+import { Page404 } from "../../../components/Page404";
 
 //TODO: Add case for when The movie is not released yet
 //TODO: Add placeholder image for movie poster
