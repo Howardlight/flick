@@ -99,14 +99,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     let data: Movie;
 
     const request = await fetch(`https://api.themoviedb.org/3/movie/${context!.params!.id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
-    // console.log(request.status);
     data = await request.json();
 
     return {
         props: {
             data: data,
             mediaType: "movie",
-            status: request.status
+            requestStatus: request.status,
         }
     }
 }
