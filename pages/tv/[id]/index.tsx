@@ -4,16 +4,17 @@ import { PosterLoader } from "../../../PosterLoader";
 import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
 import Placeholder from "../../../assets/MovieSVG.svg";
-import { Fragment } from "react";
-import { TVShow } from "../../../types/TVShow";
+import { Fragment as div } from "react";
+import { Season, TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/CastWidget";
 import { CreatorWidget } from "../../../components/CreatorWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
+import Link from "next/link";
 
 //TODO: Add case for when The movie is not released yet
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
-    // console.log(data);
+    console.log(data);
     if (requestStatus != 200) return <Custom404 />;
     return (
         <div>
@@ -67,11 +68,57 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                     <p className="text-neutral-300">{data.overview}</p>
                 </div>
                 <br />
-
-                <CastWidget id={data.id} mediaType={mediaType} />
-                {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-3"} /> : <Fragment />}
+                
+                <SeasonsWidget seasons={data.seasons} />
+                <CastWidget id={data.id} mediaType={mediaType} className={"mt-10"} />
+                {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-10"} /> : <div />}
             </div>
 
+        </div>
+    )
+}
+
+const SeasonsWidget = ({ seasons, className }: { seasons: Season[], className?: string }) => {
+
+    return (
+        <div className={`${className}`}>
+            <p className="font-semibold text-2xl text-neutral-100 mb-3">Seasons</p>
+            <SeasonsContent seasons={seasons} />
+        </div>
+    )
+}
+
+const SeasonsContent = ({ seasons }: { seasons: Season[] }) => {
+    return (
+        <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
+            {
+                seasons.map((season, index) => {
+                    // if (season.name.toLowerCase() === "specials") return;
+                    return (
+                        <div key={`${index}-${season.id}`} className={"grid auto-cols-max ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50"}>
+                            <Link href={"/"} passHref>
+                                <a>
+                                    <Image
+                                        src={season.poster_path ? season.poster_path : Placeholder.src}
+                                        alt={`Poster of ${season.name}`}
+                                        loader={PosterLoader}
+                                        width={125}
+                                        height={187}
+                                        className="rounded-md w-[125px] h-[187px]" />
+                                    <div className="w-[125px] mt-1 truncate overflow-x-hidden text-neutral-100">
+                                        <p className="truncate font-medium">{season.name}</p>
+                                        <div>
+                                            <p className="font-medium text-red-600 inline">{season.episode_count} </p>
+                                            <p className="inline font-medium text-sm"> Episodes</p>
+                                        </div>
+                                        <p className="text-neutral-400">{moment(season.air_date).format("LL")}</p>
+                                    </div>
+                                </a>
+                            </Link>
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 }
