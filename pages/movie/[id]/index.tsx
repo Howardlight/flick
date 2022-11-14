@@ -7,9 +7,9 @@ import moment from "moment";
 import { CastWidget } from "../../../components/CastWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
+import Placeholder from "../../../assets/MovieSVG.svg";
 
 //TODO: Add case for when The movie is not released yet
-//TODO: Add placeholder image for movie poster
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
     // console.log(data);
 
@@ -23,12 +23,12 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                 <Navbar />
                 <div className="flex flex-col justify-center items-center p-5">
                     <Image
-                        src={data.poster_path ? data.poster_path : `https://via.placeholder.com/250x375?text=${data.title}`}
+                        src={data.poster_path ? data.poster_path : Placeholder.src}
                         loader={PosterLoader}
                         alt={`${data.title} Poster`}
                         width={250}
                         height={375}
-                        className="rounded-md"
+                        className="rounded-md h-[375px] w-[250px]"
                     />
                     <div>
                         <div className="flex flex-col grow mt-5">
