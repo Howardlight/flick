@@ -14,6 +14,7 @@ export function isReleased(release_date: Date) { return moment() < moment(releas
 
 export const Search = ({ query }: { query: string }) => {
 
+    //TODO: Add Filtering
     const [page, setPage] = useState(1);
     const { data, error }: SWRResponse<MultiSearchResponse, Error> = useSWR(`/api/multisearch/${query}/${page}`, fetcher, { loadingTimeout: 2000 });
 
