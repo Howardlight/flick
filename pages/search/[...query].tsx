@@ -167,7 +167,6 @@ const SearchBox = ({ prevQuery, pageLimit, page, setPage }: { prevQuery: string,
 
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-    //TODO: handle when there is no query, Error page
     let { query } = context.query;
     query = query![0];
 
