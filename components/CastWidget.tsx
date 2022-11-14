@@ -7,6 +7,7 @@ import { Cast } from "../types/Cast";
 import Placeholder from "../assets/MovieSVG.svg";
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
+// import { IndexWidgetScrollBar } from "./Index/IndexWidgetBase";
 
 export const CastWidget = ({ id, mediaType, className }: { id: number, mediaType: string, className?: string }) => {
     return (
@@ -22,11 +23,15 @@ export const CastWrapper = ({ id, mediaType }: { id: number, mediaType: string }
     const { data, error }: SWRResponse<CreditsResponse, Error> = useSWR(`/api/get${mediaType}credits/${id}`, fetcher);
     // console.log(data);
 
+
+    //TODO: Create a universal Scrollbar
     if (!data && !error) return <ActorSkeletons />;
     if (!data) return <Error />;
     return (
         <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
+            {/* <IndexWidgetScrollBar> */}
             <CastContent data={data} mediaType={mediaType} />
+            {/* </IndexWidgetScrollBar> */}
         </div>
     );
 };
