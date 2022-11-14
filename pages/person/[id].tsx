@@ -11,9 +11,6 @@ import { NextSeo } from "next-seo";
 
 export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatus: number }) => {
 
-    //TODO: ADD ERROR BOUNDARIES
-
-    //TODO: Handle case Peron Page does not exist
     console.log(data);
     if (requestStatus != 200) return <Custom404  />;
     return (
