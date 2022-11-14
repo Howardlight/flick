@@ -18,7 +18,7 @@ export const Search = ({ query }: { query: string }) => {
     const { data, error }: SWRResponse<MultiSearchResponse, Error> = useSWR(`/api/multisearch/${query}/${page}`, fetcher, { loadingTimeout: 2000 });
 
     return (
-        <div className="flex flex-col w-[100vw] h-[100vh]">
+        <div className="flex flex-col">
             <NextSeo
                 title={`Searched for ${query} - Project Movies`}
             />
