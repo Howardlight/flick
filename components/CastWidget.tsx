@@ -17,8 +17,6 @@ export const CastWidget = ({ id, mediaType, className }: { id: number, mediaType
     );
 };
 
-//TODO: Build "Show More" Button search
-// pass cast data and movie id as props
 export const CastWrapper = ({ id, mediaType }: { id: number, mediaType: string }) => {
 
     const { data, error }: SWRResponse<CreditsResponse, Error> = useSWR(`/api/get${mediaType}credits/${id}`, fetcher);
