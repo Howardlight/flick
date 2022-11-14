@@ -6,6 +6,7 @@ import { PageBox } from "./PageBox";
 import Image from "next/future/image";
 import { PosterLoader } from "../../../PosterLoader";
 import Placeholder from "../../../assets/MovieSVG.svg";
+import { MovieCreditsSkeletons } from "./MovieCreditsCastWidget";
 
 export const MovieCreditsCrewWidget = ({ crew }: { crew: Crew[]; }) => {
     const [page, setPage] = useState(1);
@@ -23,8 +24,8 @@ export const MovieCreditsCrewContent = ({ crew, page }: { crew: Crew[], page: nu
     let crewPages: Array<Crew[]> = useMemo(() => [], []);
     crewPages = useMemo(() => splitElementsInEqualArrays(crew), [crew]);
 
-    //TODO: make a skeleton Element
-    if (!crewPages) return <p>loading...</p>;
+    //NOTE: in standard cases the Skeleton is never used, but it's good to have it just incase
+    if (!crewPages) return <MovieCreditsSkeletons />;
     return (
         <div className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
             {crewPages[page - 1].map((crewPerson) => (

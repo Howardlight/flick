@@ -23,8 +23,7 @@ export const MovieCreditsCastContent = ({ cast, page }: { cast: Cast[], page: nu
     let castPages: Array<Cast[]> = useMemo(() => [], []);
     castPages = useMemo(() => splitElementsInEqualArrays(cast), [cast]);
 
-
-    if (!castPages) return <p>loading...</p>;
+    if (!castPages) return <MovieCreditsSkeletons />;
     return (
         <div className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
             {castPages[page - 1].map((castee) => (
@@ -59,3 +58,28 @@ const MovieCreditsCasteeCard = ({ castee }: { castee: Cast }) => {
         </Link>
     );
 };
+
+export const MovieCreditsSkeletons = () => {
+    return (
+        <Fragment>
+            <MovieCreditsSkeleton />
+            <MovieCreditsSkeleton />
+            <MovieCreditsSkeleton />
+            <MovieCreditsSkeleton />
+            <MovieCreditsSkeleton />
+        </Fragment>
+
+    )
+}
+
+const MovieCreditsSkeleton = () => {
+    return (
+        <div className=" w-[359px] h-[211px] flex flex-row p-3">
+            <div className="animate-pulse bg-neutral-400 w-[125px] h-[187px] rounded-sm"></div>
+            <div className="animate-pulse flex flex-col gap-1 grow ml-2 mr-2">
+                <div className="bg-neutral-400 h-2 w-auto rounded-sm"></div>
+                <div className="bg-neutral-400 h-2 w-8/12 rounded-sm"></div>
+            </div>
+        </div>
+    );
+}
