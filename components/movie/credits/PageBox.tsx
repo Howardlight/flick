@@ -32,8 +32,6 @@ export const PageBox = ({ page, pageLimit, setPage }: { page: number; pageLimit:
 
     }, [page]);
 
-    //TODO: when clicking on search button, check if the target value is the same as current value, if so DO NOT push with router    
-    //TODO: REFACTOR
     return (
         <div className="flex flex-col justify-center items-start mt-6 mb-1 border-b-2 pb-4 border-red-600">
             <form className="flex flex-row w-full justify-between text-lg font-medium" onSubmit={(e) => e.preventDefault()}>

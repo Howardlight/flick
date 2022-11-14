@@ -133,8 +133,6 @@ const SearchBox = ({ prevQuery, pageLimit, page, setPage }: { prevQuery: string,
 
     }, [page])
 
-    //TODO: when clicking on search button, check if the target value is the same as current value, if so DO NOT push with router    
-    //TODO: REFACTOR
     return (
         <Fragment>
             <div className="flex flex-col p-3 border-4 border-red-600 rounded-sm border-t-0 border-l-0 border-r-0 w-full">
