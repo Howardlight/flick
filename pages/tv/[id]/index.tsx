@@ -12,13 +12,12 @@ import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 
 //TODO: Add case for when The movie is not released yet
-//TODO: Add placeholder image for movie poster
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     // console.log(data);
     if (requestStatus != 200) return <Custom404 />;
     return (
         <div>
-            <NextSeo 
+            <NextSeo
                 title={`${data.name} - Project Movies`}
             />
             <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
