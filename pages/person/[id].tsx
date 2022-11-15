@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import { Fragment, useEffect, useState } from "react";
 import { Person } from "../../types/Person";
-import Image from "next/future/image";
+import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import { Navbar } from "../../components/Navbar";
 import React from "react";

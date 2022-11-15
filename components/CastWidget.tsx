@@ -1,5 +1,5 @@
 import useSWR, { SWRResponse } from "swr";
-import Image from "next/future/image";
+import Image from "next/image";
 import { PosterLoader } from "../PosterLoader";
 import fetcher from "../Fetcher";
 import { CreditsResponse } from "../types/GetCreditsTypes";

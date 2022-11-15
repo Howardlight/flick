@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import { PosterLoader } from "../PosterLoader";
 import moment from "moment";
 import Placeholder from "../assets/MovieSVG.svg";

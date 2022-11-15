@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { Movie } from "../../../types/Movie";
-import Image from "next/future/image";
+import Image from "next/image";
 import { PosterLoader } from "../../../PosterLoader";
 import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
