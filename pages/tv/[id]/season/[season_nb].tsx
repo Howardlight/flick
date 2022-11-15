@@ -74,6 +74,8 @@ const Episodes = ({ eps }: { eps: Episode[] }) => {
 //TODO: Add read more for longer overviews
 //TODO: Add min width and max width
 //TODO: Add Cast involved
+//TODO: Create Layouts
+//TODO: Add case for when it is unknown when an episode will air
 const Episode = ({ ep }: { ep: Episode }) => {
     return (
         <div className="mt-4 mb-4 flex flex-col mr-2">
