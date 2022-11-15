@@ -16,7 +16,7 @@ export const SeasonsWidget = ({ seasons, TVID, className }: { seasons: Season[],
 };
 const SeasonsContent = ({ seasons, TVID }: { seasons: Season[], TVID: number }) => {
     return (
-        <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
+        <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 md:ml-2 md:mr-2">
             {seasons.map((season, index) => {
                 // if (season.name.toLowerCase() === "specials") return;
                 return (
