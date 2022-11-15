@@ -69,7 +69,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                 </div>
                 <br />
                 
-                <SeasonsWidget seasons={data.seasons} />
+                <SeasonsWidget seasons={data.seasons} TVID={data.id} />
                 <CastWidget id={data.id} mediaType={mediaType} className={"mt-10"} />
                 {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-10"} /> : <div />}
             </div>

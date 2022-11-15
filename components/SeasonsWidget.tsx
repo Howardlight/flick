@@ -5,23 +5,23 @@ import Placeholder from "../assets/MovieSVG.svg";
 import { Season } from "../types/TVShow";
 import Link from "next/link";
 
-export const SeasonsWidget = ({ seasons, className }: { seasons: Season[]; className?: string; }) => {
+export const SeasonsWidget = ({ seasons, TVID, className }: { seasons: Season[], TVID: number, className?: string }) => {
 
     return (
         <div className={`${className}`}>
             <p className="font-semibold text-2xl text-neutral-100 mb-3">Seasons</p>
-            <SeasonsContent seasons={seasons} />
+            <SeasonsContent seasons={seasons} TVID={TVID} />
         </div>
     );
 };
-const SeasonsContent = ({ seasons }: { seasons: Season[]; }) => {
+const SeasonsContent = ({ seasons, TVID }: { seasons: Season[], TVID: number }) => {
     return (
         <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
             {seasons.map((season, index) => {
                 // if (season.name.toLowerCase() === "specials") return;
                 return (
                     <div key={`${index}-${season.id}`} className={"grid auto-cols-max ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50"}>
-                        <Link href={"/"} passHref>
+                        <Link href={`/tv/${TVID}/season/${season.season_number}`} passHref>
                             <a>
                                 <Image
                                     src={season.poster_path ? season.poster_path : Placeholder.src}
