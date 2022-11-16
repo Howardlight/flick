@@ -4,7 +4,7 @@ import { PosterLoader } from "../../../PosterLoader";
 import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
 import Placeholder from "../../../assets/MovieSVG.svg";
-import { Fragment as div } from "react";
+import { Fragment as div, Fragment } from "react";
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/CastWidget";
 import { CreatorWidget } from "../../../components/CreatorWidget";
@@ -63,12 +63,17 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                     </div>
                 </div>
                 <br />
-                <div className="">
-                    <p className="font-semibold text-2xl text-neutral-100 mb-3">Overview</p>
-                    <p className="text-neutral-300">{data.overview}</p>
-                </div>
+                {
+                    data.overview ?
+                        <div className="">
+                            <p className="font-semibold text-2xl text-neutral-100 mb-3">Overview</p>
+                            <p className="text-neutral-300">{data.overview}</p>
+                        </div>
+                        : <Fragment />
+                }
+
                 <br />
-                
+
                 <SeasonsWidget seasons={data.seasons} TVID={data.id} />
                 <CastWidget id={data.id} mediaType={mediaType} className={"mt-4"} />
                 {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-4"} /> : <div />}
