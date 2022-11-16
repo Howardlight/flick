@@ -38,6 +38,7 @@ export default function SeasonPage({ data, requestStatus, name }: { data: Season
                     />
                     <div className="grow">
                         <p className="font-semibold text-neutral-100">{name}</p>
+                        {data.air_date ? <p className="font-medium text-neutral-400">{moment(data.air_date).format("LL")}</p> : <Fragment />}
                         <p className="font-medium text-neutral-400">{data.name}</p>
                     </div>
                 </div>
