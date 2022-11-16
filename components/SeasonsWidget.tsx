@@ -4,6 +4,7 @@ import moment from "moment";
 import Placeholder from "../assets/MovieSVG.svg";
 import { Season } from "../types/TVShow";
 import Link from "next/link";
+import { Fragment } from "react";
 
 export const SeasonsWidget = ({ seasons, TVID, className }: { seasons: Season[], TVID: number, className?: string }) => {
 
@@ -14,6 +15,8 @@ export const SeasonsWidget = ({ seasons, TVID, className }: { seasons: Season[],
         </div>
     );
 };
+
+//TODO: Improve Rating styling
 const SeasonsContent = ({ seasons, TVID }: { seasons: Season[], TVID: number }) => {
     return (
         <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
@@ -36,7 +39,10 @@ const SeasonsContent = ({ seasons, TVID }: { seasons: Season[], TVID: number }) 
                                         <p className="font-medium text-red-600 inline">{season.episode_count} </p>
                                         <p className="inline font-medium text-sm"> Episodes</p>
                                     </div>
-                                    <p className="text-neutral-400">{moment(season.air_date).format("LL")}</p>
+                                    {season.name.toLowerCase() !== "specials" ?
+                                        <p className="text-neutral-400">{moment(season.air_date).format("LL")}</p>
+                                        : <Fragment />
+                                    }
                                 </div>
                             </a>
                         </Link>
