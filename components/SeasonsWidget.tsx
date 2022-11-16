@@ -21,7 +21,7 @@ const SeasonsContent = ({ seasons, TVID }: { seasons: Season[], TVID: number }) 
     return (
         <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
             {seasons.map((season, index) => {
-                // if (season.name.toLowerCase() === "specials") return;
+                if(season.episode_count == 0) return;
                 return (
                     <div key={`${index}-${season.id}`} className={"grid auto-cols-max ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50"}>
                         <Link href={`/tv/${TVID}/season/${season.season_number}`} passHref>
