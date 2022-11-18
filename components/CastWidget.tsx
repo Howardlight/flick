@@ -41,10 +41,10 @@ const CastContent = ({ data, mediaType }: { data: CreditsResponse, mediaType: st
     const [showMore, setShowMore] = useState(false);
 
     useEffect(() => {
-        if (data.cast.length > 10)
+        if (data.cast.length > 10 || data.crew.length > 0)
             setShowMore(true);
 
-    }, [data.cast.length]);
+    }, [data.cast.length, data.crew.length]);
 
 
     return (
