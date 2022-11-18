@@ -87,7 +87,7 @@ const Episode = ({ ep }: { ep: Episode }) => {
                 {
                     ep.air_date && !isReleased(ep.air_date) ?
                         <p className="text-neutral-400 font-medium">{`Aired on ${moment(ep.air_date).format("LL")}`}</p>
-                        : <p className="text-neutral-400 font-medium">{`To be released on ${moment(ep.air_date).format("LL")}`}</p>
+                        : <p className="text-neutral-400 font-medium">{`To Be Released on ${moment(ep.air_date).format("LL")}`}</p>
                 }
 
             </div>
