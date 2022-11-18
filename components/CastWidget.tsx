@@ -99,7 +99,7 @@ const ActorSkeletons = () => {
     )
 }
 
-
+//TODO: Update sizing
 const ActorSkeleton = () => (
     <div className="mb-2">
         <div className="w-[125px] h-[187px] animate-pulse bg-gray-100 rounded-md mb-2"></div>
