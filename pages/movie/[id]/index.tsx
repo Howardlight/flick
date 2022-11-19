@@ -48,7 +48,7 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
             <div className="m-3">
 
                 <Metrics data={data} styles="mb-5" />
-                <div>
+                <div className="border-red-600 border-2 p-2 rounded-md">
                     <p className="font-medium text-lg">Released on {moment(data.release_date).format("LL")}</p>
                     <div className="text-lg font-medium">
                         <p className="inline text-red-600">{data.runtime} Minutes</p>
