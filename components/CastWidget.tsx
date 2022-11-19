@@ -18,7 +18,6 @@ export const CastWidget = ({ id, mediaType, className }: { id: number, mediaType
     );
 };
 
-//TODO: Display "Show more" for when crew is bigger than 10 too
 export const CastWrapper = ({ id, mediaType }: { id: number, mediaType: string }) => {
 
     const { data, error }: SWRResponse<CreditsResponse, Error> = useSWR(`/api/get${mediaType}credits/${id}`, fetcher);
