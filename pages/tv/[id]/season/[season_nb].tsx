@@ -82,7 +82,7 @@ const Episodes = ({ eps }: { eps: Episode[] }) => {
 const Episode = ({ ep }: { ep: Episode }) => {
     return (
         <div className="mt-4 mb-4 flex flex-col mr-2 bg-neutral-900 rounded-sm p-3">
-            <div className={ep.air_date && isReleased(ep.air_date) ? "mb-2" : ""}>
+            <div className={"mb-2"}>
                 <p className="font-medium">{`Episode ${ep.episode_number} - ${ep.name}`}</p>
                 {
                     ep.air_date && isReleased(ep.air_date) ?
