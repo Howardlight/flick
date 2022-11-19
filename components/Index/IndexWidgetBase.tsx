@@ -67,9 +67,9 @@ export const IndexWidgetContentWrapper = ({ resultID, mediaType, children }: { r
     );
 }
 
-export const IndexWidgetScrollBar = ({ children }: { children: ReactNode }) => {
+export const IndexWidgetScrollBar = ({ className, children }: { className: string, children: ReactNode }) => {
     return (
-        <div className='flex flex-row overflow-x-scroll md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2'>
+        <div className={['flex flex-row overflow-x-scroll md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2', className].join(" ")}>
             {children}
         </div>
     );
