@@ -11,8 +11,8 @@ import { CreatorWidget } from "../../../components/CreatorWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
+import { isReleased } from "../../search/[...query]";
 
-//TODO: Add case for when The movie is not released yet
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     console.log(data);
     if (requestStatus != 200) return <Custom404 />;
@@ -49,14 +49,15 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
             </div>
             <div className="m-3">
 
-                <Metrics data={data} styles="mb-5" />
+                {isReleased(data.first_air_date) ? <Metrics data={data} styles="mb-5" /> : <Fragment />}
                 <div>
-                    <p className="font-medium text-lg">First aired {moment(data.first_air_date).format("LL")}</p>
-                    <p className="font-medium text-lg">Last aired on {moment(data.last_air_date).format("LL")}</p>
-                    {/* <div>
-                        <p className="font-medium text-lg inline text-red-600">{data.number_of_seasons}</p>
-                        <p className="font-medium text-lg inline"> Seasons</p>
-                    </div> */}
+                    {isReleased(data.first_air_date) ?
+                        <Fragment>
+                            <p className="font-medium text-lg">First aired {moment(data.first_air_date).format("LL")}</p>
+                            <p className="font-medium text-lg">Last aired on {moment(data.last_air_date).format("LL")}</p>
+                        </Fragment>
+                        : <p className="font-medium text-lg">Will air on {moment(data.first_air_date).format("LL")}</p>
+                    }
                     <div>
                         <p className="font-medium text-lg inline text-red-600">{data.number_of_episodes}</p>
                         <p className="font-medium text-lg inline"> Episodes</p>
