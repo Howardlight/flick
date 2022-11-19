@@ -7,7 +7,7 @@ import { Cast } from "../types/Cast";
 import Placeholder from "../assets/MovieSVG.svg";
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
-// import { IndexWidgetScrollBar } from "./Index/IndexWidgetBase";
+import { IndexWidgetScrollBar } from "./Index/IndexWidgetBase";
 
 export const CastWidget = ({ id, mediaType, className }: { id: number, mediaType: string, className?: string }) => {
     return (
@@ -83,7 +83,7 @@ const CastContent = ({ data, mediaType }: { data: CreditsResponse, mediaType: st
 
 const ActorSkeletons = () => {
     return (
-        <div className="flex flex-row overflow-x-auto gap-2">
+        <IndexWidgetScrollBar className="flex flex-row overflow-x-auto gap-2">
             <ActorSkeleton />
             <ActorSkeleton />
             <ActorSkeleton />
@@ -94,16 +94,15 @@ const ActorSkeletons = () => {
             <ActorSkeleton />
             <ActorSkeleton />
             <ActorSkeleton />
-        </div>
+        </IndexWidgetScrollBar>
     )
 }
 
-//TODO: Update sizing
 const ActorSkeleton = () => (
-    <div className="mb-2">
-        <div className="w-[125px] h-[187px] animate-pulse bg-gray-100 rounded-md mb-2"></div>
-        <div className="w-24 h-1 animate-pulse bg-gray-100 rounded-sm mb-1"></div>
-        <div className="w-20 h-1 animate-pulse bg-gray-200 rounded-sm"></div>
+    <div className="mb-2 p-2">
+        <div className="w-[125px] h-[187px] animate-pulse bg-gray-100 rounded-md mb-4"></div>
+        <div className="w-24 h-3 animate-pulse bg-gray-100 rounded-md mb-2"></div>
+        <div className="w-20 h-3 animate-pulse bg-gray-200 rounded-md"></div>
     </div>
 )
 
