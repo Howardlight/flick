@@ -8,6 +8,8 @@ import { CastWidget } from "../../../components/CastWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import Placeholder from "../../../assets/MovieSVG.svg";
+import { isReleased } from "../../search/[...query]";
+import { Fragment } from "react";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
@@ -47,27 +49,38 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
             </div>
             <div className="m-3">
 
-                <Metrics data={data} styles="mb-5" />
+                {isReleased(data.release_date) ? <Metrics data={data} styles="mb-5" /> : <Fragment />}
                 <div className="border-red-600 border-2 p-2 rounded-md">
-                    <p className="font-medium text-lg">Released on {moment(data.release_date).format("LL")}</p>
+                    <p className="font-medium text-lg">{isReleased(data.release_date) ? `Released on ${moment(data.release_date).format("LL")}` : `Will be released on ${moment(data.release_date).format("LL")}`}</p>
                     <div className="text-lg font-medium">
                         <p className="inline text-red-600">{data.runtime} Minutes</p>
                         <p className="inline"> of runtime</p>
                     </div>
-                    <div className="text-lg font-medium">
-                        <p className="inline text-red-600">{data.budget ? `${data.budget / 1000000}M$` : "Unknown "}</p>
-                        <p className="inline"> budget</p>
-                    </div>
-                    <div className="text-lg font-medium">
-                        <p className="inline text-red-600">{data.revenue ? `${(data.revenue / 1000000).toFixed(2)}M$` : "Unknown "}</p>
-                        <p className="inline"> revenue</p>
-                    </div>
+
+                    {data.budget ?
+                        <div className="text-lg font-medium">
+                            <p className="inline text-red-600">{`${data.budget / 1000000}M$`}</p>
+                            <p className="inline"> budget</p>
+                        </div>
+                        : <Fragment />
+                    }
+                    {
+                        data.revenue ?
+                            <div className="text-lg font-medium">
+                                <p className="inline text-red-600">{`${(data.revenue / 1000000).toFixed(2)}M$`}</p>
+                                <p className="inline"> revenue</p>
+                            </div>
+                            : <Fragment />
+                    }
                 </div>
                 <br />
-                <div className="">
-                    <p className="font-semibold text-2xl text-neutral-100 mb-3">Overview</p>
-                    <p className="text-neutral-300">{data.overview}</p>
-                </div>
+                {data.overview ?
+                    <Fragment>
+                        <p className="font-semibold text-2xl text-neutral-100 mb-3">Overview</p>
+                        <p className="text-neutral-300">{data.overview}</p>
+                    </Fragment>
+                    : <Fragment />
+                }
                 <br />
 
                 <CastWidget id={data.id} mediaType={mediaType} />
