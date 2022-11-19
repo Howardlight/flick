@@ -17,6 +17,7 @@ export const SeasonsWidget = ({ seasons, TVID, className }: { seasons: Season[],
 };
 
 //TODO: Improve Rating styling
+//TODO: Improve Formatting for air_date
 const SeasonsContent = ({ seasons, TVID }: { seasons: Season[], TVID: number }) => {
     return (
         <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
@@ -40,7 +41,7 @@ const SeasonsContent = ({ seasons, TVID }: { seasons: Season[], TVID: number }) 
                                         <p className="inline font-medium text-sm"> Episodes</p>
                                     </div>
                                     {season.name.toLowerCase() !== "specials" ?
-                                        <p className="text-neutral-400">{moment(season.air_date).format("LL")}</p>
+                                        <p className="text-neutral-400 truncate">{moment(season.air_date).format("LL")}</p>
                                         : <Fragment />
                                     }
                                 </div>
