@@ -50,7 +50,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
             <div className="m-3">
 
                 {isReleased(data.first_air_date) ? <Metrics data={data} styles="mb-5" /> : <Fragment />}
-                <div>
+                <div className="border-red-600 border-2 p-2 rounded-md">
                     {isReleased(data.first_air_date) ?
                         <Fragment>
                             <p className="font-medium text-lg">First aired {moment(data.first_air_date).format("LL")}</p>
