@@ -9,7 +9,7 @@ import fetcher from "../../Fetcher";
 import { MultiSearchMovieCard, MultiSearchTVShowCard, MultiSearchPersonCard } from "../../components/Search/MultiSearchCards";
 import { NextSeo } from "next-seo";
 
-export function isReleased(release_date: Date) { return moment() < moment(release_date); }
+export function isReleased(release_date: Date) { return moment() > moment(release_date); }
 
 
 export const Search = ({ query }: { query: string }) => {

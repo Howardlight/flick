@@ -67,7 +67,7 @@ export const MultiSearchMovieCard = ({ result }: { result: Movie }) => {
 
                 </div>
 
-                {isReleased(result.release_date) ? <p>In Production</p> : <Metrics vote_average={result.vote_average} />}
+                {isReleased(result.release_date) ? <Metrics vote_average={result.vote_average} /> : <p>In Production</p>}
             </div>
         </MultiSearchCardBase>
     );
