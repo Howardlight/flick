@@ -9,13 +9,14 @@ import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { isReleased } from "../../search/[...query]";
-import { Fragment, ReactNode, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../../Fetcher";
 import { ReviewResponse } from "../../../types/ReviewResponse";
 import { AvatarLoader } from "../../../AvatarLoader";
 import { ImageWithFallback } from "../../../components/ImageWithFallback";
 import Star from "../../../assets/Star.svg";
+import { Reviews } from "../../../components/Reviews/Reviews";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
@@ -100,15 +101,6 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                         : <Fragment />}
             </div>
 
-        </div>
-    )
-}
-
-const Reviews = ({ className, children }: { className?: string, children: ReactNode }) => {
-    return (
-        <div className={`${className}`}>
-            <p className="font-semibold text-2xl text-neutral-100 mb-3">Comments</p>
-            {children}
         </div>
     )
 }
