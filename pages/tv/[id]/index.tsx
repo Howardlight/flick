@@ -12,6 +12,7 @@ import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import { isReleased } from "../../search/[...query]";
+import { TVReviews } from "../../../components/Reviews/TVReviews";
 
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     // console.log(data);
@@ -78,6 +79,10 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                 <SeasonsWidget seasons={data.seasons} TVID={data.id} />
                 <CastWidget id={data.id} mediaType={mediaType} className={"mt-4"} />
                 {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-4"} /> : <div />}
+                {
+                    data.vote_count > 1 ?
+                        <TVReviews tvID={data.id} />
+                        : <Fragment />}
             </div>
 
         </div>
