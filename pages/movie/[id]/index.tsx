@@ -9,7 +9,7 @@ import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { isReleased } from "../../search/[...query]";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, ReactNode, useEffect, useState } from "react";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../../Fetcher";
 import { ReviewResponse } from "../../../types/ReviewResponse";
@@ -92,8 +92,17 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                 <br />
 
                 <CastWidget id={data.id} mediaType={mediaType} />
-                {data.vote_count > 1 ? <Reviews movieID={data.id} /> : <Fragment />}
+                {
+                    data.vote_count > 1 ?
+                        <Reviews className="mt-10" >
+                            <MovieReviewsContent movieID={data.id} />
+                        </Reviews>
+                        : <Fragment />}
             </div>
+
+        </div>
+    )
+}
 
 const Reviews = ({ className, children }: { className?: string, children: ReactNode }) => {
     return (
