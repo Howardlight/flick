@@ -1,15 +1,16 @@
 import Image from "next/image";
 import moment from "moment";
-import Placeholder from "../../../assets/MovieSVG.svg";
 import { Fragment, useState } from "react";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../Fetcher";
 import { ReviewResponse } from "../../types/ReviewResponse";
 import { AvatarLoader } from "../../AvatarLoader";
 import { ImageWithFallback } from "../ImageWithFallback";
-import Star from "../../../assets/Star.svg";
 import { Comment } from "./Comment";
 import { Reviews } from "./Reviews";
+
+import Placeholder from "../../assets/MovieSVG.svg";
+import Star from "../../assets/Star.svg";
 
 export const MovieReviews = ({ movieID }: { movieID: number }) => (
     <Reviews className="mt-10" >
