@@ -147,7 +147,6 @@ const MovieReviewsContent = ({ movieID }: { movieID: number }) => {
                                             alt={"Star"}
                                             width={32}
                                             height={32}
-                                            style={{ fill: "" }}
                                         />
                                     </div>
                                     : <Fragment />
