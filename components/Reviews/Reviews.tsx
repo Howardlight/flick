@@ -18,7 +18,7 @@ export const ReviewSkeletons = () => (
     </Fragment>
 )
 
-export const ReviewSkeleton = () => {
+const ReviewSkeleton = () => {
     return (
         <div className="w-auto h-[250px] mt-5 mb-5">
 
