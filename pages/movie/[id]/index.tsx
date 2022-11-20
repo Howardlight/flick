@@ -10,8 +10,7 @@ import { NextSeo } from "next-seo";
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { isReleased } from "../../search/[...query]";
 import { Fragment } from "react";
-import { Reviews } from "../../../components/Reviews/Reviews";
-import { MovieReviewsContent } from "../../../components/Reviews/MovieReviewsContent";
+import { MovieReviews } from "../../../components/Reviews/MovieReviews";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
@@ -90,9 +89,7 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                 <CastWidget id={data.id} mediaType={mediaType} />
                 {
                     data.vote_count > 1 ?
-                        <Reviews className="mt-10" >
-                            <MovieReviewsContent movieID={data.id} />
-                        </Reviews>
+                        <MovieReviews movieID={data.id} />
                         : <Fragment />}
             </div>
 
