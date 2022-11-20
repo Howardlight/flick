@@ -180,7 +180,7 @@ const Comment = ({ text, className }: { text: string, className?: string }): Rea
     return (
         <div className={`${className}`}>
             <p className="inline">{showMore ? `${text.substring(0, 250)}` : text}</p>
-            {showMore ? <div className="flex items-center justify-center z-10 relative bottom-6 backdrop-blur-sm hover:cursor-pointer hover:contrast-150" onClick={() => setShowMore(false)}>Show more</div> : <Fragment />}
+            {showMore ? <div className="flex items-center justify-center z-10 relative font-semibold bottom-6 backdrop-blur-sm hover:cursor-pointer hover:contrast-150" onClick={() => setShowMore(false)}>Show more</div> : <Fragment />}
         </div>
     )
 }
