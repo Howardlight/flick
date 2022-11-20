@@ -95,6 +95,11 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                 {data.vote_count > 1 ? <Reviews movieID={data.id} /> : <Fragment />}
             </div>
 
+const Reviews = ({ className, children }: { className?: string, children: ReactNode }) => {
+    return (
+        <div className={`${className}`}>
+            <p className="font-semibold text-2xl text-neutral-100 mb-3">Comments</p>
+            {children}
         </div>
     )
 }
