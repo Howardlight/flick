@@ -38,7 +38,7 @@ export const MultiSearchTVShowCard = ({ result }: { result: TVShow }) => {
 };
 
 export const MultiSearchMovieCard = ({ result }: { result: Movie }) => {
-    console.log(result);
+    // console.log(result);
     return (
         <MultiSearchCardBase resultID={result.id} mediaType={"movie"}>
             <Image

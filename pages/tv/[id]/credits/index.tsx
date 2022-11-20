@@ -13,7 +13,7 @@ import { TVShow } from "../../../../types/TVShow";
 const TVShowCredits = ({ data, requestStatus, TVShowName }: { data: CreditsResponse, requestStatus: number, TVShowName: string }) => {
 
 
-    console.log(data);
+    // console.log(data);
 
     if (requestStatus != 200) return <Custom404 />;
     return (

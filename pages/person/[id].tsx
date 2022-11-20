@@ -11,7 +11,7 @@ import { NextSeo } from "next-seo";
 
 export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatus: number }) => {
 
-    console.log(data);
+    // console.log(data);
     if (requestStatus != 200) return <Custom404  />;
     return (
         <Fragment>

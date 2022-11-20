@@ -14,7 +14,7 @@ import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import { isReleased } from "../../search/[...query]";
 
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
-    console.log(data);
+    // console.log(data);
     if (requestStatus != 200) return <Custom404 />;
     return (
         <div>
