@@ -60,7 +60,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                         : <p className="font-medium text-lg">Will air on {moment(data.first_air_date).format("LL")}</p>
                     }
                     <div>
-                        <p className="font-medium text-lg inline text-red-600">{data.number_of_episodes}</p>
+                        <p className="font-bold text-lg inline text-red-600">{data.number_of_episodes}</p>
                         <p className="font-medium text-lg inline"> Episodes</p>
                     </div>
                 </div>
