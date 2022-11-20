@@ -17,7 +17,7 @@ export const UpcomingMovies = ({ className }: { className?: string }): React.Rea
   );
 };
 const UpcomingWidgetContent = (): React.ReactElement => {
-  const { data, error }: SWRResponse<UpcomingResponse, Error> = useSWR("/api/getupcoming/1", fetcher);
+  const { data, error }: SWRResponse<UpcomingResponse, Error> = useSWR("/api/getUpcomingMovies/1", fetcher);
 
   if (!data && !error) return <IndexWidgetSkeletons />;
   if (error) return <IndexWidgetError />;

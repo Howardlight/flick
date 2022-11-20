@@ -20,7 +20,7 @@ export const CastWidget = ({ id, mediaType, className }: { id: number, mediaType
 
 export const CastWrapper = ({ id, mediaType }: { id: number, mediaType: string }) => {
 
-    const { data, error }: SWRResponse<CreditsResponse, Error> = useSWR(`/api/get${mediaType}credits/${id}`, fetcher);
+    const { data, error }: SWRResponse<CreditsResponse, Error> = useSWR(`/api/get${mediaType}Credits/${id}`, fetcher);
     // console.log(data);
 
 
@@ -71,7 +71,7 @@ const CastContent = ({ data, mediaType }: { data: CreditsResponse, mediaType: st
                     );
             })}
             {showMore ?
-                <Link href={`/${mediaType}/${data.id}/credits`} passHref>
+                <Link href={`/${mediaType.toLowerCase()}/${data.id}/credits`} passHref>
                     <a className="flex items-center justify-center text-neutral-100 rounded-sm font-medium text-lg hover:bg-neutral-900 pl-12 pr-12">
                         Show more
                     </a>

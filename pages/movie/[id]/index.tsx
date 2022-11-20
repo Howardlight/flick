@@ -128,7 +128,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
         props: {
             data: data,
-            mediaType: "movie",
+            mediaType: "Movie",
             requestStatus: request.status,
         }
     }

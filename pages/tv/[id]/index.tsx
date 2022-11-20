@@ -120,7 +120,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
         props: {
             data: data,
-            mediaType: "tv",
+            mediaType: "TV",
             requestStatus: request.status,
         }
     }

@@ -31,7 +31,7 @@ export const MovieReviewsContent = ({ movieID }: { movieID: number; }) => {
     // and more Comments are loaded ON TOP OF THE CURRENT COMMENTS
     //TODO: Change the Fill of the Star SVG, It is too bright of a color for the Theme
     const [page, setPage] = useState(1);
-    const { data, error }: SWRResponse<ReviewResponse, Error> = useSWR(`/api/getmoviereviews/${movieID}/${page}`, fetcher);
+    const { data, error }: SWRResponse<ReviewResponse, Error> = useSWR(`/api/getMovieReviews/${movieID}/${page}`, fetcher);
 
     // console.log(data);
     if (!data && !error) return <ReviewSkeletons />;
