@@ -20,7 +20,7 @@ export const CastWidget = ({ id, mediaType, className }: { id: number, mediaType
 
 export const CastWrapper = ({ id, mediaType }: { id: number, mediaType: string }) => {
 
-    const { data, error }: SWRResponse<CreditsResponse, Error> = useSWR(`/api/get${mediaType}Credits/${id}`, fetcher);
+    const { data, error }: SWRResponse<CreditsResponse, Error> = useSWR(`/api/${mediaType}/get${mediaType}Credits/${id}`, fetcher);
     // console.log(data);
 
 

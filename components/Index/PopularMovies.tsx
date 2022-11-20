@@ -17,7 +17,7 @@ export const PopularMovies = ({ className }: { className?: string }): React.Reac
 
 
 const PopularWidgetContent = (): React.ReactElement => {
-  const { data, error }: SWRResponse<PopularResponse, Error> = useSWR('/api/getPopularMovies/1', fetcher);
+  const { data, error }: SWRResponse<PopularResponse, Error> = useSWR('/api/Movie/getPopularMovies/1', fetcher);
 
   if (!data && !error) return <IndexWidgetSkeletons />;
   if (error) return <IndexWidgetError />;

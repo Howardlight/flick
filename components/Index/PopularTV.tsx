@@ -18,7 +18,7 @@ export const PopularTV = ({ className }: { className?: string }): ReactElement =
 }
 
 const PopularTVContent = () => {
-    const { data, error }: SWRResponse<GetPopularTV, Error> = useSWR("/api/getPopularTV/1", fetcher);
+    const { data, error }: SWRResponse<GetPopularTV, Error> = useSWR("/api/TV/getPopularTV/1", fetcher);
 
     // console.log(data);
     if (!data && !error) return <IndexWidgetSkeletons />
