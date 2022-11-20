@@ -46,3 +46,12 @@ const ReviewSkeleton = () => {
         </div>
     )
 }
+
+export const ReviewError = () => {
+    return (
+        <div className="flex flex-col items-center justify-center w-auto h-64">
+            <p className="font-semibold text-lg">Could not Fetch Comments</p>
+            <p className="font-normal text-sm text-neutral-400">Try again later</p>
+        </div>
+    )
+}
