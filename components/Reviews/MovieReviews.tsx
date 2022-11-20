@@ -9,6 +9,15 @@ import { AvatarLoader } from "../../AvatarLoader";
 import { ImageWithFallback } from "../ImageWithFallback";
 import Star from "../../../assets/Star.svg";
 import { Comment } from "./Comment";
+import { Reviews } from "./Reviews";
+
+export const MovieReviews = ({ movieID }: { movieID: number }) => (
+    <Reviews className="mt-10" >
+        <MovieReviewsContent movieID={movieID} />
+    </Reviews>
+)
+
+
 
 /* //TODO: Finish this TSDOCE
  * This component calls to the getmoviereviews Endpoint
