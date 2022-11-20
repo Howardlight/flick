@@ -34,14 +34,15 @@ const ReviewSkeleton = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col justify-evenly w-auto h-[192px]">
-                <div className="animate-pulse rounded-md bg-gray-300 w-auto h-2"></div>
-                <div className="animate-pulse rounded-md bg-gray-300 w-auto h-2"></div>
-                <div className="animate-pulse rounded-md bg-gray-300 w-auto h-2"></div>
-                <div className="animate-pulse rounded-md bg-gray-300 w-auto h-2"></div>
-                <div className="animate-pulse rounded-md bg-gray-300 w-auto h-2"></div>
-                <div className="animate-pulse rounded-md bg-gray-300 w-auto h-2"></div>
-                <div className="animate-pulse rounded-md bg-gray-300 w-auto h-2"></div>
+            <div className="flex flex-col gap-3 w-auto h-[192px] mt-4">
+                <div className="animate-pulse rounded-md bg-gray-300 w-11/12 h-2"></div>
+                <div className="animate-pulse rounded-md bg-gray-300 w-11/12 h-2"></div>
+                <div className="animate-pulse rounded-md bg-gray-300 w-11/12 h-2"></div>
+                <div className="animate-pulse rounded-md bg-gray-300 w-11/12 h-2"></div>
+                <div className="animate-pulse rounded-md bg-gray-300 w-11/12 h-2"></div>
+                <div className="animate-pulse rounded-md bg-gray-300 w-11/12 h-2"></div>
+                <div className="animate-pulse rounded-md bg-gray-300 w-11/12 h-2"></div>
+                <div className="animate-pulse rounded-md bg-gray-300 w-2/6 h-2"></div>
             </div>
         </div>
     )
