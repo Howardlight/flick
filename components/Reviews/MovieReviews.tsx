@@ -7,7 +7,7 @@ import { ReviewResponse } from "../../types/ReviewResponse";
 import { AvatarLoader } from "../../AvatarLoader";
 import { ImageWithFallback } from "../ImageWithFallback";
 import { Comment } from "./Comment";
-import { Reviews } from "./Reviews";
+import { Reviews, ReviewSkeleton, ReviewSkeletons } from "./Reviews";
 
 import Placeholder from "../../assets/MovieSVG.svg";
 import Star from "../../assets/Star.svg";
@@ -33,11 +33,9 @@ export const MovieReviewsContent = ({ movieID }: { movieID: number; }) => {
     const [page, setPage] = useState(1);
     const { data, error }: SWRResponse<ReviewResponse, Error> = useSWR(`/api/getmoviereviews/${movieID}/${page}`, fetcher);
 
-    console.log(data);
-    if (!data && !error)
-        return <p>Loading...</p>;
-    if (error)
-        return <p>Error</p>;
+    // console.log(data);
+    if (!data && !error) return <ReviewSkeletons />;
+    if (error) return <p>Error</p>;
     return (
         <div>
             {data!.results.map((review, index) => {
