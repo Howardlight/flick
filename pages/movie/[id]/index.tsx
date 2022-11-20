@@ -99,7 +99,17 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
     )
 }
 
-const Reviews = ({ movieID }: { movieID: number }) => {
+/* //TODO: Finish this TSDOCE
+ * This component calls to the getmoviereviews Endpoint
+ * @param param0 
+ * @returns 
+ */
+const MovieReviewsContent = ({ movieID }: { movieID: number }) => {
+    //TODO: Fully add Pages to functions
+    // you click on show more button or it automatically fetches them as you approach the bottom of the page
+    // and more Comments are loaded ON TOP OF THE CURRENT COMMENTS
+
+    //TODO: Change the Fill of the Star SVG, It is too bright of a color for the Theme
     const [page, setPage] = useState(1);
     const { data, error }: SWRResponse<ReviewResponse, Error> = useSWR(`/api/getmoviereviews/${movieID}/${page}`, fetcher);
 
@@ -159,6 +169,8 @@ const Comment = ({ text, className }: { text: string, className?: string }): Rea
     // logic clarification: is showMoreButton needed?
     // yes, substring and button. 
     // no, dump the bio
+
+    //TODO: Change substring size depending on breakpoints
     const [showMore, setShowMore] = useState(false);
     useEffect(() => {
         if (text.length > 250) setShowMore(true);
