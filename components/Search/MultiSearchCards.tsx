@@ -8,6 +8,7 @@ import { Person } from "../../types/Person";
 import { isReleased } from "../../pages/search/[...query]";
 import { Cast } from "../../types/Cast";
 import { MultiSearchCardBase } from "./MultiSearchCardBase";
+import { Fragment } from "react";
 
 export const MultiSearchTVShowCard = ({ result }: { result: TVShow }) => {
     return (
@@ -31,7 +32,7 @@ export const MultiSearchTVShowCard = ({ result }: { result: TVShow }) => {
                     </div>
                 </div>
 
-                <Metrics vote_average={result.vote_average} />
+                {result.vote_count != 0 ? <Metrics vote_average={result.vote_average} /> : <Fragment />}
             </div>
         </MultiSearchCardBase>
     );
@@ -67,7 +68,7 @@ export const MultiSearchMovieCard = ({ result }: { result: Movie }) => {
 
                 </div>
 
-                {isReleased(result.release_date) ? <Metrics vote_average={result.vote_average} /> : <p>In Production</p>}
+                {result.vote_count != 0 ? <Metrics vote_average={result.vote_average} /> : <Fragment />}
             </div>
         </MultiSearchCardBase>
     );
