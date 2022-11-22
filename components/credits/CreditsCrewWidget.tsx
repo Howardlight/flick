@@ -6,7 +6,7 @@ import PageBox from "./PageBox";
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";
-import { CreditsSkeletons } from "./CreditsCastWidget";
+import CreditsSkeletons from "./CreditsSkeletons";
 
 export const CreditsCrewWidget = ({ crew }: { crew: Crew[]; }) => {
     const [page, setPage] = useState(1);

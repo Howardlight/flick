@@ -6,6 +6,7 @@ import { splitElementsInEqualArrays } from "../../Utils";
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";
+import CreditsSkeletons from "./CreditsSkeletons";
 
 export const CreditsCastWidget = ({ cast }: { cast: Cast[]; }) => {
     const [page, setPage] = useState(1);
@@ -58,28 +59,3 @@ const CreditsCasteeCard = ({ castee }: { castee: Cast }) => {
         </Link>
     );
 };
-
-export const CreditsSkeletons = () => {
-    return (
-        <Fragment>
-            <CreditsSkeleton />
-            <CreditsSkeleton />
-            <CreditsSkeleton />
-            <CreditsSkeleton />
-            <CreditsSkeleton />
-        </Fragment>
-
-    )
-}
-
-const CreditsSkeleton = () => {
-    return (
-        <div className=" w-[359px] h-[211px] flex flex-row p-3">
-            <div className="animate-pulse bg-neutral-400 w-[125px] h-[187px] rounded-sm"></div>
-            <div className="animate-pulse flex flex-col gap-1 grow ml-2 mr-2">
-                <div className="bg-neutral-400 h-2 w-auto rounded-sm"></div>
-                <div className="bg-neutral-400 h-2 w-8/12 rounded-sm"></div>
-            </div>
-        </div>
-    );
-}
