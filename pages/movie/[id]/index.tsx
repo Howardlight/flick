@@ -11,6 +11,7 @@ import Placeholder from "../../../assets/MovieSVG.svg";
 import { isReleased } from "../../search/[...query]";
 import { Fragment } from "react";
 import { MovieReviews } from "../../../components/Reviews/MovieReviews";
+import MainPageMetrics from "../../../components/MainPageMetrics";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
@@ -75,7 +76,7 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                             : <Fragment />
                     }
                 </div>
-                {isReleased(data.release_date) ? <Metrics data={data} styles="mt-5" /> : <Fragment />}
+                {isReleased(data.release_date) ? <MainPageMetrics vote_average={data.vote_average} vote_count={data.vote_count} styles="mt-5" /> : <Fragment />}
                 <br />
                 {data.overview ?
                     <Fragment>
@@ -96,28 +97,6 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
         </div>
     )
 }
-
-const Metrics = ({ data, styles }: { data: Movie, styles: string }) => {
-
-    const percentage = Math.round(data.vote_average * 10).toString();
-
-    return (
-        <div className={`${styles}`}>
-            <div className='h-4 w-full bg-neutral-900 rounded-sm flex items-center'>
-                <span className={`inline-block relative bg-red-600 h-2 ml-1 mr-2`} style={{ width: `${percentage}%` }}></span>
-            </div>
-            <div className="flex flex-row justify-between ml-1 mt-2 mr-1">
-                <p className='font-bold text-2xl text-red-600'>{percentage}%</p>
-                <div className="flex flex-row gap-1 items-center">
-                    <p className="font-semibold text-2xl text-red-600 inline">{data.vote_count}</p>
-                    <p className="font-medium inline text-red-600 text-xl">Reviews</p>
-                </div>
-            </div>
-        </div>
-
-    )
-}
-
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     let data: Movie;

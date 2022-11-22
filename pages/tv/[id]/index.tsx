@@ -13,6 +13,7 @@ import { NextSeo } from "next-seo";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import { isReleased } from "../../search/[...query]";
 import { TVReviews } from "../../../components/Reviews/TVReviews";
+import { MainPageMetrics } from "../../../components/MainPageMetrics";
 
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     // console.log(data);
@@ -63,7 +64,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                         <p className="font-medium text-lg inline"> Episodes</p>
                     </div>
                 </div>
-                {isReleased(data.first_air_date) ? <Metrics data={data} styles="mt-5" /> : <Fragment />}
+                {isReleased(data.first_air_date) ? <MainPageMetrics vote_average={data.vote_average} vote_count={data.vote_count} styles="mt-5" /> : <Fragment />}
 
                 <br />
                 {
@@ -87,27 +88,6 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
             </div>
 
         </div>
-    )
-}
-
-const Metrics = ({ data, styles }: { data: TVShow, styles: string }) => {
-
-    const percentage = Math.round(data.vote_average * 10).toString();
-
-    return (
-        <div className={`${styles}`}>
-            <div className='h-4 w-full bg-neutral-900 rounded-sm flex items-center'>
-                <span className={`inline-block relative bg-red-600 h-2 ml-1 mr-2`} style={{ width: `${percentage}%` }}></span>
-            </div>
-            <div className="flex flex-row justify-between ml-1 mt-2 mr-1">
-                <p className='font-bold text-2xl text-red-600'>{percentage}%</p>
-                <div className="flex flex-row gap-1 items-center">
-                    <p className="font-semibold text-2xl text-red-600 inline">{data.vote_count}</p>
-                    <p className="font-medium inline text-red-600 text-xl">Reviews</p>
-                </div>
-            </div>
-        </div>
-
     )
 }
 
