@@ -52,7 +52,6 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
             </div>
             <div className="m-3">
 
-                {isReleased(data.release_date) ? <Metrics data={data} styles="mb-5" /> : <Fragment />}
                 <div className="border-red-600 border-2 p-2 rounded-md">
                     <p className="font-medium text-lg">{isReleased(data.release_date) ? `Released on ${moment(data.release_date).format("LL")}` : `Will be released on ${moment(data.release_date).format("LL")}`}</p>
                     <div className="text-lg font-medium">
@@ -76,6 +75,7 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                             : <Fragment />
                     }
                 </div>
+                {isReleased(data.release_date) ? <Metrics data={data} styles="mt-5" /> : <Fragment />}
                 <br />
                 {data.overview ?
                     <Fragment>
