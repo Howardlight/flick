@@ -5,8 +5,8 @@ import { splitElementsInEqualArrays } from "../../Utils";
 import { PageBox } from "./PageBox";
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
-import Placeholder from "../../../assets/MovieSVG.svg";
-import { MovieCreditsSkeletons } from "./MovieCreditsCastWidget";
+import Placeholder from "../../assets/MovieSVG.svg";
+import { MovieCreditsSkeletons } from "./CreditsCastWidget";
 
 export const MovieCreditsCrewWidget = ({ crew }: { crew: Crew[]; }) => {
     const [page, setPage] = useState(1);
