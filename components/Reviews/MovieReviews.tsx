@@ -7,7 +7,7 @@ import { ReviewResponse } from "../../types/ReviewResponse";
 import { AvatarLoader } from "../../AvatarLoader";
 import { ImageWithFallback } from "../ImageWithFallback";
 import { Comment } from "./Comment";
-import { ReviewError, Reviews, ReviewSkeletons } from "./Reviews";
+import { NoReviewsFound, ReviewError, Reviews, ReviewSkeletons } from "./Reviews";
 
 import Placeholder from "../../assets/MovieSVG.svg";
 import Star from "../../assets/Star.svg";
@@ -36,6 +36,7 @@ export const MovieReviewsContent = ({ movieID }: { movieID: number; }) => {
     // console.log(data);
     if (!data && !error) return <ReviewSkeletons />;
     if (error) return <ReviewError />;
+    if(data?.results.length == 0) return <NoReviewsFound />;
     return (
         <div>
             {data!.results.map((review, index) => {
