@@ -7,33 +7,33 @@ import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";
 
-export const MovieCreditsCastWidget = ({ cast }: { cast: Cast[]; }) => {
+export const CreditsCastWidget = ({ cast }: { cast: Cast[]; }) => {
     const [page, setPage] = useState(1);
 
     return (
         <Fragment>
             <PageBox page={page} pageLimit={Math.ceil(cast.length / 12)} key={"movie-credits-cast-pagebox"} setPage={setPage} />
-            <MovieCreditsCastContent cast={cast} page={page} />
+            <CreditsCastContent cast={cast} page={page} />
         </Fragment>
     );
 };
 
-export const MovieCreditsCastContent = ({ cast, page }: { cast: Cast[], page: number }) => {
+export const CreditsCastContent = ({ cast, page }: { cast: Cast[], page: number }) => {
 
     let castPages: Array<Cast[]> = useMemo(() => [], []);
     castPages = useMemo(() => splitElementsInEqualArrays(cast), [cast]);
 
-    if (!castPages) return <MovieCreditsSkeletons />;
+    if (!castPages) return <CreditsSkeletons />;
     return (
         <div className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
             {castPages[page - 1].map((castee) => (
-                <MovieCreditsCasteeCard key={castee.cast_id} castee={castee} />
+                <CreditsCasteeCard key={castee.cast_id} castee={castee} />
             ))}
         </div>
     );
 }
 
-const MovieCreditsCasteeCard = ({ castee }: { castee: Cast }) => {
+const CreditsCasteeCard = ({ castee }: { castee: Cast }) => {
 
     return (
         <Link key={castee.id} href={`/person/${castee.id}`} passHref>
@@ -59,20 +59,20 @@ const MovieCreditsCasteeCard = ({ castee }: { castee: Cast }) => {
     );
 };
 
-export const MovieCreditsSkeletons = () => {
+export const CreditsSkeletons = () => {
     return (
         <Fragment>
-            <MovieCreditsSkeleton />
-            <MovieCreditsSkeleton />
-            <MovieCreditsSkeleton />
-            <MovieCreditsSkeleton />
-            <MovieCreditsSkeleton />
+            <CreditsSkeleton />
+            <CreditsSkeleton />
+            <CreditsSkeleton />
+            <CreditsSkeleton />
+            <CreditsSkeleton />
         </Fragment>
 
     )
 }
 
-const MovieCreditsSkeleton = () => {
+const CreditsSkeleton = () => {
     return (
         <div className=" w-[359px] h-[211px] flex flex-row p-3">
             <div className="animate-pulse bg-neutral-400 w-[125px] h-[187px] rounded-sm"></div>

@@ -3,8 +3,8 @@ import { GetServerSidePropsContext } from "next";
 import React, { Fragment } from "react";
 import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
-import { MovieCreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
-import { MovieCreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
+import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
+import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
 import Custom404 from "../../../404";
 import { Movie } from "../../../../types/Movie";
 import { NextSeo } from "next-seo";
@@ -41,10 +41,10 @@ const TVShowCredits = ({ data, requestStatus, TVShowName }: { data: CreditsRespo
                 </Tab.List>
                 <Tab.Panels className={"ml-2 mr-2"}>
                     <Tab.Panel>
-                        <MovieCreditsCastWidget cast={data.cast} />
+                        <CreditsCastWidget cast={data.cast} />
                     </Tab.Panel>
                     <Tab.Panel>
-                        <MovieCreditsCrewWidget crew={data.crew} />
+                        <CreditsCrewWidget crew={data.crew} />
                     </Tab.Panel>
                 </Tab.Panels>
             </Tab.Group>

@@ -6,46 +6,46 @@ import PageBox from "./PageBox";
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";
-import { MovieCreditsSkeletons } from "./CreditsCastWidget";
+import { CreditsSkeletons } from "./CreditsCastWidget";
 
-export const MovieCreditsCrewWidget = ({ crew }: { crew: Crew[]; }) => {
+export const CreditsCrewWidget = ({ crew }: { crew: Crew[]; }) => {
     const [page, setPage] = useState(1);
 
     return (
         <Fragment>
             <PageBox page={page} pageLimit={Math.ceil(crew.length / 12)} key={"movie-credits-crew-pagebox"} setPage={setPage} />
-            <MovieCreditsCrewContent crew={crew} page={page} />
+            <CreditsCrewContent crew={crew} page={page} />
         </Fragment>
     );
 };
 
-export const MovieCreditsCrewContent = ({ crew, page }: { crew: Crew[], page: number }) => {
+export const CreditsCrewContent = ({ crew, page }: { crew: Crew[], page: number }) => {
 
     let crewPages: Array<Crew[]> = useMemo(() => [], []);
     crewPages = useMemo(() => splitElementsInEqualArrays(crew), [crew]);
 
     //NOTE: in standard cases the Skeleton is never used, but it's good to have it just incase
-    if (!crewPages) return <MovieCreditsSkeletons />;
+    if (!crewPages) return <CreditsSkeletons />;
     return (
         <div className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
             {crewPages[page - 1].map((crewPerson) => (
-                <MovieCreditsCrewCard key={`${crewPerson.id}-${crewPerson.job}`} crew={crewPerson} />
+                <CreditsCrewCard key={`${crewPerson.id}-${crewPerson.job}`} crew={crewPerson} />
             ))}
         </div>
     );
 }
 
-const MovieCreditsCrewCard = ({ crew }: { crew: Crew, }) => {
+const CreditsCrewCard = ({ crew }: { crew: Crew, }) => {
 
-    function HandleKnownForDepartment({ department, gender }: { department: string, gender: number }) {
+    // function HandleKnownForDepartment({ department, gender }: { department: string, gender: number }) {
 
-        if (department === "Acting") return <p>{gender == 1 ? "Actress" : "Actor"}</p>;
-        if (department === "Production") return <p>Producer</p>;
-        if (department === "Visual Effects") return <p>Visual Effects Designer</p>;
-        if (department === "Sound") return <p>Sound Designer</p>;
-        if (department === "Writing") return <p>Writer</p>;
-        else return <p>Unknown Department</p>;
-    }
+    //     if (department === "Acting") return <p>{gender == 1 ? "Actress" : "Actor"}</p>;
+    //     if (department === "Production") return <p>Producer</p>;
+    //     if (department === "Visual Effects") return <p>Visual Effects Designer</p>;
+    //     if (department === "Sound") return <p>Sound Designer</p>;
+    //     if (department === "Writing") return <p>Writer</p>;
+    //     else return <p>Unknown Department</p>;
+    // }
 
     return (
         <Link key={crew.id} href={`/person/${crew.id}`} passHref>
