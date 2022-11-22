@@ -9,6 +9,7 @@ import { isReleased } from "../../pages/search/[...query]";
 import { Cast } from "../../types/Cast";
 import { MultiSearchCardBase } from "./MultiSearchCardBase";
 import { Fragment } from "react";
+import { Metrics } from "../Index/IndexWidgetBase";
 
 export const MultiSearchTVShowCard = ({ result }: { result: TVShow }) => {
     return (
@@ -105,18 +106,5 @@ export const MultiSearchPersonCard = ({ result }: { result: Person | Cast }) => 
                 </div>
             </div>
         </MultiSearchCardBase>
-    );
-};
-const Metrics = ({ vote_average }: { vote_average: number; }) => {
-
-    const percentage = Math.round(vote_average * 10).toString();
-    return (
-        <div className='flex flex-col items-start justify-between mr-1 ml-1 gap-1'>
-            <p className='font-semibold text-2xl text-red-600'>{vote_average != NaN ? `${percentage}%` : "No Reviews"}</p>
-            <div className='h-4 w-full bg-neutral-800 rounded-sm flex items-center'>
-                <span className={`inline-block relative bg-red-600 h-2 ml-1 mr-2`} style={{ width: `${percentage}%` }}></span>
-            </div>
-        </div>
-
     );
 };
