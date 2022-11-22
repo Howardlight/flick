@@ -1,6 +1,6 @@
 import React, { Fragment, useMemo, useState } from "react";
 import { Cast } from "../../types/Cast";
-import { PageBox } from "./PageBox";
+import PageBox from "./PageBox";
 import Link from "next/link";
 import { splitElementsInEqualArrays } from "../../Utils";
 import Image from "next/image";

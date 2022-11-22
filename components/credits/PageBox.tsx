@@ -49,3 +49,5 @@ export const PageBox = ({ page, pageLimit, setPage }: { page: number; pageLimit:
         </div>
     );
 };
+
+export default PageBox;
