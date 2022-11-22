@@ -1,13 +1,13 @@
 import useSWR, { SWRResponse } from "swr";
 import Image from "next/image";
-import { PosterLoader } from "../PosterLoader";
-import fetcher from "../Fetcher";
-import { CreditsResponse } from "../types/GetCreditsTypes";
-import { Cast } from "../types/Cast";
+import { PosterLoader } from "../../PosterLoader";
+import fetcher from "../../Fetcher";
+import { CreditsResponse } from "../../types/GetCreditsTypes";
+import { Cast } from "../../types/Cast";
 import Placeholder from "../assets/MovieSVG.svg";
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
-import { IndexWidgetScrollBar } from "./Index/IndexWidgetBase";
+import { IndexWidgetScrollBar } from "../Index/IndexWidgetBase";
 
 export const CastWidget = ({ id, mediaType, className }: { id: number, mediaType: string, className?: string }) => {
     return (

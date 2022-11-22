@@ -6,14 +6,14 @@ import moment from "moment";
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { Fragment as div, Fragment } from "react";
 import { TVShow } from "../../../types/TVShow";
-import { CastWidget } from "../../../components/CastWidget";
-import { CreatorWidget } from "../../../components/CreatorWidget";
+import { CastWidget } from "../../../components/Movie-TV/CastWidget";
+import { CreatorWidget } from "../../../components/Movie-TV/CreatorWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import { isReleased } from "../../search/[...query]";
 import { TVReviews } from "../../../components/Reviews/TVReviews";
-import { MainPageMetrics } from "../../../components/MainPageMetrics";
+import { MainPageMetrics } from "../../../components/Movie-TV/MainPageMetrics";
 
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     // console.log(data);

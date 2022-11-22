@@ -4,14 +4,14 @@ import Image from "next/image";
 import { PosterLoader } from "../../../PosterLoader";
 import { Navbar } from "../../../components/Navbar";
 import moment from "moment";
-import { CastWidget } from "../../../components/CastWidget";
+import { CastWidget } from "../../../components/Movie-TV/CastWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { isReleased } from "../../search/[...query]";
 import { Fragment } from "react";
 import { MovieReviews } from "../../../components/Reviews/MovieReviews";
-import MainPageMetrics from "../../../components/MainPageMetrics";
+import MainPageMetrics from "../../../components/Movie-TV/MainPageMetrics";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {

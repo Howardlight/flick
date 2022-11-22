@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { PosterLoader } from "../PosterLoader";
+import { PosterLoader } from "../../PosterLoader";
 import Placeholder from "../assets/MovieSVG.svg";
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
-import { CreatedBy } from "../types/TVShow";
+import { CreatedBy } from "../../types/TVShow";
 
 export const CreatorWidget = ({ creators, className }: { creators: CreatedBy[]; className?: string; }) => {
     return (
