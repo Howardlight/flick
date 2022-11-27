@@ -20,11 +20,14 @@ export const PageBox = ({ page, pageLimit, setPage }: { page: number; pageLimit:
 
     useEffect(() => {
 
-        //TODO: add DOCS to clarify what's going on
         // checks if reference to the Page input is valid, if so
         // set its content to the current Page AND set LocalPage to Page
+
+        // checks if pageRef has been set or not yet
         if (!pageRef.current)
             throw Error("PageRef is not set!");
+
+        // sets current page to pageref AND localPage state
         else {
             pageRef.current.value = page.toString();
             setLocalPage(page);
