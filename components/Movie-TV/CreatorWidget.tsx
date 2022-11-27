@@ -22,8 +22,6 @@ const CreatorWrapper = ({ creators }: { creators: CreatedBy[]; }) => {
 };
 
 
-//TODO: Do something about show more button
-// in this case it should lead to the same area as Cast Widget
 export const CreatorContent = ({ creators }: { creators: CreatedBy[]; }) => {
     const [showMore, setShowMore] = useState(false);
 
