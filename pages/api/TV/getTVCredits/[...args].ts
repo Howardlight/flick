@@ -3,11 +3,17 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 /**
- *  test
+ *  **get TV Credits**
  * 
+ * Returns a List of people who worked on the TV Show
+ * 
+ * @remarks
  * Language is hardcoded en-US
- * @param req - Page
- * @param res 
+ * 
+ * @remarks
+ * The ID of a TV Show is DIFFERENT from the ID of a TV Show's SEASON
+ * 
+ * @params credit_id ID of the selected TV Show
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     // Returns a List, first element is the parent folder NAME, in this case: getpopular

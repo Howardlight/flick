@@ -1,15 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-//TODO: Improve TSDOCS
 /** 
- * **getLatest**
+ *  **get Latest Movies**
  * 
- * Get a list of the current popular movies on TMDB. This list updates daily
- * 
- * @param res - Page 
- * @param res 
+ * Returns the latest Movies
+ * @remarks
+ * Language is hard code to Page 1
  */
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse)  {
     // Returns a List, first element is the parent folder NAME, in this case: getpopular
     let data;
 

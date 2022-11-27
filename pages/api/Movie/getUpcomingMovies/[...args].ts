@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 /**
- *  Get Upcoming
+ *  **GetUpcoming**
  * 
- * Language is hardcoded en-US
- * @param req - Page
- * @param res 
+ * Returns a list of Upcoming Movies
+ *  
+ * @params page - The selected page
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     // Returns a List, first element is the parent folder NAME, in this case: getpopular

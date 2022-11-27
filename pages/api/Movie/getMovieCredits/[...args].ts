@@ -3,11 +3,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 /**
- *  test
+ * **get Movie Credits**
  * 
- * Language is hardcoded en-US
- * @param req - Page
- * @param res 
+ *  Returns Crew and Cast which worked on the Movie
+ * 
+ * @params credit_id - Must be the Movie ID
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     // Returns a List, first element is the parent folder NAME, in this case: getpopular
