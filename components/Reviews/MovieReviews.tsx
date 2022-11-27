@@ -60,7 +60,7 @@ export const MovieReviewsContent = ({ movieID }: { movieID: number; }) => {
 
                             {review.author_details.rating ?
                                 <div className="flex flex-row items-center grow justify-end text-2xl font-semibold gap-2">
-                                    <p>{review.author_details.rating} / 10</p>
+                                    <p className="text-lg">{review.author_details.rating} / 10</p>
                                     <Image
                                         src={Star.src}
                                         alt={"Star"}
