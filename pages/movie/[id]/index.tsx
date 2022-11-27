@@ -113,9 +113,9 @@ const Recommendations = ({ id }: { id: number }) => {
     //TODO: EXPERIMENT: Try adding tags to each movie
 
     if (!data && !error) return <RecommendationSkeletons />;
-    if (error) return <p>Error</p>;
+    if (error) return <RecommendationsError />;
 
-    if (data?.total_results == 0) return <Fragment />;
+    if (data?.total_results == 0) return <NoRecommendations />;
     //TODO: Add Element saying "No Recommendations or something along it"
 
     return (
@@ -145,6 +145,24 @@ const Recommendations = ({ id }: { id: number }) => {
                     )
                 })}
             </div>
+        </div>
+    )
+}
+
+const RecommendationsError = () => {
+    return (
+        <div className="flex flex-col items-center justify-center h-[326px] w-auto">
+            <p className="text-lg text-neutral-100">Could not load Recommendations</p>
+            <p className="text-base text-neutral-400">Try again later</p>
+        </div>
+    )
+}
+
+const NoRecommendations = () => {
+    return (
+        <div className="flex flex-col items-center justify-center h-[326px] w-auto">
+            <p className="text-lg text-neutral-100">It seems there are no recommendations</p>
+            <p className="text-base text-neutral-400">{`:(`}</p>
         </div>
     )
 }
