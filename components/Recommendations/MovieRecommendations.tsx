@@ -4,7 +4,7 @@ import moment from "moment";
 import Placeholder from "../../assets/MovieSVG.svg";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../Fetcher";
-import { MovieRecResponse } from "../../types/GetMovieRecommendationsTypes";
+import { MovieRecResponse } from "../../types/GetRecommendationsTypes";
 import Link from "next/link";
 import { NoRecommendations, RecommendationsError, RecommendationSkeletons } from "./RecommendationsBase";
 
