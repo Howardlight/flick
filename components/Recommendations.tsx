@@ -13,14 +13,10 @@ export const Recommendations = ({ id }: { id: number; }) => {
     console.log(data);
 
     //TODO: EXPERIMENT: Try adding tags to each movie
-    if (!data && !error)
-        return <RecommendationSkeletons />;
-    if (error)
-        return <RecommendationsError />;
-
-    if (data?.total_results == 0)
-        return <NoRecommendations />;
-    //TODO: Add Element saying "No Recommendations or something along it"
+    if (!data && !error) return <RecommendationSkeletons />;
+    if (error) return <RecommendationsError />;
+    if (data?.total_results == 0) return <NoRecommendations />;
+    
     return (
         <div className="mt-4">
             <p className="font-semibold text-neutral-100 text-2xl mb-3">Recommendations</p>
