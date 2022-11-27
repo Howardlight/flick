@@ -25,7 +25,7 @@ export const Recommendations = ({ id }: { id: number; }) => {
                 {data?.results.map((movie, index) => {
                     if (index < 6)
                         return (
-                            <div className="flex flex-col justify-center w-[187px] mb-5 p-3 hover:bg-neutral-900" key={`${movie.id}-${index}`}>
+                            <div className="flex flex-col justify-center w-[187px] mb-5 p-3 hover:bg-neutral-900 rounded-sm" key={`${movie.id}-${index}`}>
                                 <Link href={`/movie/${movie.id}`} passHref>
                                     <a>
                                         <Image
