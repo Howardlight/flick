@@ -12,7 +12,7 @@ import { isReleased } from "../../search/[...query]";
 import { Fragment } from "react";
 import { MovieReviews } from "../../../components/Reviews/MovieReviews";
 import MainPageMetrics from "../../../components/Movie-TV/MainPageMetrics";
-import { Recommendations } from "../../../components/Recommendations/Recommendations";
+import { Recommendations } from "../../../components/Recommendations/MovieRecommendations";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {

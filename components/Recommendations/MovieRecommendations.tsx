@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import moment from "moment";
-import Placeholder from "../assets/MovieSVG.svg";
+import Placeholder from "../../assets/MovieSVG.svg";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../Fetcher";
 import { MovieRecResponse } from "../../types/GetMovieRecommendationsTypes";
@@ -48,3 +48,5 @@ export const Recommendations = ({ id }: { id: number; }) => {
         </div>
     );
 };
+
+export default Recommendations;
