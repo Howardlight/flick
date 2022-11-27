@@ -3,7 +3,7 @@ import { GetServerSidePropsContext } from "next";
 import React, { Fragment } from "react";
 import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
-import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
+import { CreditsCastWidget } from "./../../../../components/Credits/CreditsCastWidget";
 import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
 import Custom404 from "../../../404";
 import { Movie } from "../../../../types/Movie";
