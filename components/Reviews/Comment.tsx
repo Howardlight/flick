@@ -10,7 +10,6 @@ export const Comment = ({ text, className }: { text: string; className?: string;
     const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
 
 
-    //TODO: Change substring size depending on breakpoints
     const [showMore, setShowMore] = useState(false);
     useEffect(() => {
         if (text.length > 250)
