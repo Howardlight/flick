@@ -16,7 +16,7 @@ export const Recommendations = ({ id }: { id: number; }) => {
     if (!data && !error) return <RecommendationSkeletons />;
     if (error) return <RecommendationsError />;
     if (data?.total_results == 0) return <NoRecommendations />;
-    
+
     return (
         <div className="mt-4">
             <p className="font-semibold text-neutral-100 text-2xl mb-3">Recommendations</p>
