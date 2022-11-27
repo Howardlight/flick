@@ -27,8 +27,8 @@ export const CreditsCastContent = ({ cast, page }: { cast: Cast[], page: number 
     if (!castPages) return <CreditsSkeletons />;
     return (
         <div className={"grid auto-cols-auto grid-cols-1 md:grid-cols-2"}>
-            {castPages[page - 1].map((castee) => (
-                <CreditsCasteeCard key={castee.cast_id} castee={castee} />
+            {castPages[page - 1].map((castee, index) => (
+                <CreditsCasteeCard key={`${castee.cast_id}-${castee.department}-${index}`} castee={castee} />
             ))}
         </div>
     );
