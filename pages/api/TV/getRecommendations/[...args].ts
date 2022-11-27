@@ -14,7 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const slugs = req.query;
     const TVID = slugs.args![0];
     let data;
-    // console.log(`movieID: `, movieID);
+    console.log("TV RECOMMENDATIONS");
+    console.log(`TVID: `, TVID);
 
     const request = await fetch(`https://api.themoviedb.org/3/tv/${TVID}/recommendations?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`);
     data = await request.json();
