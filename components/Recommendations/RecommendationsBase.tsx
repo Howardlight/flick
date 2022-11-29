@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 export const RecommendationsError = () => {
     return (
         <div className="flex flex-col items-center justify-center h-[326px] w-auto">
@@ -8,10 +10,11 @@ export const RecommendationsError = () => {
 };
 export const NoRecommendations = () => {
     return (
-        <div className="flex flex-col items-center justify-center h-[326px] w-auto">
-            <p className="text-lg text-neutral-100">It seems there are no recommendations</p>
-            <p className="text-base text-neutral-400">{`:(`}</p>
-        </div>
+        // <div className="flex flex-col items-center justify-center h-[326px] w-auto">
+        //     <p className="text-lg text-neutral-100">It seems there are no recommendations</p>
+        //     <p className="text-base text-neutral-400">{`:(`}</p>
+        // </div>
+        <Fragment />
     );
 };
 export const RecommendationSkeletons = () => {
