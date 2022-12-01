@@ -85,7 +85,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                 <Recommendations id={data.id} />
                 {
                     data.vote_count > 1 ?
-                        <TVReviews tvID={data.id} />
+                        <TVReviews tvID={data.id} className={"mt-10"} />
                         : <Fragment />}
             </div>
 
