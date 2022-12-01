@@ -7,7 +7,7 @@ export default function Custom404() {
     return (
         <Fragment>
             <NextSeo
-                title="404 - Project Movies"
+                title="404 - Flick"
             />
             <div className="w-[100vw] h-[100vh] flex flex-col">
                 <Navbar />

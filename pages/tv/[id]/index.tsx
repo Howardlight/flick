@@ -22,7 +22,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
     return (
         <div>
             <NextSeo
-                title={`${data.name} - Project Movies`}
+                title={`${data.name} - Flick`}
             />
             <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />

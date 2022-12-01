@@ -7,13 +7,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
       <NextSeo
-        title="Project Movies"
-        description="Explore the latest and most popular movies using Project Movies! Discover details never heard of about your favorite actors! Find your next favorite TV Show using Project Movies!"
-        canonical="https://project-movies.vercel.app"
+        title="Flick"
+        description="Explore the latest and most popular movies using Flick! Discover details never heard of about your favorite actors! Find your next favorite TV Show using Project Movies!"
+        canonical="https://flick.vercel.app"
         openGraph={{
-          url: 'https://project-movies.vercel.app',
-          title: 'Project Movies',
-          description: "Explore the latest and most popular movies using Project Movies! Discover details never heard of about your favorite actors! Find your next favorite TV Show using Project Movies!",
+          url: 'https://flick.vercel.app',
+          title: 'Flick',
+          description: "Explore the latest and most popular movies using Flick! Discover details never heard of about your favorite actors! Find your next favorite TV Show using Project Movies!",
           images: [
             {
               url: 'https://www.example.com/og-image01.jpg',
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             { url: 'https://www.example.com/og-image03.jpg' },
             { url: 'https://www.example.com/og-image04.jpg' },
           ],
-          site_name: 'Project Movies',
+          site_name: 'Flick',
         }}
       />
       <Component {...pageProps} />

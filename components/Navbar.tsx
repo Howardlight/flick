@@ -10,11 +10,11 @@ export const Navbar = () => {
                     <div className="flex flex-row justify-start">
                         <Image
                             src={MovieSVG}
-                            alt={"Project Movies logo"}
+                            alt={"Flick logo"}
                             height={30}
                             width={30}
                         />
-                        <p className="font-medium text-lg hover:text-neutral-100">Movies</p>
+                        <p className="font-medium text-lg hover:text-neutral-100">Flick</p>
                     </div>
                 </a>
             </Link>

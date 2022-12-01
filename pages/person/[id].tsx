@@ -16,7 +16,7 @@ export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatu
     return (
         <Fragment>
             <NextSeo
-                title={`${data.name} - Project Movies`}
+                title={`${data.name} - Flick`}
             />
             <Navbar />
             <PersonPageContent data={data} />

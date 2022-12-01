@@ -21,7 +21,7 @@ export const Search = ({ query }: { query: string }) => {
     return (
         <div className="flex flex-col">
             <NextSeo
-                title={`Searched for ${query} - Project Movies`}
+                title={`Searched for ${query} - Flick`}
             />
             <Navbar />
             <SearchBox prevQuery={query} pageLimit={data ? data?.total_pages : 0} setPage={setPage} page={page} />
