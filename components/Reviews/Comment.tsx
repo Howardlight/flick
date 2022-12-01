@@ -7,6 +7,9 @@ export const Comment = ({ text, className }: { text: string; className?: string;
     // yes, substring and button. 
     // no, dump the bio
 
+    //TODO: showmore has this ugly area that it takes but because it's shifter up, the area appears empty
+    // find a solution for it
+    
     const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
 
 
