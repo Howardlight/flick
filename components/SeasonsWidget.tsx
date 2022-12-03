@@ -10,7 +10,7 @@ export const SeasonsWidget = ({ seasons, TVID, className }: { seasons: Season[],
 
     return (
         <div className={`${className}`}>
-            <p className="font-semibold text-2xl text-neutral-100 mb-3">Seasons</p>
+            <p className="font-semibold text-xl text-neutral-100 mb-3">Seasons</p>
             <SeasonsContent seasons={seasons} TVID={TVID} />
         </div>
     );

@@ -31,7 +31,7 @@ export const Recommendations = ({ id }: { id: number; }) => {
 
     return (
         <div className="mt-4 flex flex-col">
-            <p className="font-semibold text-neutral-100 text-2xl mb-3">Recommendations</p>
+            <p className="font-semibold text-neutral-100 text-xl mb-3">Recommendations</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 justify-items-center">
                 {data?.results.map((tv, index) => {
                     if (index < 12)

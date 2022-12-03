@@ -8,7 +8,7 @@ import { CreatedBy } from "../../types/TVShow";
 export const CreatorWidget = ({ creators, className }: { creators: CreatedBy[]; className?: string; }) => {
     return (
         <div className={`${className}`}>
-            <p className="font-semibold text-2xl text-neutral-100 mb-3">Creators</p>
+            <p className="font-semibold text-xl text-neutral-100 mb-3">Creators</p>
             <CreatorWrapper creators={creators} />
         </div>
     );

@@ -71,7 +71,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                 {
                     data.overview ?
                         <div className="">
-                            <p className="font-semibold text-2xl text-neutral-100 mb-3">Overview</p>
+                            <p className="font-semibold text-xl text-neutral-100 mb-3">Overview</p>
                             <p className="text-neutral-300">{data.overview}</p>
                         </div>
                         : <Fragment />

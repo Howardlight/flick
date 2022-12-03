@@ -81,7 +81,7 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                 <br />
                 {data.overview ?
                     <Fragment>
-                        <p className="font-semibold text-2xl text-neutral-100 mb-3">Overview</p>
+                        <p className="font-semibold text-xl text-neutral-100 mb-3">Overview</p>
                         <p className="text-neutral-300">{data.overview}</p>
                     </Fragment>
                     : <Fragment />
