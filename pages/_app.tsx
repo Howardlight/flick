@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { user } = useUser({
     redirectTo: "",
   });
-  console.log("user: ", user);
+  // console.log("user: ", user);
 
   return (
     <Fragment>

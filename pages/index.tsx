@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import Head from 'next/head';
 import { Navbar } from '../components/Navbar';
 import { PopularMovies } from '../components/Index/PopularMovies';
 import { UpcomingMovies } from '../components/Index/UpcomingMovies';
@@ -7,7 +6,6 @@ import { FormEventHandler, useState } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import { PopularTV } from '../components/Index/PopularTV';
 import { NextSeo } from 'next-seo';
-import useUser from '../useUser';
 import { accessToken, requestToken, V4ToV3Request } from '../types/Auth';
 
 const Home: NextPage = () => {
@@ -19,8 +17,6 @@ const Home: NextPage = () => {
       />
       <Navbar />
       <main className='bg-black mb-10'>
-        {/* <button onClick={() => handleLogin(router)}>Log in</button>
-        <button onClick={() => logout(router)}>Log out</button> */}
         <div className='flex flex-col justify-center h-[50vh] bg-black'>
           <p className="font-semibold text-neutral-100 self-center text-xl mb-5">All kinds of Shows that you&apos;ll enjoy</p>
           <SearchBar />
