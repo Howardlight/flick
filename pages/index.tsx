@@ -41,12 +41,12 @@ const Home: NextPage = () => {
   )
 }
 
-async function logout(router: NextRouter) {
+export async function logout(router: NextRouter) {
   await fetch("/api/auth/logout");
   router.reload();
 }
 
-async function handleLogin(router: NextRouter) {
+export async function handleLogin(router: NextRouter) {
 
 
   // Request a request Token
