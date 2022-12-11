@@ -13,7 +13,7 @@ interface Gravatar {
 
 async function userRoute(req: NextApiRequest, res: NextApiResponse<User>) {
 
-    console.log("session_id: ", req.session.session_id);
+    // console.log("session_id: ", req.session.session_id);
 
     if (req.session.session_id) {
         // in a real world application you might read the user id from the session and then do a database request
