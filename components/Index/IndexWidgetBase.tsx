@@ -1,14 +1,10 @@
 import Link from "next/link";
 import React, { ReactNode } from "react";
+import Image from "next/image";
+import { PosterLoader } from "../../PosterLoader";
+import Placeholder from "../../assets/MovieSVG.svg";
+import styles from "../../styles/IndexWidget.module.css";
 
-export const IndexWidgetBase = ({ className, title, children }: { className?: string, title: string, children: React.ReactNode }): React.ReactElement => {
-    return (
-        <div className={`${className}`}>
-            <h1 className='m-3 font-semibold text-3xl text-gray-100'>{title}</h1>
-            {children}
-        </div>
-    );
-};
 export const Metrics = ({ vote_average }: { vote_average: number }) => {
 
     const percentage = Math.round(vote_average * 10).toString();
@@ -55,7 +51,7 @@ export const IndexWidgetError = () => {
     )
 }
 
-export const IndexWidgetContentWrapper = ({ resultID, mediaType, children }: { resultID: number, mediaType: string, children: ReactNode }) => {
+const IndexWidgetContentWrapper = ({ resultID, mediaType, children }: { resultID: number, mediaType: string, children: ReactNode }) => {
     return (
         <div key={resultID} className="grid auto-cols-max mr-2 ml-2 p-2 rounded-sm w-[266px] h-[463px] text-xsm transition-all delay-10 hover:bg-neutral-900">
             <Link href={`/${mediaType.toLowerCase()}/${resultID}`} passHref>
@@ -74,3 +70,32 @@ export const IndexWidgetScrollBar = ({ className, children }: { className?: stri
         </div>
     );
 }
+
+const Poster = ({ url, title }: { url: string | null, title: string }) => {
+    return (
+        <Image
+            src={url ? url : Placeholder.src}
+            loader={PosterLoader}
+            alt={`${title} poster`}
+            width={250}
+            height={375}
+            loading="lazy"
+            className={["rounded-md h-[375px]", styles.autoWidth].join(" ")}
+        />
+    )
+}
+
+const IndexWidget = ({ className, title, children }: { className?: string, title: string, children: React.ReactNode }): React.ReactElement => {
+    return (
+        <div className={`${className}`}>
+            <h1 className='m-3 font-semibold text-3xl text-gray-100'>{title}</h1>
+            {children}
+        </div>
+    );
+};
+
+IndexWidget.Wrapper = IndexWidgetContentWrapper;
+IndexWidget.Scrollbar = IndexWidgetScrollBar;
+IndexWidget.Poster = Poster;
+IndexWidget.Metrics = Metrics;
+export { IndexWidget };
