@@ -15,6 +15,7 @@ import { isReleased } from "../../search/[...query]";
 import { TVReviews } from "../../../components/Reviews/TVReviews";
 import { MainPageMetrics } from "../../../components/Movie-TV/MainPageMetrics";
 import Recommendations from "../../../components/Recommendations/TVRecommendations";
+import { DetailsBox } from "../../../components/DetailsBox";
 
 export default function TVShowPage({ data, mediaType, requestStatus }: { data: TVShow, mediaType: string, requestStatus: number }) {
     // console.log(data);
@@ -52,22 +53,15 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
             </div>
             <div className="m-3">
 
-                <div className="border-red-600 border-2 p-2 rounded-md">
-                    {isReleased(data.first_air_date) ?
-                        <Fragment>
-                            <p className="font-medium text-lg">First aired {moment(data.first_air_date).format("LL")}</p>
-                            <p className="font-medium text-lg">Last aired on {moment(data.last_air_date).format("LL")}</p>
-                        </Fragment>
-                        : <p className="font-medium text-lg">Will air on {moment(data.first_air_date).format("LL")}</p>
-                    }
-                    <div>
-                        <p className="font-bold text-lg inline text-red-600">{data.number_of_episodes}</p>
-                        <p className="font-medium text-lg inline"> Episodes</p>
-                    </div>
-                </div>
-                {isReleased(data.first_air_date) ? <MainPageMetrics vote_average={data.vote_average} vote_count={data.vote_count} styles="mt-5" /> : <Fragment />}
+                {/* <DetailsBox>
+                    <DetailsBox.FirstAiredDate firstAirDate={data.first_air_date} />
+                    <DetailsBox.LastAiredDate lastAirDate={data.last_air_date} />
+                    <DetailsBox.NumOfEpisodes numOfEp={data.number_of_episodes} />
+                </DetailsBox> */}
 
-                <br />
+                {/* {isReleased(data.first_air_date) ? <MainPageMetrics vote_average={data.vote_average} vote_count={data.vote_count} className="mt-5" /> : <Fragment />} */}
+
+                {/* <br /> */}
                 {
                     data.overview ?
                         <div className="">

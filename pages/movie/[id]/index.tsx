@@ -54,30 +54,14 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
             </div>
             <div className="m-3">
 
-                <div className="border-red-600 border-2 p-2 rounded-md">
-                    <p className="font-medium text-lg">{isReleased(data.release_date) ? `Released on ${moment(data.release_date).format("LL")}` : `Will be released on ${moment(data.release_date).format("LL")}`}</p>
-                    <div className="text-lg font-medium">
-                        <p className="inline text-red-600">{data.runtime} Minutes</p>
-                        <p className="inline"> of runtime</p>
-                    </div>
 
-                    {data.budget ?
-                        <div className="text-lg font-medium">
-                            <p className="inline text-red-600">{`${data.budget / 1000000}M$`}</p>
-                            <p className="inline"> budget</p>
-                        </div>
-                        : <Fragment />
-                    }
-                    {
-                        data.revenue ?
-                            <div className="text-lg font-medium">
-                                <p className="inline text-red-600">{`${(data.revenue / 1000000).toFixed(2)}M$`}</p>
-                                <p className="inline"> revenue</p>
-                            </div>
-                            : <Fragment />
-                    }
-                </div>
-                {isReleased(data.release_date) ? <MainPageMetrics vote_average={data.vote_average} vote_count={data.vote_count} styles="mt-5" /> : <Fragment />}
+                <DetailsBox>
+                    <DetailsBox.Runtime runtime={data.runtime} />
+                    <DetailsBox.Budget budget={data.budget} />
+                    <DetailsBox.Revenue revenue={data.revenue} />
+                </DetailsBox>
+
+                {isInPast(data.release_date) ? <MainPageMetrics vote_average={data.vote_average} vote_count={data.vote_count} className="mt-5" /> : <Fragment />}
                 <br />
                 {data.overview ?
                     <Fragment>
