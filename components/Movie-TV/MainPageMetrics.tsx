@@ -1,9 +1,9 @@
-export const MainPageMetrics = ({ vote_count, vote_average, styles }: { vote_count: number; vote_average: number; styles?: string; }) => {
+export const MainPageMetrics = ({ vote_count, vote_average, className }: { vote_count: number; vote_average: number; className?: string; }) => {
 
     const percentage = Math.round(vote_average * 10).toString();
 
     return (
-        <div className={`${styles}`}>
+        <div className={`${className}`}>
             <div className='h-4 w-full bg-neutral-900 rounded-sm flex items-center'>
                 <span className={`inline-block relative bg-red-600 h-2 ml-1 mr-2`} style={{ width: `${percentage}%` }}></span>
             </div>
