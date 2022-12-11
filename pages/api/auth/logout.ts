@@ -1,7 +1,7 @@
 import { IronSessionData } from "iron-session";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
-import { ironOptions } from "./login/login";
+import { ironOptions } from "./login";
 
 //@ts-ignore
 export default withIronSessionApiRoute(logoutRoute, ironOptions)
