@@ -1,9 +1,25 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { Fragment } from 'react';
+import { createContext, Fragment } from 'react';
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
+import useUser from '../useUser';
+import { User } from '../types/User';
 
+const defaultUserContext: User = {
+  isLoggedIn: false
+}
+
+export const UserContext = createContext<User>(defaultUserContext);
 function MyApp({ Component, pageProps }: AppProps) {
+
+  const router = useRouter();
+  const { user } = useUser({
+    redirectTo: "",
+  });
+  console.log("user: ", user);
+
+
   return (
     <Fragment>
       <NextSeo
@@ -35,7 +51,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           site_name: 'Flick',
         }}
       />
-      <Component {...pageProps} />
+
+      <UserContext.Provider value={user!}>
+        <Component {...pageProps} />
+      </UserContext.Provider>
+
     </Fragment>
   )
     ;
