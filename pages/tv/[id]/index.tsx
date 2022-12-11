@@ -11,7 +11,7 @@ import { CreatorWidget } from "../../../components/Movie-TV/CreatorWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
-import { isReleased } from "../../search/[...query]";
+import { isInPast } from "../../search/[...query]";
 import { TVReviews } from "../../../components/Reviews/TVReviews";
 import { MainPageMetrics } from "../../../components/Movie-TV/MainPageMetrics";
 import Recommendations from "../../../components/Recommendations/TVRecommendations";

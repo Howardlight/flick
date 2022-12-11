@@ -5,7 +5,6 @@ import moment from "moment";
 import { TVShow } from "../../types/TVShow";
 import { Movie } from "../../types/Movie";
 import { Person } from "../../types/Person";
-import { isReleased } from "../../pages/search/[...query]";
 import { Cast } from "../../types/Cast";
 import { MultiSearchCardBase } from "./MultiSearchCardBase";
 import { Fragment } from "react";

@@ -8,7 +8,7 @@ import { CastWidget } from "../../../components/Movie-TV/CastWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import Placeholder from "../../../assets/MovieSVG.svg";
-import { isReleased } from "../../search/[...query]";
+import { isInPast } from "../../search/[...query]";
 import { Fragment } from "react";
 import { MovieReviews } from "../../../components/Reviews/MovieReviews";
 import MainPageMetrics from "../../../components/Movie-TV/MainPageMetrics";
