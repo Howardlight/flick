@@ -1,21 +1,9 @@
 import { withIronSessionApiRoute } from 'iron-session/next'
 import { ironOptions } from "./login";
 import { NextApiRequest, NextApiResponse } from 'next'
+import { User } from '../../../types/User';
 
-export type User = {
-    isLoggedIn: boolean
-    avatar?: Avatar
-    id?: number,
-    iso_639_1?: string
-    iso_3166_1?: string
-    name?: string
-    include_adult?: boolean
-    username?: string
-    login?: string
-    avatarUrl?: string
-}
-
-interface Avatar {
+export interface Avatar {
     gravatar: Gravatar
 }
 
