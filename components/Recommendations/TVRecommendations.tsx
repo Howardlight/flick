@@ -6,7 +6,7 @@ import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../Fetcher";
 import { TVRecResponse } from "../../types/GetRecommendationsTypes";
 import Link from "next/link";
-import { NoRecommendations, RecommendationsError, RecommendationSkeletons } from "./RecommendationsBase";
+import { NoRecommendations, RecommendationsCard, RecommendationsError, RecommendationSkeletons } from "./RecommendationsBase";
 import { useMediaQuery } from "react-responsive";
 import { Fragment, useEffect, useState } from "react";
 import { TVShow } from "../../types/TVShow";
@@ -23,6 +23,16 @@ export const Recommendations = ({ id }: { id: number; }) => {
     const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
     useEffect(() => setExpand(false), [dynamicRoute]);
 
+    const TVCard = ({ tv, index }: { tv: TVShow, index: number }) => {
+        return (
+            <RecommendationsCard id={tv.id} index={index} mediaType={"tv"}>
+                <RecommendationsCard.Poster url={tv.poster_path} title={tv.name} />
+                <RecommendationsCard.Description airDate={tv.first_air_date} title={tv.name} />
+            </RecommendationsCard>
+        )
+    };
+
+
     //TODO: EXPERIMENT: Try adding tags to each movie
     //TODO: Add more than 4 Recommendations?
     if (!data && !error) return <RecommendationSkeletons />;
@@ -36,10 +46,10 @@ export const Recommendations = ({ id }: { id: number; }) => {
                 {data?.results.map((tv, index) => {
                     if (index < 12)
                         if (isMobile) {
-                            if (expand) return <RecommendationCard key={Math.random()} tv={tv} index={index} />;
-                            else if (index < 6) return <RecommendationCard key={Math.random()} tv={tv} index={index} />;
+                            if (expand) return <TVCard tv={tv} index={index} key={Math.random()} />;
+                            else if (index < 6) return <TVCard tv={tv} index={index} key={Math.random()} />;
                             return;
-                        } else return <RecommendationCard key={Math.random()} tv={tv} index={index} />;
+                        } else return <TVCard tv={tv} index={index} key={Math.random()} />;
                     else return;
                 })}
             </div>
@@ -55,30 +65,5 @@ export const Recommendations = ({ id }: { id: number; }) => {
     )
         ;
 };
-
-const RecommendationCard = ({ tv, index }: { tv: TVShow, index: number }) => {
-    return (
-        <div className="flex flex-col w-[187px] mb-5 p-1"
-            key={`${tv.id}-${index}`}>
-            <Link href={`/tv/${tv.id}`} passHref>
-                {/*Design error- When there is no release date, the hover effect does not appear over its area, but rather*/}
-                {/*stops at the title*/}
-                <a className={"p-2 hover:bg-neutral-900 rounded-sm"}>
-                    <Image
-                        src={tv.poster_path ? tv.poster_path : Placeholder.src}
-                        alt={tv.name}
-                        loader={PosterLoader}
-                        width={187}
-                        height={280}
-                        className="rounded-sm" />
-                    <div className="mt-1 grow">
-                        <p className="truncate">{tv.name}</p>
-                        <p className="text-neutral-400 truncate">{tv.first_air_date ? moment(tv.first_air_date).format("LL") : ""}</p>
-                    </div>
-                </a>
-            </Link>
-        </div>
-    );
-}
 
 export default Recommendations;

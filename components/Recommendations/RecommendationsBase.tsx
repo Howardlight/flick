@@ -1,4 +1,49 @@
-import { Fragment } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Fragment, ReactElement } from "react";
+import { PosterLoader } from "../../PosterLoader";
+import Placeholder from "../../assets/MovieSVG.svg";
+import moment from "moment";
+
+const RecommendationsCard = ({ id, index, mediaType, children }: { id: number, index: number, mediaType: string, children: ReactElement[] }) => {
+
+    // Design error- When there is no release date, the hover effect does not appear over its area, but rather
+    // stops at the title
+    return (
+        <div className="flex flex-col w-[187px] mb-5 p-1" key={`${id}-${index}-${Math.random() * 100}`}>
+            <Link href={`/${mediaType}/${id}`} passHref>
+                <a className={"p-2 hover:bg-neutral-900 rounded-sm"}>
+                    {children}
+                </a>
+            </Link>
+        </div>
+    )
+}
+
+const Poster = ({ url, title }: { url: string | null, title: string }) => {
+    return (
+        <Image
+            src={url ? url : Placeholder.src}
+            alt={title}
+            loader={PosterLoader}
+            width={187}
+            height={280}
+            className="rounded-sm" />
+    )
+}
+
+const Description = ({ airDate, title }: { airDate: Date, title: string }) => {
+    return (
+        <div className="mt-1 grow">
+            <p className="truncate">{title}</p>
+            <p className="text-neutral-400 truncate">{airDate ? moment(airDate).format("LL") : ""}</p>
+        </div>
+    )
+}
+
+RecommendationsCard.Poster = Poster;
+RecommendationsCard.Description = Description;
+export { RecommendationsCard };
 
 export const RecommendationsError = () => {
     return (
