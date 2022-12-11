@@ -12,13 +12,6 @@ import { accessToken, requestToken, V4ToV3Request } from '../types/Auth';
 
 const Home: NextPage = () => {
 
-  const router = useRouter();
-  const { user } = useUser({
-    redirectTo: "",
-  });
-  console.log("user: ", user);
-
-
   return (
     <div>
       <NextSeo
@@ -26,8 +19,8 @@ const Home: NextPage = () => {
       />
       <Navbar />
       <main className='bg-black mb-10'>
-        <button onClick={() => handleLogin(router)}>Log in</button>
-        <button onClick={() => logout(router)}>Log out</button>
+        {/* <button onClick={() => handleLogin(router)}>Log in</button>
+        <button onClick={() => logout(router)}>Log out</button> */}
         <div className='flex flex-col justify-center h-[50vh] bg-black'>
           <p className="font-semibold text-neutral-100 self-center text-xl mb-5">All kinds of Shows that you&apos;ll enjoy</p>
           <SearchBar />
