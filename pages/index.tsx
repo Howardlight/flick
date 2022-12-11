@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
+import Head from 'next/head';
 import { Navbar } from '../components/Navbar';
 import { PopularMovies } from '../components/Index/PopularMovies';
 import { UpcomingMovies } from '../components/Index/UpcomingMovies';
@@ -7,33 +7,15 @@ import { FormEventHandler, useState } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import { PopularTV } from '../components/Index/PopularTV';
 import { NextSeo } from 'next-seo';
-import moment from 'moment';
 import useUser from '../useUser';
-
-interface Token {
-  status_message: string
-  request_token: string,
-  success: boolean,
-  status_code: number
-}
-
-interface accessToken {
-  status_message: string,
-  access_token: string,
-  sucess: boolean,
-  status_code: number,
-  account_id: string
-}
-
+import { accessToken, requestToken, V4ToV3Request } from '../types/Auth';
 
 const Home: NextPage = () => {
 
   const router = useRouter();
-
   const { user } = useUser({
     redirectTo: "",
   });
-
   console.log("user: ", user);
 
 
@@ -44,7 +26,7 @@ const Home: NextPage = () => {
       />
       <Navbar />
       <main className='bg-black mb-10'>
-        <button onClick={() => login(router)}>Log in</button>
+        <button onClick={() => handleLogin(router)}>Log in</button>
         <button onClick={() => logout(router)}>Log out</button>
         <div className='flex flex-col justify-center h-[50vh] bg-black'>
           <p className="font-semibold text-neutral-100 self-center text-xl mb-5">All kinds of Shows that you&apos;ll enjoy</p>
@@ -64,54 +46,87 @@ async function logout(router: NextRouter) {
   router.reload();
 }
 
-async function login(router: NextRouter) {
-  const req = await fetch("/api/login/requestToken", {
+async function handleLogin(router: NextRouter) {
+
+
+  // Request a request Token
+  // This token has no real value,
+  const reqTokenReq = await getRequestToken();
+  if (reqTokenReq.status != 200) {
+    //TODO: Finish this
+    return;
+  };
+
+  // once the token has been created, the user will be prompted to verify it
+  const requestTokenData = await reqTokenReq.json();
+  if (reqTokenReq.status == 200) window.open(`https://www.themoviedb.org/auth/access?request_token=${requestTokenData.request_token}`, "_blank");
+
+  // Give the User Time to approve the token, otherwise Logging in will fail
+  setTimeout(async function () {
+
+    // after the specified time, get the access token using the request token
+    const accessTokenReq = await getAccessToken(requestTokenData);
+    if (accessTokenReq.status != 200) {
+      //TODO: Finish this
+
+      return;
+    }
+
+    // convert the v4 token to v3, so we can use it
+    const accessTokenData = await accessTokenReq.json();
+    const v3Req = await convertToV3(accessTokenData);
+    if (v3Req.status != 200) {
+      //TODO: Finish this
+
+      return;
+    }
+
+    // once converted, pass the session_id to a cookie with
+    // the login function
+    const v3ReqData = await v3Req.json();
+    const loginReq = await login(v3ReqData);
+
+  }, 15000);
+}
+
+async function getRequestToken() {
+  const req = await fetch("/api/auth/requestToken", {
     method: "POST",
     body: JSON.stringify({
       redirect_to: "localhost:3000",
     })
   });
-  const data: Token = await req.json();
-  console.log(data);
+  return req;
+}
 
-  if (req.status == 200) window.open(`https://www.themoviedb.org/auth/access?request_token=${data.request_token}`, "_blank");
-
-  setTimeout(async function () {
-    const accessTokenReq = await fetch(`/api/login/accessToken`, {
-      method: "POST",
-      body: JSON.stringify({
-        request_token: data.request_token
-      })
+async function getAccessToken(requestTokenData: requestToken) {
+  const accessTokenReq = await fetch(`/api/auth/accessToken`, {
+    method: "POST",
+    body: JSON.stringify({
+      request_token: requestTokenData.request_token
     })
-    const accessTokenData = await accessTokenReq.json();
-    console.log(accessTokenData);
+  })
+  return accessTokenReq;
+}
 
-    if (accessTokenReq.status == 200) {
+async function convertToV3(accessTokenData: accessToken) {
+  const v3Req = await fetch("/api/auth/convertV4SessionToV3", {
+    method: "POST",
+    body: JSON.stringify({
+      access_token: accessTokenData.access_token
+    })
+  })
+  return v3Req;
+}
 
-      const v3Req = await fetch("/api/login/convertV4SessionToV3", {
-        method: "POST",
-        body: JSON.stringify({
-          access_token: accessTokenData.access_token
-        })
-      })
-      const v3ReqData = await v3Req.json();
-      console.log(v3ReqData);
-
-
-
-      const loginReq = await fetch("/api/login/login", {
-        method: "POST",
-        body: JSON.stringify({
-          session_id: v3ReqData.session_id
-        })
-      })
-
-    }
-
-
-
-
-  }, 15000);
+async function login(v3ReqData: V4ToV3Request) {
+  const loginReq = await fetch("/api/auth/login", {
+    method: "POST",
+    body: JSON.stringify({
+      session_id: v3ReqData.session_id
+    })
+  })
+  return loginReq;
 }
 
 //TODO: Finish autocomplete in the future
