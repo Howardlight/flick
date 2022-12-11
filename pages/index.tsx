@@ -84,7 +84,7 @@ async function handleLogin(router: NextRouter) {
     // once converted, pass the session_id to a cookie with
     // the login function
     const v3ReqData = await v3Req.json();
-    const loginReq = await login(v3ReqData);
+    await login(v3ReqData, router);
 
   }, 15000);
 }
@@ -119,14 +119,14 @@ async function convertToV3(accessTokenData: accessToken) {
   return v3Req;
 }
 
-async function login(v3ReqData: V4ToV3Request) {
+async function login(v3ReqData: V4ToV3Request, router: NextRouter) {
   const loginReq = await fetch("/api/auth/login", {
     method: "POST",
     body: JSON.stringify({
       session_id: v3ReqData.session_id
     })
   })
-  return loginReq;
+  router.reload();
 }
 
 //TODO: Finish autocomplete in the future
