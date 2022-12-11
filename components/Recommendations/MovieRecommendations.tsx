@@ -18,7 +18,7 @@ export const Recommendations = ({ id }: { id: number; }) => {
     const { data, error }: SWRResponse<MovieRecResponse, Error> = useSWR(`/api/Movie/getRecommendations/${id}`, fetcher);
     const [expand, setExpand] = useState(false);
     const dynamicRoute = useRouter().asPath;
-    console.log(data);
+    // console.log(data);
 
     const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
     useEffect(() => setExpand(false), [dynamicRoute]);
@@ -35,11 +35,12 @@ export const Recommendations = ({ id }: { id: number; }) => {
                 {data?.results.map((movie, index) => {
                     if (index < 12)
                         if (isMobile) {
-                            if (expand) return <RecommendationCard movie={movie} index={index} />;
-                            else if (index < 6) return <RecommendationCard movie={movie} index={index} />;
+                            if (expand) return <RecommendationCard key={Math.random()} movie={movie} index={index} />;
+                            else if (index < 6) return <RecommendationCard key={Math.random()} movie={movie} index={index} />;
                             return;
-                        } else return <RecommendationCard movie={movie} index={index} />;
+                        } else return <RecommendationCard key={Math.random()} movie={movie} index={index} />;
                     else return;
+
                 })}
             </div>
             {isMobile && !expand ?
@@ -55,9 +56,10 @@ export const Recommendations = ({ id }: { id: number; }) => {
 };
 
 const RecommendationCard = ({ movie, index }: { movie: Movie, index: number }) => {
+
     return (
         <div className="flex flex-col w-[187px] mb-5 p-1"
-            key={`${movie.id}-${index}`}>
+            key={`${movie.id}-${index}-${Math.random() * 100}`}>
             <Link href={`/movie/${movie.id}`} passHref>
                 {/*Design error- When there is no release date, the hover effect does not appear over its area, but rather*/}
                 {/*stops at the title*/}

@@ -18,7 +18,7 @@ export const Recommendations = ({ id }: { id: number; }) => {
     const { data, error }: SWRResponse<TVRecResponse, Error> = useSWR(`/api/TV/getRecommendations/${id}`, fetcher);
     const [expand, setExpand] = useState(false);
     const dynamicRoute = useRouter().asPath;
-    console.log(data);
+    // console.log(data);
 
     const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
     useEffect(() => setExpand(false), [dynamicRoute]);
@@ -36,10 +36,10 @@ export const Recommendations = ({ id }: { id: number; }) => {
                 {data?.results.map((tv, index) => {
                     if (index < 12)
                         if (isMobile) {
-                            if (expand) return <RecommendationCard tv={tv} index={index} />;
-                            else if (index < 6) return <RecommendationCard tv={tv} index={index} />;
+                            if (expand) return <RecommendationCard key={Math.random()} tv={tv} index={index} />;
+                            else if (index < 6) return <RecommendationCard key={Math.random()} tv={tv} index={index} />;
                             return;
-                        } else return <RecommendationCard tv={tv} index={index} />;
+                        } else return <RecommendationCard key={Math.random()} tv={tv} index={index} />;
                     else return;
                 })}
             </div>
