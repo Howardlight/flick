@@ -28,14 +28,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const request = await fetch(`https://api.themoviedb.org/4/auth/access_token?api_key=${process.env.TMDB_API_KEY}`, requestOptions)
     data = await request.json();
-    console.log(data);
+    // console.log(data);
 
 
     if (request.status == 401) res.status(401).json(data);
     else if (request.status == 404) res.status(404).json(data);
     else if (request.status != 200) res.status(500).json({ status_message: "internal server error, this should not appear." })
     else {
-        console.log(data);
+        // console.log(data);
         res.status(200).json(data)
     };
 }

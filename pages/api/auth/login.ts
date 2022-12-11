@@ -30,9 +30,9 @@ export default withIronSessionApiRoute(loginRoute, ironOptions);
 async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
 
 
-    console.log("req.body: ", req.body);
+    // console.log("req.body: ", req.body);
     const loginRouteBody: loginRouteBody = JSON.parse(req.body);
-    console.log("loginRouteBody: ", loginRouteBody);
+    // console.log("loginRouteBody: ", loginRouteBody);
 
 
     req.session.session_id = loginRouteBody.session_id;
