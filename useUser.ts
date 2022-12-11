@@ -8,7 +8,7 @@ export default function useUser({
     redirectTo = '',
     redirectIfFound = false,
 } = {}) {
-    const { data: user, mutate: mutateUser } = useSWR<User>('/api/user', fetcher);
+    const { data: user, mutate: mutateUser } = useSWR<User>('/api/auth/user', fetcher);
 
 
     useEffect(() => {
