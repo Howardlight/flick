@@ -42,7 +42,7 @@ const Home: NextPage = () => {
 }
 
 async function logout(router: NextRouter) {
-  await fetch("/api/logout");
+  await fetch("/api/auth/logout");
   router.reload();
 }
 
