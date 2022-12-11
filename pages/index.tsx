@@ -126,7 +126,8 @@ async function login(v3ReqData: V4ToV3Request, router: NextRouter) {
       session_id: v3ReqData.session_id
     })
   })
-  router.reload();
+
+  if (loginReq.status == 200) router.reload();
 }
 
 //TODO: Finish autocomplete in the future
