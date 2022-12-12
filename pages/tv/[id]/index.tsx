@@ -98,9 +98,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                 <CastWidget id={data.id} mediaType={mediaType} className={"mt-4"} />
                 {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-4"} /> : <div />}
                 <Recommendations id={data.id} />
-                {data.vote_count > 1 ?
-                    <TVReviews tvID={data.id} className={"mt-10"} />
-                    : <Fragment />}
+                {data.vote_count > 1 ? <TVReviews tvID={data.id} className={"mt-10"} /> : <Fragment />}
 
             </div>
         </div>
