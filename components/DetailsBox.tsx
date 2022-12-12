@@ -1,8 +1,8 @@
 import moment from "moment"
-import { Fragment, ReactElement } from "react"
+import { Fragment, ReactNode } from "react"
 import { isInPast } from "../pages/search/[...query]"
 
-const DetailsBox = ({ children }: { children: ReactElement[] }) => {
+const DetailsBox = ({ children }: { children: ReactNode }) => {
     return (
         <div className="border-red-600 border-2 p-2 rounded-md">
             {children}
