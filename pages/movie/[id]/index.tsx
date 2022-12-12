@@ -39,7 +39,7 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
             <NextSeo
                 title={`${data.title} - Flick`}
             />
-            <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
+            <div className="lg:border-b-2 border-red-600" style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />
 
                 {isDesktop ?
