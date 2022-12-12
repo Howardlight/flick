@@ -13,13 +13,15 @@ import { Fragment } from "react";
 import { MovieReviews } from "../../../components/Reviews/MovieReviews";
 import MainPageMetrics from "../../../components/Movie-TV/MainPageMetrics";
 import { Recommendations } from "../../../components/Recommendations/MovieRecommendations";
+import { Default, Desktop, Mobile } from "../../../Breakpoints";
+import { useMediaQuery } from "react-responsive";
+import { DetailsBox } from "../../../components/DetailsBox";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
-    // console.log(data);
 
-    //TODO: Add recommended Movies
-    //TODO: OR Add Similar Movies
+    const isDefault = useMediaQuery({ minWidth: 768 });
+
     if (requestStatus != 200) return <Custom404 />;
     return (
         <div>
@@ -28,6 +30,7 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
             />
             <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />
+
                 <div className="flex flex-col justify-center items-center p-5">
                     <Image
                         src={data.poster_path ? data.poster_path : Placeholder.src}
@@ -51,7 +54,9 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                         </div>
                     </div>
                 </div>
+
             </div>
+
             <div className="m-3">
 
 
