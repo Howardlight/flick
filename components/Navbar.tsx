@@ -69,9 +69,13 @@ export const Navbar = () => {
 
                 <UserElement user={user} router={router} />
                 {user && user.isLoggedIn == true ?
-                    <div className="flex items-center justify-center w-8 h-auto rounded-full text-lg border-2 font-semibold border-red-600">
-                        {user.username?.charAt(0)}
-                    </div>
+                    <Link href={"#"} passHref>
+                        <a className="hover:text-neutral-100 rounded-md">
+                            <div className="flex scale-90 items-center hover:bg-neutral-900 justify-center w-8 h-auto rounded-md text-lg border-2 font-semibold border-red-600">
+                                {user.username?.charAt(0)}
+                            </div>
+                        </a>
+                    </Link>
                     : <Fragment />
                 }
 
