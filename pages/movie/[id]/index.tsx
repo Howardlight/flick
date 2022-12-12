@@ -9,20 +9,31 @@ import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { isInPast } from "../../search/[...query]";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { MovieReviews } from "../../../components/Reviews/MovieReviews";
 import MainPageMetrics from "../../../components/Movie-TV/MainPageMetrics";
 import { Recommendations } from "../../../components/Recommendations/MovieRecommendations";
 import { Default, Desktop, Mobile } from "../../../Breakpoints";
 import { useMediaQuery } from "react-responsive";
 import { DetailsBox } from "../../../components/DetailsBox";
+import { DesktopView } from "../../../components/Movie-TV/Views/DesktopView";
+import { MobileView } from "../../../components/Movie-TV/Views/MobileView";
+import { Overview, useRenderComplete } from "../../tv/[id]";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
 
-    const isDefault = useMediaQuery({ minWidth: 768 });
+    // Explanation:
+    // When dealing with Dates, the backend compares the HTML of the frontend, and since there's a delay 
+    // between the 2, the backend thinks the UI mismatched, so to solve this, we create a loading bar until the frontend
+    // fully loads, THEN we render the page;
+    const [renderComplete, setRenderComplete] = useState(false);
+    useRenderComplete(setRenderComplete);
+
+    const isDesktop = useMediaQuery({ minWidth: 992 });
 
     if (requestStatus != 200) return <Custom404 />;
+    if (!renderComplete) return <p>Loading....</p>; //Change this
     return (
         <div>
             <NextSeo
@@ -31,60 +42,54 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
             <div style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />
 
-                <div className="flex flex-col justify-center items-center p-5">
-                    <Image
-                        src={data.poster_path ? data.poster_path : Placeholder.src}
-                        loader={PosterLoader}
-                        alt={`${data.title} Poster`}
-                        width={250}
-                        height={375}
-                        className="rounded-md h-[375px] w-[250px]"
-                    />
-                    <div>
-                        <div className="flex flex-col grow mt-5">
-                            <p className="font-bold text-3xl self-center text-neutral-100">{data.title}</p>
-                            <p className="text-sm self-center text-neutral-300">{data.tagline}</p>
-                        </div>
-                        <div className="flex flex-row mt-5 gap-3 justify-center flex-wrap">
-                            {data.genres.map((genre) => (
-                                <div key={`genre-${genre.id}`} className="text-base text-neutral-300 font-medium bg-red-600 p-2 rounded-md">
-                                    {genre.name}
+                {isDesktop ?
+                    <DesktopView>
+                        <DesktopView.Poster name={data.title} url={data.poster_path} />
+                        <DesktopView.Wrapper>
+                            <div>
+                                <DesktopView.Wrapper.Description name={data.title} tagline={data.tagline} className="mb-5" />
+                                <div>
+                                    {/* <DesktopView.Wrapper.AirDates firstAirDate={data.first_air_date} lastAirDate={data.last_air_date} /> */}
+                                    {/* <DesktopView.Wrapper.EpNumber epNum={data.number_of_episodes} /> */}
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                            </div>
+                            <div>
+                                <DesktopView.Wrapper.Genres genres={data.genres} />
+                                <DesktopView.Wrapper.Rating firstAirDate={data.release_date} voteAverage={data.vote_average} voteCount={data.vote_count} />
+                            </div>
+                        </DesktopView.Wrapper>
+                    </DesktopView>
+                    : <MobileView>
+                        <MobileView.Poster url={data.poster_path} name={data.title} />
+                        <MobileView.Wrapper>
+                            <MobileView.Wrapper.Description name={data.title} tagline={data.tagline} />
+                            <MobileView.Wrapper.Genres genres={data.genres} />
+                        </MobileView.Wrapper>
+                    </MobileView>}
 
             </div>
-
             <div className="m-3">
 
+                {isDesktop ?
+                    <Fragment />
+                    : <Fragment>
+                        <DetailsBox>
+                            <DetailsBox.FirstAiredDate firstAirDate={data.release_date} />
+                            <DetailsBox.Runtime runtime={data.runtime} />
+                            <DetailsBox.Budget budget={data.budget} />
+                            <DetailsBox.Revenue revenue={data.revenue} />
+                        </DetailsBox>
+                        {isInPast(data.release_date) ? <MainPageMetrics vote_average={data.vote_average} vote_count={data.vote_count} className="mt-5" /> : <Fragment />}
+                        <br />
+                    </Fragment>}
 
-                <DetailsBox>
-                    <DetailsBox.Runtime runtime={data.runtime} />
-                    <DetailsBox.Budget budget={data.budget} />
-                    <DetailsBox.Revenue revenue={data.revenue} />
-                </DetailsBox>
+                <Overview overview={data.overview} />
 
-                {isInPast(data.release_date) ? <MainPageMetrics vote_average={data.vote_average} vote_count={data.vote_count} className="mt-5" /> : <Fragment />}
-                <br />
-                {data.overview ?
-                    <Fragment>
-                        <p className="font-semibold text-xl text-neutral-100 mb-3">Overview</p>
-                        <p className="text-neutral-300">{data.overview}</p>
-                    </Fragment>
-                    : <Fragment />
-                }
                 <br />
 
                 <CastWidget id={data.id} mediaType={mediaType} />
-
                 <Recommendations id={data.id} />
-
-                {
-                    data.vote_count > 1 ?
-                        <MovieReviews movieID={data.id} />
-                        : <Fragment />}
+                {data.vote_count > 1 ? <MovieReviews movieID={data.id} /> : <Fragment />}
             </div>
 
         </div>
