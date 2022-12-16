@@ -1,7 +1,7 @@
 import MovieSVG from "../assets/MovieSVG.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { handleLogin, logout } from "../pages";
+import { handleLogin, LoginResponse, logout } from "../pages";
 import { Dispatch, Fragment, SetStateAction, useContext, useState } from "react";
 import { UserContext } from "../pages/_app";
 import { User } from "../types/User";
@@ -19,6 +19,7 @@ const ErrorSnackbar = ({ props, setSnackbarProps }: { props: SnackbarProps, setS
 
     //TODO: Improve styles
     //TODO: currently the text clips through the X, fix that
+    //TODO: give more descriptive errors
     if (!props.show) return <Fragment />;
     return (
         <div className="flex flex-row justify-between border-l-0 border-r-0 bg-black border-2 border-red-600 text-neutral-100 px-4 py-3 relative" role="alert">
@@ -53,11 +54,58 @@ export const Navbar = () => {
         const response = await handleLogin(router);
 
 
-        console.log("Response: ", response);
         // This handles when Login fails, in Successful cases, the page reloads and this is not experienced
         setLoading(false);
+        const snackbarRes = handleLoginErrors(response);
+        setSnackbarProps({ show: true, errorBrief: snackbarRes.errorBrief, errorMessage: snackbarRes.errorMessage });
+    }
 
-        setSnackbarProps({ show: true, errorBrief: "Could not login", errorMessage: "An unspecified error occured" })
+    function handleLoginErrors(response: LoginResponse) {
+        switch (response.occuredAt) {
+            case "RequestToken":
+                switch (response.status) {
+                    case 401:
+                        return { errorBrief: "RequestToken 401", errorMessage: "Token not granted write permission by the user" }
+                    case 404:
+                        return { errorBrief: "RequestToken 404", errorMessage: "Resource not found" }
+                    case 500:
+                        return { errorBrief: "RequestToken 500", errorMessage: "Internal error: Something went wrong with TMDB" }
+                    default:
+                        return { errorBrief: "RequestToken UNK", errorMessage: "Unknown Error" }
+                }
+            case "AccessToken":
+                switch (response.status) {
+                    case 401:
+                        return { errorBrief: "AccessToken 401", errorMessage: "Token not granted write permission by the user" }
+                    case 404:
+                        return { errorBrief: "AccessToken 404", errorMessage: "Resource not found" }
+                    case 500:
+                        return { errorBrief: "AccessToken 500", errorMessage: "Internal error: Something went wrong with TMDB" }
+                    default:
+                        return { errorBrief: "AccessToken UNK", errorMessage: "Unknown Error" }
+                }
+            case "V3ToV4":
+                switch (response.status) {
+                    case 401:
+                        return { errorBrief: "V3ToV4 401", errorMessage: "Invalid API Key, Contact the creator of Flick" }
+                    case 404:
+                        return { errorBrief: "V3ToV4 404", errorMessage: "Resource not found" }
+                    default:
+                        return { errorBrief: "V3ToV4 UNK", errorMessage: "Unknown Error" }
+                }
+            case "Login":
+                switch (response.status) {
+                    case 401:
+                        return { errorBrief: "Login 401", errorMessage: "Invalid API Key, Contact the creator of Flick" }
+                    case 404:
+                        return { errorBrief: "Login 404", errorMessage: "Resource not found" }
+                    default:
+                        return { errorBrief: "Login UNK", errorMessage: "Unknown Error" }
+
+                }
+            default:
+                return { errorBrief: "UNK UNK", errorMessage: "Unknown Error" }
+        }
     }
 
 
