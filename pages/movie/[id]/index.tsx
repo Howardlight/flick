@@ -19,6 +19,9 @@ import { DetailsBox } from "../../../components/DetailsBox";
 import { DesktopView } from "../../../components/Movie-TV/Views/DesktopView";
 import { MobileView } from "../../../components/Movie-TV/Views/MobileView";
 import { Overview, useRenderComplete } from "../../tv/[id]";
+import useSWR, { SWRResponse } from "swr";
+import { Images, Backdrop } from "../../../types/Images";
+import fetcher from "../../../Fetcher";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
@@ -88,11 +91,76 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
                 <br />
 
                 <CastWidget id={data.id} mediaType={mediaType} />
+
+                <Images id={data.id} />
+
                 <Recommendations id={data.id} />
                 {data.vote_count > 1 ? <MovieReviews movieID={data.id} /> : <Fragment />}
             </div>
 
         </div>
+    )
+}
+
+function Images({ id }: { id: number }) {
+    const { data, error }: SWRResponse<Images, Error> = useSWR(`/api/Movie/getImages/${id}`, fetcher);
+
+    console.log(data);
+
+
+    //TODO: Improve Blur Image CSS
+    //TODO: Refactor
+    //TODO: Sort Images and pick the ones with the most reviews
+    //TODO: Add a lighthouse
+    //TODO: Create a skeleton
+    //TODO: Add this component to TV
+
+
+    //TODO: Crazy good tailwind modifiers here Check them out
+    // more info: https://www.youtube.com/watch?v=BSoRXk1FIw8
+
+    if (!data && !error) return <p>Loading...</p>;
+    if (error) return <p>Error Occurred</p>;
+    return (
+        <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-3 gap-x-6 lg:grid-cols-4 xl:grid-cols-4 xl:gap-x-8">
+                {data?.backdrops.map((image: Backdrop, index: number) => {
+                    if (index < 8) return <BlurImage key={`Poster-${index}`} image={image} />;
+                    return;
+                })}
+            </div>
+        </div>
+    )
+}
+
+function cn(...classes: string[]) {
+    return classes.filter(Boolean).join(' ')
+}
+
+function BlurImage({ image }: { image: Backdrop }) {
+    const [isLoading, setLoading] = useState(true)
+
+    return (
+        <a href={""} className="group">
+            <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                    alt=""
+                    src={image.file_path ? image.file_path : Placeholder.src}
+                    loader={PosterLoader}
+                    layout="fill"
+                    objectFit="cover"
+                    className={cn(
+                        'duration-700 ease-in-out group-hover:opacity-75',
+                        isLoading
+                            ? 'scale-110 blur-2xl grayscale'
+                            : 'scale-100 blur-0 grayscale-0'
+                    )}
+                    onLoadingComplete={() => setLoading(false)}
+                />
+            </div>
+            <h3 className="mt-4 text-base font-medium text-neutral-100">{Math.round(image.vote_average * 10) / 10}</h3>
+            <p className="mt-1 text-sm text-neutral-400">{image.vote_count} Reviews</p>
+        </a>
     )
 }
 
