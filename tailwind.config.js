@@ -8,7 +8,8 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require("tailwind-scrollbar")
+    require("tailwind-scrollbar"),
+    require("@tailwindcss/aspect-ratio")
   ],
   important: true,
 }
