@@ -35,7 +35,7 @@ export async function logout(router: NextRouter) {
   router.reload();
 }
 
-interface LoginResponse {
+export interface LoginResponse {
   occuredAt: string,
   status: number
 }
@@ -63,7 +63,7 @@ export async function handleLogin(router: NextRouter): Promise<LoginResponse> {
       if (accessTokenReq.status != 200) {
         //TODO: Finish this
 
-        return resolve({ occuredAt: "Access Token", status: accessTokenReq.status });
+        return resolve({ occuredAt: "AccessToken", status: accessTokenReq.status });
       }
 
       // convert the v4 token to v3, so we can use it
