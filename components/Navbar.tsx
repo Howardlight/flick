@@ -60,6 +60,8 @@ export const Navbar = () => {
         setSnackbarProps({ show: true, errorBrief: snackbarRes.errorBrief, errorMessage: snackbarRes.errorMessage });
     }
 
+
+    //TODO: Add transitions to snackbar
     function handleLoginErrors(response: LoginResponse) {
         switch (response.occuredAt) {
             case "RequestToken":
