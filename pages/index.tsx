@@ -35,54 +35,60 @@ export async function logout(router: NextRouter) {
   router.reload();
 }
 
-export async function handleLogin(router: NextRouter) {
+interface LoginResponse {
+  occuredAt: string,
+  status: number
+}
 
+export async function handleLogin(router: NextRouter): Promise<LoginResponse> {
+  return new Promise(async (resolve, reject) => {
 
-  // Request a request Token
-  // This token has no real value,
-  const reqTokenReq = await getRequestToken();
-  if (reqTokenReq.status != 200) {
-    //TODO: Finish this
-    return;
-  };
+    // Request a request Token
+    // This token has no real value,
+    const reqTokenReq = await getRequestToken();
+    if (reqTokenReq.status != 200) {
 
-  // once the token has been created, the user will be prompted to verify it
-  const requestTokenData = await reqTokenReq.json();
-  if (reqTokenReq.status == 200) window.open(`https://www.themoviedb.org/auth/access?request_token=${requestTokenData.request_token}`, "_blank");
+      return resolve({ occuredAt: "RequestToken", status: reqTokenReq.status });
+    };
 
-  // Give the User Time to approve the token, otherwise Logging in will fail
-  setTimeout(async function () {
+    // once the token has been created, the user will be prompted to verify it
+    const requestTokenData = await reqTokenReq.json();
+    if (reqTokenReq.status == 200) window.open(`https://www.themoviedb.org/auth/access?request_token=${requestTokenData.request_token}`, "_blank");
 
-    // after the specified time, get the access token using the request token
-    const accessTokenReq = await getAccessToken(requestTokenData);
-    if (accessTokenReq.status != 200) {
-      //TODO: Finish this
+    // Give the User Time to approve the token, otherwise Logging in will fail
+    setTimeout(async function () {
 
-      return;
-    }
+      // after the specified time, get the access token using the request token
+      const accessTokenReq = await getAccessToken(requestTokenData);
+      if (accessTokenReq.status != 200) {
+        //TODO: Finish this
 
-    // convert the v4 token to v3, so we can use it
-    const accessTokenData = await accessTokenReq.json();
-    const v3Req = await convertToV3(accessTokenData);
-    if (v3Req.status != 200) {
-      //TODO: Finish this
+        return resolve({ occuredAt: "Access Token", status: accessTokenReq.status });
+      }
 
-      return;
-    }
+      // convert the v4 token to v3, so we can use it
+      const accessTokenData = await accessTokenReq.json();
+      const v3Req = await convertToV3(accessTokenData);
+      if (v3Req.status != 200) {
 
-    // once converted, pass the session_id to a cookie with
-    // the login function
-    const v3ReqData = await v3Req.json();
-    await login(v3ReqData, router);
+        return resolve({ occuredAt: "V3ToV4", status: v3Req.status });
+      }
 
-  }, 15000);
+      // once converted, pass the session_id to a cookie with
+      // the login function
+      const v3ReqData = await v3Req.json();
+      const loginReq = await login(v3ReqData, router);
+
+      return resolve({ occuredAt: "Login", status: loginReq.status });
+    }, 15000);
+  })
 }
 
 async function getRequestToken() {
   const req = await fetch("/api/auth/requestToken", {
     method: "POST",
     body: JSON.stringify({
-      redirect_to: "localhost:3000",
+      redirect_to: "",
     })
   });
   return req;
@@ -117,6 +123,7 @@ async function login(v3ReqData: V4ToV3Request, router: NextRouter) {
   })
 
   if (loginReq.status == 200) router.reload();
+  return loginReq;
 }
 
 //TODO: Finish autocomplete in the future
