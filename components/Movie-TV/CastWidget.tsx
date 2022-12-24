@@ -51,7 +51,7 @@ const CastContent = ({ data, mediaType }: { data: CreditsResponse, mediaType: st
             {data.cast.map((cast: Cast, index: number) => {
                 if (index <= 10)
                     return (
-                        <div key={cast.id} className="grid auto-cols-max ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50">
+                        <div key={cast.id} title={cast.name} className="grid auto-cols-max ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50">
                             <Link href={`/person/${cast.id}`} passHref>
                                 <a>
                                     <Image

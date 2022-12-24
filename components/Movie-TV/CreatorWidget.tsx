@@ -36,7 +36,7 @@ export const CreatorContent = ({ creators }: { creators: CreatedBy[]; }) => {
             {creators.map((creator: CreatedBy, index: number) => {
                 if (index <= 10)
                     return (
-                        <div key={creator.id} className="grid auto-cols-max w-min ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50">
+                        <div key={creator.id} title={creator.name} className="grid auto-cols-max w-min ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50">
                             <Link href={`/person/${creator.id}`} passHref>
                                 <a>
                                     <Image

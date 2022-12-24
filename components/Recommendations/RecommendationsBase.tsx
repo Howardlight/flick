@@ -23,6 +23,7 @@ const RecommendationsCard = ({ id, index, mediaType, children }: { id: number, i
 const Poster = ({ url, title }: { url: string | null, title: string }) => {
     return (
         <Image
+            title={title}
             src={url ? url : Placeholder.src}
             alt={title}
             loader={PosterLoader}
