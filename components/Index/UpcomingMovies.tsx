@@ -26,7 +26,7 @@ const UpcomingWidgetContent = (): React.ReactElement => {
       {
         data!.results.map((item: UpcomingResult) => {
           return (
-            <IndexWidget.Wrapper key={`upcoming-movie-${item.id}`} mediaType='movie' resultID={item.id}>
+            <IndexWidget.Wrapper title={item.title} key={`upcoming-movie-${item.id}`} mediaType='movie' resultID={item.id}>
               <IndexWidget.Poster title={item.title} url={item.poster_path} />
               <div className='flex flex-col justify-end grow mt-2 max-w-[250px]'>
                 <p className='font-medium text-lg ml-2 pb-2 text-gray-100 truncate'>{item.title}</p>

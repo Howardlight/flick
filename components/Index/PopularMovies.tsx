@@ -25,7 +25,7 @@ const PopularWidgetContent = (): React.ReactElement => {
     <IndexWidget.Scrollbar>
       {data!.results.map((item: PopularResult) => {
         return (
-          <IndexWidget.Wrapper mediaType='movie' resultID={item.id} key={`popular-movies-${item.id}`}>
+          <IndexWidget.Wrapper title={item.title} mediaType='movie' resultID={item.id} key={`popular-movies-${item.id}`}>
             <IndexWidget.Poster title={item.title} url={item.poster_path} />
 
             <div className='flex flex-col grow justify-end mt-2 max-w-[250px]'>
