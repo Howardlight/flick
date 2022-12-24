@@ -9,7 +9,7 @@ import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { isInPast } from "../../search/[...query]";
-import { Fragment, useState } from "react";
+import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { MovieReviews } from "../../../components/Reviews/MovieReviews";
 import MainPageMetrics from "../../../components/Movie-TV/MainPageMetrics";
 import { Recommendations } from "../../../components/Recommendations/MovieRecommendations";
@@ -22,6 +22,7 @@ import { Overview, useRenderComplete } from "../../tv/[id]";
 import useSWR, { SWRResponse } from "swr";
 import { Images, Backdrop } from "../../../types/Images";
 import fetcher from "../../../Fetcher";
+import Star from "../../../components/SVGComponents/Star";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
@@ -122,12 +123,15 @@ function Images({ id }: { id: number }) {
     if (!data && !error) return <p>Loading...</p>;
     if (error) return <p>Error Occurred</p>;
     return (
-        <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-3 gap-x-6 lg:grid-cols-4 xl:grid-cols-4 xl:gap-x-8">
-                {data?.backdrops.map((image: Backdrop, index: number) => {
-                    if (index < 8) return <BlurImage key={`Poster-${index}`} image={image} />;
-                    return;
-                })}
+        <div className="mt-5">
+            <p className="font-semibold text-xl text-neutral-100 mb-3">Images</p>
+            <div className="md:ml-2 md:mr-2">
+                <div className="grid grid-cols-2 justify-items-center sm:grid-cols-4 lg:grid-cols-6">
+                    {data?.posters.map((image: Backdrop, index: number) => {
+                        if (index < 8) return <BlurImage key={`Poster-${index}`} image={image} />;
+                        return;
+                    })}
+                </div>
             </div>
         </div>
     )
@@ -141,13 +145,13 @@ function BlurImage({ image }: { image: Backdrop }) {
     const [isLoading, setLoading] = useState(true)
 
     return (
-        <a href={""} className="group">
-            <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+        <a href={`https://image.tmdb.org/t/p/w500/${image.file_path}`} className="mb-5 group" >
+            <div className="aspect-w-1 aspect-h-1 w-[163px] h-[245px] overflow-hidden rounded-sm bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                 <Image
-                    alt=""
                     src={image.file_path ? image.file_path : Placeholder.src}
                     loader={PosterLoader}
                     layout="fill"
+                    alt=""
                     objectFit="cover"
                     className={cn(
                         'duration-700 ease-in-out group-hover:opacity-75',
@@ -158,9 +162,14 @@ function BlurImage({ image }: { image: Backdrop }) {
                     onLoadingComplete={() => setLoading(false)}
                 />
             </div>
-            <h3 className="mt-4 text-base font-medium text-neutral-100">{Math.round(image.vote_average * 10) / 10}</h3>
-            <p className="mt-1 text-sm text-neutral-400">{image.vote_count} Reviews</p>
-        </a>
+            <div className="flex flex-row items-center justify-between mt-2">
+                <p className="mt-1 text-base text-neutral-400">{image.vote_count} Reviews</p>
+                <div className="flex flex-row gap-2 justify-center">
+                    <h3 className="text-base font-medium text-neutral-100">{Math.round(image.vote_average * 10) / 10}</h3>
+                    <Star className="self-end mb-[10%]" />
+                </div>
+            </div>
+        </a >
     )
 }
 
