@@ -27,6 +27,7 @@ const ContentWrapper = ({ children }: { children: ReactElement[] }) => {
 const Poster = ({ url, name }: { url: string | undefined | null, name: string }) => {
     return (
         <Image
+            title={name}
             src={url ? url : Placeholder.src}
             loader={PosterLoader}
             alt={`${name} Poster`}
