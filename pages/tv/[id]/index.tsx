@@ -15,11 +15,11 @@ import { isInPast } from "../../search/[...query]";
 import { TVReviews } from "../../../components/Reviews/TVReviews";
 import { MainPageMetrics } from "../../../components/Movie-TV/MainPageMetrics";
 import Recommendations from "../../../components/Recommendations/TVRecommendations";
-import { Movie } from "../../../types/Movie";
 import { DetailsBox } from "../../../components/DetailsBox";
 import { useMediaQuery } from "react-responsive";
 import { MobileView } from "../../../components/Movie-TV/Views/MobileView";
 import { DesktopView } from "../../../components/Movie-TV/Views/DesktopView";
+import { Images } from "../../../components/Movie-TV/Images/TVImagesWidget";
 
 export const useRenderComplete = (setRenderComplete: Dispatch<SetStateAction<boolean>>) => {
     useEffect(() => {
@@ -97,6 +97,7 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                 <SeasonsWidget seasons={data.seasons} TVID={data.id} />
                 <CastWidget id={data.id} mediaType={mediaType} className={"mt-4"} />
                 {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-4"} /> : <div />}
+                <Images id={data.id} />
                 <Recommendations id={data.id} />
                 {data.vote_count > 1 ? <TVReviews tvID={data.id} className={"mt-10"} /> : <Fragment />}
 

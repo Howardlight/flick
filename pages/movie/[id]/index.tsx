@@ -19,10 +19,7 @@ import { DetailsBox } from "../../../components/DetailsBox";
 import { DesktopView } from "../../../components/Movie-TV/Views/DesktopView";
 import { MobileView } from "../../../components/Movie-TV/Views/MobileView";
 import { Overview, useRenderComplete } from "../../tv/[id]";
-import useSWR, { SWRResponse } from "swr";
-import { Images, Backdrop } from "../../../types/Images";
-import fetcher from "../../../Fetcher";
-import Star from "../../../components/SVGComponents/Star";
+import { Images } from "../../../components/Movie-TV/Images/MovieImagesWidget";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
@@ -100,76 +97,6 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
             </div>
 
         </div>
-    )
-}
-
-function Images({ id }: { id: number }) {
-    const { data, error }: SWRResponse<Images, Error> = useSWR(`/api/Movie/getImages/${id}`, fetcher);
-
-    console.log(data);
-
-
-    //TODO: Improve Blur Image CSS
-    //TODO: Refactor
-    //TODO: Sort Images and pick the ones with the most reviews
-    //TODO: Add a lighthouse
-    //TODO: Create a skeleton
-    //TODO: Add this component to TV
-
-
-    //TODO: Crazy good tailwind modifiers here Check them out
-    // more info: https://www.youtube.com/watch?v=BSoRXk1FIw8
-
-    if (!data && !error) return <p>Loading...</p>;
-    if (error) return <p>Error Occurred</p>;
-    return (
-        <div className="mt-5">
-            <p className="font-semibold text-xl text-neutral-100 mb-3">Images</p>
-            <div className="md:ml-2 md:mr-2">
-                <div className="grid grid-cols-2 justify-items-center sm:grid-cols-4 lg:grid-cols-6">
-                    {data?.posters.map((image: Backdrop, index: number) => {
-                        if (index < 8) return <BlurImage key={`Poster-${index}`} image={image} />;
-                        return;
-                    })}
-                </div>
-            </div>
-        </div>
-    )
-}
-
-function cn(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
-
-function BlurImage({ image }: { image: Backdrop }) {
-    const [isLoading, setLoading] = useState(true)
-
-    return (
-        <a href={`https://image.tmdb.org/t/p/w500/${image.file_path}`} className="mb-5 group" >
-            <div className="aspect-w-1 aspect-h-1 w-[163px] h-[245px] overflow-hidden rounded-sm bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                    src={image.file_path ? image.file_path : Placeholder.src}
-                    loader={PosterLoader}
-                    layout="fill"
-                    alt=""
-                    objectFit="cover"
-                    className={cn(
-                        'duration-700 ease-in-out group-hover:opacity-75',
-                        isLoading
-                            ? 'scale-110 blur-2xl grayscale'
-                            : 'scale-100 blur-0 grayscale-0'
-                    )}
-                    onLoadingComplete={() => setLoading(false)}
-                />
-            </div>
-            <div className="flex flex-row items-center justify-between mt-2">
-                <p className="mt-1 text-base text-neutral-400">{image.vote_count} Reviews</p>
-                <div className="flex flex-row gap-2 justify-center">
-                    <h3 className="text-base font-medium text-neutral-100">{Math.round(image.vote_average * 10) / 10}</h3>
-                    <Star className="self-end mb-[10%]" />
-                </div>
-            </div>
-        </a >
     )
 }
 
