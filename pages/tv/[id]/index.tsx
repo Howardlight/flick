@@ -1,9 +1,5 @@
 import { GetServerSidePropsContext } from "next";
-import Image from "next/image";
-import { PosterLoader } from "../../../PosterLoader";
 import { Navbar } from "../../../components/Navbar";
-import moment from "moment";
-import Placeholder from "../../../assets/MovieSVG.svg";
 import { Dispatch, Fragment as div, Fragment, ReactElement, SetStateAction, useEffect, useState } from "react";
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/Movie-TV/CastWidget";
