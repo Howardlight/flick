@@ -3,6 +3,7 @@ import fetcher from "../../../Fetcher";
 import { Backdrop, Images } from "../../../types/Images";
 import BlurImage from "./BlurImage";
 import { Widget } from "./Images";
+import { LoadingSkeletons } from "./TVImagesWidget";
 
 export function Images({ id }: { id: number }) {
     const { data, error }: SWRResponse<Images, Error> = useSWR(`/api/Movie/getImages/${id}`, fetcher);
@@ -21,7 +22,7 @@ export function Images({ id }: { id: number }) {
     //TODO: Crazy good tailwind modifiers here Check them out
     // more info: https://www.youtube.com/watch?v=BSoRXk1FIw8
 
-    if (!data && !error) return <p>Loading...</p>;
+    if (!data && !error) return <LoadingSkeletons />;
     if (error) return <p>Error Occurred</p>;
     return (
         <Widget>
