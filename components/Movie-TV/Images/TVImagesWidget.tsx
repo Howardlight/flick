@@ -23,9 +23,8 @@ export function Images({ id }: { id: number }) {
     // more info: https://www.youtube.com/watch?v=BSoRXk1FIw8
 
     if (!data && !error) return <LoadingSkeletons />;
-    if (error) return <p>Error Occurred</p>;
+    if (error) return <ErrorOccured />;
     if (data!.posters.length == 0) return <Fragment />;
-
     return (
         <Widget>
             <Widget.Title title="Images" />
@@ -39,7 +38,7 @@ export function Images({ id }: { id: number }) {
     )
 }
 
-
+//TODO: Move these to a shared library or something
 export function LoadingSkeletons() {
     return (
         <Widget>
@@ -68,4 +67,16 @@ function LoadingImageSkeleton() {
             </div>
         </div>
     )
+}
+
+export function ErrorOccured() {
+    return (
+        <Widget>
+            <Widget.Title title="Images" />
+            <div className="w-full h-80 flex flex-col justify-center items-center">
+                <p className="text-xl text-neutral-200">Could Not load Images</p>
+                <p className="text-neutral-400">Try again later</p>
+            </div>
+        </Widget>
+    );
 }
