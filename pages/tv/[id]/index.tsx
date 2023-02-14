@@ -16,6 +16,7 @@ import { useMediaQuery } from "react-responsive";
 import { MobileView } from "../../../components/Movie-TV/Views/MobileView";
 import { DesktopView } from "../../../components/Movie-TV/Views/DesktopView";
 import { Images } from "../../../components/Movie-TV/Images/TVImagesWidget";
+import { LoadingSpinner } from "../../movie/[id]";
 
 export const useRenderComplete = (setRenderComplete: Dispatch<SetStateAction<boolean>>) => {
     useEffect(() => {
@@ -86,7 +87,8 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
     //TODO:Create a loading page;
 
     if (requestStatus != 200) return <Custom404 />;
-    if (!renderComplete) return <p>Loading....</p>; //Change this
+    if (!renderComplete) return <LoadingSpinner />;
+
     return (
         <div>
             <NextSeo

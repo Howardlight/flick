@@ -5,7 +5,7 @@ import { CastWidget } from "../../../components/Movie-TV/CastWidget";
 import Custom404 from "../../404";
 import { NextSeo } from "next-seo";
 import { isInPast } from "../../search/[...query]";
-import { Fragment, ReactElement, useState } from "react";
+import { Fragment, ReactElement, Suspense, useState } from "react";
 import { MovieReviews } from "../../../components/Reviews/MovieReviews";
 import MainPageMetrics from "../../../components/Movie-TV/MainPageMetrics";
 import { Recommendations } from "../../../components/Recommendations/MovieRecommendations";
@@ -15,6 +15,7 @@ import { DesktopView } from "../../../components/Movie-TV/Views/DesktopView";
 import { MobileView } from "../../../components/Movie-TV/Views/MobileView";
 import { Overview, useRenderComplete } from "../../tv/[id]";
 import { Images } from "../../../components/Movie-TV/Images/MovieImagesWidget";
+import Spinner from "../.././../components/SVGComponents/Spinner";
 
 //TODO: Add case for when The movie is not released yet
 export default function MoviePage({ data, mediaType, requestStatus }: { data: Movie, mediaType: string, requestStatus: number }) {
@@ -77,7 +78,8 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
     }
 
     if (requestStatus != 200) return <Custom404 />;
-    if (!renderComplete) return <p>Loading....</p>; //Change this
+    if (!renderComplete) return <LoadingSpinner />;
+
     return (
         <div>
             <NextSeo title={`${data.title} - Flick`} />
@@ -104,6 +106,17 @@ export default function MoviePage({ data, mediaType, requestStatus }: { data: Mo
         </div>
     )
 }
+
+
+export function LoadingSpinner() {
+    return (
+        <div className="w-[100vw] h-[100vh] flex items-center justify-center">
+            <div className="animate-spin w-1/4">
+                <Spinner />
+            </div>
+        </div>
+    );
+};
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     let data: Movie;
