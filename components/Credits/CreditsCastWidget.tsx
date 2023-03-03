@@ -37,25 +37,23 @@ export const CreditsCastContent = ({ cast, page }: { cast: Cast[], page: number 
 const CreditsCasteeCard = ({ castee }: { castee: Cast }) => {
 
     return (
-        <Link key={castee.id} href={`/person/${castee.id}`} passHref>
-            <a className="flex flex-row rounded-md p-3 hover:bg-neutral-900 gap-1">
-                <Image
-                    src={castee.profile_path ? castee.profile_path : Placeholder.src}
-                    loader={PosterLoader}
-                    alt={`Poster of ${castee.name}`}
-                    width={125}
-                    height={187}
-                    className="rounded-md w-[125px] h-[187px]"
-                    loading="lazy" />
-                <div className="grow flex flex-col justify-between font-medium text-base ml-2 mt-2">
-                    <div>
-                        <p>{castee.name}</p>
-                        <div className="text-neutral-400">
-                            <p>{castee.character}</p>
-                        </div>
+        <Link key={castee.id} className="flex flex-row rounded-md p-3 hover:bg-neutral-900 gap-1" href={`/person/${castee.id}`} passHref>
+            <Image
+                src={castee.profile_path ? castee.profile_path : Placeholder.src}
+                loader={PosterLoader}
+                alt={`Poster of ${castee.name}`}
+                width={125}
+                height={187}
+                className="rounded-md w-[125px] h-[187px]"
+                loading="lazy" />
+            <div className="grow flex flex-col justify-between font-medium text-base ml-2 mt-2">
+                <div>
+                    <p>{castee.name}</p>
+                    <div className="text-neutral-400">
+                        <p>{castee.character}</p>
                     </div>
                 </div>
-            </a>
+            </div>
         </Link>
     );
 };

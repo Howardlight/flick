@@ -26,7 +26,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         headers: myHeaders,
         body: raw,
         redirect: 'follow'
+
     };
+
+    //TODO: Fix This Method
+    // It currently returns 402 no matter what
 
     //@ts-ignore
     const request = await fetch("https://api.themoviedb.org/4/auth/request_token?api_key=be2b13195090224a6edfaa7360f1cf54", requestOptions)

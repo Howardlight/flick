@@ -48,26 +48,24 @@ const CreditsCrewCard = ({ crew }: { crew: Crew, }) => {
     // }
 
     return (
-        <Link key={crew.id} href={`/person/${crew.id}`} passHref>
-            <a className="flex flex-row rounded-md p-3 hover:bg-neutral-900 gap-1">
-                <Image
-                    src={crew.profile_path ? crew.profile_path : Placeholder.src}
-                    loader={PosterLoader}
-                    alt={`Poster of ${crew.name}`}
-                    width={125}
-                    height={187}
-                    className="rounded-md w-[125px] h-[187px]"
-                    loading="lazy" />
-                <div className="grow flex flex-col justify-between font-medium text-base ml-2 mt-2">
-                    <div>
-                        <p>{crew.name}</p>
-                        <div className="text-neutral-400">
-                            <p>{crew.job}</p>
-                            {/* <HandleKnownForDepartment department={crew.department} /> */}
-                        </div>
+        <Link key={crew.id} className="flex flex-row rounded-md p-3 hover:bg-neutral-900 gap-1" href={`/person/${crew.id}`} passHref>
+            <Image
+                src={crew.profile_path ? crew.profile_path : Placeholder.src}
+                loader={PosterLoader}
+                alt={`Poster of ${crew.name}`}
+                width={125}
+                height={187}
+                className="rounded-md w-[125px] h-[187px]"
+                loading="lazy" />
+            <div className="grow flex flex-col justify-between font-medium text-base ml-2 mt-2">
+                <div>
+                    <p>{crew.name}</p>
+                    <div className="text-neutral-400">
+                        <p>{crew.job}</p>
+                        {/* <HandleKnownForDepartment department={crew.department} /> */}
                     </div>
                 </div>
-            </a>
+            </div>
         </Link>
     );
 }

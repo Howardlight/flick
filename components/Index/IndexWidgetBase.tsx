@@ -54,10 +54,8 @@ export const IndexWidgetError = () => {
 const IndexWidgetContentWrapper = ({ title, resultID, mediaType, children }: { title: string, resultID: number, mediaType: string, children: ReactNode }) => {
     return (
         <div key={resultID} title={title} className="grid auto-cols-max mr-2 ml-2 p-2 rounded-sm w-[266px] h-[463px] text-xsm transition-all delay-10 hover:bg-neutral-900">
-            <Link href={`/${mediaType.toLowerCase()}/${resultID}`} passHref>
-                <a className="flex flex-col">
-                    {children}
-                </a>
+            <Link href={`/${mediaType.toLowerCase()}/${resultID}`} className="flex flex-col" passHref>
+                {children}
             </Link>
         </div>
     );

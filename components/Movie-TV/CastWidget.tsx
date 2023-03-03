@@ -53,28 +53,24 @@ const CastContent = ({ data, mediaType }: { data: CreditsResponse, mediaType: st
                     return (
                         <div key={cast.id} title={cast.name} className="grid auto-cols-max ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50">
                             <Link href={`/person/${cast.id}`} passHref>
-                                <a>
-                                    <Image
-                                        src={cast.profile_path ? cast.profile_path : Placeholder.src}
-                                        alt={`Image of ${cast.name}`}
-                                        loader={PosterLoader}
-                                        width={125}
-                                        height={187}
-                                        className="rounded-md w-[125px] h-[187px]" />
-                                    <div className="w-[125px] mt-1 truncate overflow-x-hidden text-neutral-100">
-                                        <p className="truncate">{cast.name}</p>
-                                        <p className="truncate text-neutral-400">{cast.character}</p>
-                                    </div>
-                                </a>
+                                <Image
+                                    src={cast.profile_path ? cast.profile_path : Placeholder.src}
+                                    alt={`Image of ${cast.name}`}
+                                    loader={PosterLoader}
+                                    width={125}
+                                    height={187}
+                                    className="rounded-md w-[125px] h-[187px]" />
+                                <div className="w-[125px] mt-1 truncate overflow-x-hidden text-neutral-100">
+                                    <p className="truncate">{cast.name}</p>
+                                    <p className="truncate text-neutral-400">{cast.character}</p>
+                                </div>
                             </Link>
                         </div>
                     );
             })}
             {showMore ?
-                <Link href={`/${mediaType.toLowerCase()}/${data.id}/credits`} passHref>
-                    <a className="flex items-center justify-center text-neutral-100 rounded-sm font-medium text-lg hover:bg-neutral-900 pl-12 pr-12">
-                        Show more
-                    </a>
+                <Link href={`/${mediaType.toLowerCase()}/${data.id}/credits`} className="flex items-center justify-center text-neutral-100 rounded-sm font-medium text-lg hover:bg-neutral-900 pl-12 pr-12" passHref>
+                    Show more
                 </Link>
                 : <Fragment />}
         </Fragment>

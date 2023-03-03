@@ -38,28 +38,24 @@ export const CreatorContent = ({ creators }: { creators: CreatedBy[]; }) => {
                     return (
                         <div key={creator.id} title={creator.name} className="grid auto-cols-max w-min ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50">
                             <Link href={`/person/${creator.id}`} passHref>
-                                <a>
-                                    <Image
-                                        src={creator.profile_path ? creator.profile_path : Placeholder.src}
-                                        alt={`Image of ${creator.name}`}
-                                        loader={PosterLoader}
-                                        width={125}
-                                        height={187}
-                                        className="rounded-md w-[125px] h-[187px]" />
-                                    <div className="w-[125px] truncate mt-1 overflow-x-hidden text-neutral-100">
-                                        <p className="truncate">{creator.name}</p>
-                                        {/* <p className="truncate text-neutral-400">{creator}</p> */}
-                                    </div>
-                                </a>
+                                <Image
+                                    src={creator.profile_path ? creator.profile_path : Placeholder.src}
+                                    alt={`Image of ${creator.name}`}
+                                    loader={PosterLoader}
+                                    width={125}
+                                    height={187}
+                                    className="rounded-md w-[125px] h-[187px]" />
+                                <div className="w-[125px] truncate mt-1 overflow-x-hidden text-neutral-100">
+                                    <p className="truncate">{creator.name}</p>
+                                    {/* <p className="truncate text-neutral-400">{creator}</p> */}
+                                </div>
                             </Link>
                         </div>
                     );
             })}
             {showMore ?
-                <Link href="#" passHref>
-                    <a className="flex items-center justify-center text-neutral-100 rounded-sm font-medium text-lg hover:bg-neutral-900 pl-12 pr-12">
-                        Show more
-                    </a>
+                <Link href="#" className="flex items-center justify-center text-neutral-100 rounded-sm font-medium text-lg hover:bg-neutral-900 pl-12 pr-12" passHref>
+                    Show more
                 </Link>
                 : <Fragment />}
         </Fragment>

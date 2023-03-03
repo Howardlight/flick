@@ -142,29 +142,25 @@ export const Navbar = () => {
         <Fragment>
             <nav className="flex flex-row pt-2 pb-2 pl-4 pr-4 text-neutral-300 bg-transparent">
                 <Link href="/" passHref>
-                    <a className="">
-                        <div className="flex flex-row justify-start">
-                            <Image
-                                src={MovieSVG}
-                                alt={"Flick logo"}
-                                height={30}
-                                width={30}
-                            />
-                            <p className="font-medium text-lg hover:text-neutral-100">Flick</p>
-                        </div>
-                    </a>
+                    <div className="flex flex-row justify-start">
+                        <Image
+                            src={MovieSVG}
+                            alt={"Flick logo"}
+                            height={30}
+                            width={30}
+                        />
+                        <p className="font-medium text-lg hover:text-neutral-100">Flick</p>
+                    </div>
                 </Link>
                 <div className="grow"></div>
                 <div className="flex flex-row gap-2 items-center">
 
                     <UserElement user={user} router={router} />
                     {user && user.isLoggedIn == true ?
-                        <Link href={"#"} passHref>
-                            <a className="hover:text-neutral-100 rounded-md">
-                                <div className="flex scale-90 items-center hover:bg-neutral-900 justify-center w-8 h-auto rounded-md text-lg border-2 font-semibold border-red-600">
-                                    {user.username?.charAt(0)}
-                                </div>
-                            </a>
+                        <Link href={"#"} className="hover:text-neutral-100 rounded-md" passHref>
+                            <div className="flex scale-90 items-center hover:bg-neutral-900 justify-center w-8 h-auto rounded-md text-lg border-2 font-semibold border-red-600">
+                                {user.username?.charAt(0)}
+                            </div>
                         </Link>
                         : <Fragment />
                     }

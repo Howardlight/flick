@@ -11,10 +11,8 @@ const RecommendationsCard = ({ id, index, mediaType, children }: { id: number, i
     // stops at the title
     return (
         <div className="flex flex-col w-[187px] mb-5 p-1" key={`${id}-${index}-${Math.random() * 100}`}>
-            <Link href={`/${mediaType}/${id}`} passHref>
-                <a className={"p-2 hover:bg-neutral-900 rounded-sm"}>
-                    {children}
-                </a>
+            <Link href={`/${mediaType}/${id}`} className="p-2 hover:bg-neutral-900 rounded-sm" passHref>
+                {children}
             </Link>
         </div>
     )
