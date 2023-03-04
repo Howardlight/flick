@@ -5,7 +5,7 @@ import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
 import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
-import Custom404 from "../../../404";
+import Custom404 from "../../../../app/404";
 import { Movie } from "../../../../types/Movie";
 import { NextSeo } from "next-seo";
 import { TVShow } from "../../../../types/TVShow";

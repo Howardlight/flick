@@ -6,7 +6,7 @@ import { PosterLoader } from "../../PosterLoader";
 import { Navbar } from "../../components/Navbar";
 import React from "react";
 import Placeholder from "../../assets/MovieSVG.svg";
-import Custom404 from "../404";
+import Custom404 from "../../app/404";
 import { NextSeo } from "next-seo";
 
 export const PersonPage = ({ data, requestStatus }: { data: Person, requestStatus: number }) => {

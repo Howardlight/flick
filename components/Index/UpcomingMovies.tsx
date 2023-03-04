@@ -1,3 +1,5 @@
+"use client";
+
 import useSWR, { SWRResponse } from 'swr';
 import fetcher from '../../Fetcher';
 import { UpcomingResponse, UpcomingResult } from '../../types/GetUpcomingTypes';

@@ -4,7 +4,7 @@ import { Dispatch, Fragment as div, Fragment, ReactElement, SetStateAction, useE
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/Movie-TV/CastWidget";
 import { CreatorWidget } from "../../../components/Movie-TV/CreatorWidget";
-import Custom404 from "../../404";
+import Custom404 from "../../../app/404";
 import { NextSeo } from "next-seo";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import { isInPast } from "../../search/[...query]";

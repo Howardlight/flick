@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement } from "react";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../Fetcher";

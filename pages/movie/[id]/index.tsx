@@ -2,7 +2,7 @@ import { GetServerSidePropsContext } from "next";
 import { Movie } from "../../../types/Movie";
 import { Navbar } from "../../../components/Navbar";
 import { CastWidget } from "../../../components/Movie-TV/CastWidget";
-import Custom404 from "../../404";
+import Custom404 from "../../../app/404";
 import { NextSeo } from "next-seo";
 import { isInPast } from "../../search/[...query]";
 import { Fragment, ReactElement, Suspense, useState } from "react";

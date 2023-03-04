@@ -1,3 +1,5 @@
+"use client";
+
 import useSWR, { SWRResponse } from 'swr';
 import { PopularResponse, PopularResult } from '../../types/GetPopularMoviesTypes';
 import fetcher from '../../Fetcher';

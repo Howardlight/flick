@@ -3,6 +3,9 @@ import { Fragment } from "react";
 import { Navbar } from "../components/Navbar";
 import Magnifier from "../components/SVGComponents/Magnifier";
 
+// No longer supported
+// it doesn't work
+
 export default function Custom404() {
     return (
         <Fragment>

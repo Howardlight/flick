@@ -1,12 +1,16 @@
+"use client";
+
 import MovieSVG from "../assets/MovieSVG.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { handleLogin, LoginResponse, logout } from "../pages";
+import { handleLogin, LoginResponse, logout } from "../app/page";
 import { Dispatch, Fragment, SetStateAction, useContext, useState } from "react";
-import { UserContext } from "../pages/_app";
+import { UserContext } from "../public/____app";
 import { User } from "../types/User";
-import { NextRouter, useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { NextRouter } from "next/router";
 import Spinner from "./SVGComponents/Spinner";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
 interface SnackbarProps {
     show: boolean;
@@ -49,7 +53,7 @@ export const Navbar = () => {
     const router = useRouter();
     // console.log(`Navbar user: `, user);
 
-    async function handleNavbarLogin(router: NextRouter) {
+    async function handleNavbarLogin(router: AppRouterInstance) {
         setLoading(true);
         const response = await handleLogin(router);
 
@@ -111,7 +115,7 @@ export const Navbar = () => {
     }
 
 
-    function UserElement({ user, router }: { user: User, router: NextRouter }) {
+    function UserElement({ user, router }: { user: User, router: AppRouterInstance }) {
         if (!user) return (
             <button className="flex flex-row items-center gap-2 cursor-default rounded-md font-semibold">
                 <div className="animate-spin">

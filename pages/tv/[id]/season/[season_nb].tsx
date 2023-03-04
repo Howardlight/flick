@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { Navbar } from "../../../../components/Navbar";
 import { Season } from "../../../../types/Season";
 import { TVShow } from "../../../../types/TVShow";
-import Custom404 from "../../../404";
+import Custom404 from "../../../../app/404";
 import Image from "next/image";
 import Placeholder from "../../../../assets/MovieSVG.svg";
 import { PosterLoader } from "../../../../PosterLoader";
