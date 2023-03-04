@@ -4,13 +4,14 @@ import { PopularMovies } from '../components/Index/PopularMovies';
 import { UpcomingMovies } from '../components/Index/UpcomingMovies';
 import { PopularTV } from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
+import HydrationWrapper from '../components/HydrationWrapper';
 
 const Home: NextPage = () => {
 
   //TODO: h-[50vh] does not seem to work for some reason, find out why and fix it
 
   return (
-    <div>
+    <HydrationWrapper>
       <head>
         <title>Home</title>
       </head>
@@ -25,7 +26,7 @@ const Home: NextPage = () => {
         <UpcomingMovies className={"mt-10"} />
         <PopularTV className='mt-10' />
       </main>
-    </div>
+    </HydrationWrapper>
   )
 }
 

@@ -1,23 +1,19 @@
-import Image from "next/image";
-import { PosterLoader } from "../../PosterLoader";
-import moment from "moment";
-import Placeholder from "../../assets/MovieSVG.svg";
+"use client";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../Fetcher";
 import { TVRecResponse } from "../../types/GetRecommendationsTypes";
-import Link from "next/link";
 import { NoRecommendations, RecommendationsCard, RecommendationsError, RecommendationSkeletons } from "./RecommendationsBase";
 import { useMediaQuery } from "react-responsive";
 import { Fragment, useEffect, useState } from "react";
 import { TVShow } from "../../types/TVShow";
 import DownIcon from "../SVGComponents/DownIcon";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 export const Recommendations = ({ id }: { id: number; }) => {
 
     const { data, error }: SWRResponse<TVRecResponse, Error> = useSWR(`/api/TV/getRecommendations/${id}`, fetcher);
     const [expand, setExpand] = useState(false);
-    const dynamicRoute = useRouter().asPath;
+    const dynamicRoute = usePathname();
     // console.log(data);
 
     const isMobile = useMediaQuery({ query: `(max-width: 768px)` });

@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { PosterLoader } from "../PosterLoader";
 import moment from "moment";

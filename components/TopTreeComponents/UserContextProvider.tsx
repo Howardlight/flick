@@ -19,6 +19,7 @@ export default function ContextProvider({ children }: { children: React.ReactNod
     });
     // console.log("user: ", user);
 
+    //TODO: Fix NProgress
     useTopLevelNProgressBar();
 
     return (
@@ -28,7 +29,7 @@ export default function ContextProvider({ children }: { children: React.ReactNod
     )
 }
 
-function useTopLevelNProgressBar() {
+export function useTopLevelNProgressBar() {
 
     function useNProgressBar(router: Router) {
         useEffect(() => {

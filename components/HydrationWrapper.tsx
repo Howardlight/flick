@@ -1,7 +1,5 @@
-
 "use client";
-import { Fragment, ReactNode, useState } from "react";
-import { useRenderComplete } from "../pages/tv/[id]";
+import { Dispatch, Fragment, ReactNode, SetStateAction, useEffect, useState } from "react";
 import Spinner from "./SVGComponents/Spinner";
 
 export function LoadingSpinner() {
@@ -13,6 +11,12 @@ export function LoadingSpinner() {
         </div>
     );
 };
+
+export const useRenderComplete = (setRenderComplete: Dispatch<SetStateAction<boolean>>) => {
+    useEffect(() => {
+        setRenderComplete(true);
+    }, [setRenderComplete]);
+}
 
 export default function HydrationWrapper({ children }: { children: ReactNode }) {
     const [renderComplete, setRenderComplete] = useState(false);

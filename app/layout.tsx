@@ -1,9 +1,5 @@
 // import '../pages/styles/globals.css';
 import "../styles/globals.css";
-import type { AppProps } from 'next/app'
-import { Fragment, ReactElement } from 'react';
-import { NextSeo } from 'next-seo';
-import NProgress from "nprogress";
 import UserContextProvider from '../components/TopTreeComponents/UserContextProvider';
 
 export default function RootLayout({
