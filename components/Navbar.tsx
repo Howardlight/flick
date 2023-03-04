@@ -4,7 +4,7 @@ import MovieSVG from "../assets/MovieSVG.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, Fragment, SetStateAction, useContext, useState } from "react";
-import { UserContext } from "../public/____app";
+import { UserContext } from "./TopTreeComponents/UserContextProvider";
 import { User } from "../types/User";
 import { useRouter } from "next/navigation";
 import { NextRouter } from "next/router";

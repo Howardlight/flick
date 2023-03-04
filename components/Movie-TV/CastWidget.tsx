@@ -1,3 +1,5 @@
+"use client";
+
 import useSWR, { SWRResponse } from "swr";
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";

@@ -1,3 +1,4 @@
+"use client";
 import React, { Fragment, useMemo, useState } from "react";
 import { Cast } from "../../types/Cast";
 import PageBox from "./PageBox";

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import moment from "moment";
@@ -11,7 +12,7 @@ import { useMediaQuery } from "react-responsive";
 import DownIcon from "../SVGComponents/DownIcon";
 import { Fragment, useEffect, useState } from "react";
 import { Movie } from "../../types/Movie";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export const Recommendations = ({ id }: { id: number; }) => {
 

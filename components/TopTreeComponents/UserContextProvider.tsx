@@ -10,7 +10,7 @@ const defaultUserContext: User = {
     isLoggedIn: false
 }
 
-const UserContext = createContext<User>(defaultUserContext);
+export const UserContext = createContext<User>(defaultUserContext);
 export default function ContextProvider({ children }: { children: React.ReactNode }) {
 
     // Get Session/Cookie if present

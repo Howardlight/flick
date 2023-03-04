@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React, { Fragment, useMemo, useState } from "react";
 import { Crew } from "../../types/Crew";

@@ -1,3 +1,4 @@
+"use client";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next"
 import { Dispatch, Fragment, RefObject, SetStateAction, useEffect, useRef, useState } from "react"
 import { isMovieResult, isPersonResult, isTVShowResult, MediaType, MultiSearchResponse, Result } from "../../types/MultiSearchTypes";

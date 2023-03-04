@@ -16,7 +16,8 @@ import { useMediaQuery } from "react-responsive";
 import { MobileView } from "../../../components/Movie-TV/Views/MobileView";
 import { DesktopView } from "../../../components/Movie-TV/Views/DesktopView";
 import { Images } from "../../../components/Movie-TV/Images/TVImagesWidget";
-import { LoadingSpinner } from "../../movie/[id]";
+import { Overview } from "../../../components/Movie-TV/Overview";
+import HydrationWrapper from "../../../components/HydrationWrapper";
 
 export const useRenderComplete = (setRenderComplete: Dispatch<SetStateAction<boolean>>) => {
     useEffect(() => {
@@ -32,9 +33,6 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
     // When dealing with Dates, the backend compares the HTML of the frontend, and since there's a delay 
     // between the 2, the backend thinks the UI mismatched, so to solve this, we create a loading bar until the frontend
     // fully loads, THEN we render the page;
-    const [renderComplete, setRenderComplete] = useState(false);
-    useRenderComplete(setRenderComplete);
-
     const isDesktop = useMediaQuery({ minWidth: 992 });
 
 
@@ -86,11 +84,8 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
     }
     //TODO:Create a loading page;
 
-    if (requestStatus != 200) return <Custom404 />;
-    if (!renderComplete) return <LoadingSpinner />;
-
     return (
-        <div>
+        <HydrationWrapper>
             <NextSeo
                 title={`${data.name} - Flick`}
             />
@@ -120,20 +115,10 @@ export default function TVShowPage({ data, mediaType, requestStatus }: { data: T
                 {data.vote_count > 1 ? <TVReviews tvID={data.id} className={"mt-10"} /> : <Fragment />}
 
             </div>
-        </div>
+        </HydrationWrapper>
     )
 }
 
-
-export function Overview({ overview }: { overview: string | undefined }) {
-    if (overview == undefined || overview.length < 1) return <Fragment />;
-    return (
-        <div className="">
-            <p className="font-semibold text-xl text-neutral-100 mb-3">Overview</p>
-            <p className="text-neutral-300">{overview}</p>
-        </div>
-    )
-}
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     let data: TVShow;

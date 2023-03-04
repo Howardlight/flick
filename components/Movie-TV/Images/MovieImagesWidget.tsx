@@ -1,3 +1,5 @@
+"use client";
+
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../../Fetcher";
 import { Backdrop, Images } from "../../../types/Images";
