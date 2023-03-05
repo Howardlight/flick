@@ -8,9 +8,13 @@ import { Widget } from "./Images";
 import { ErrorOccured, LoadingSkeletons } from "./TVImagesWidget";
 
 export function Images({ id }: { id: number }) {
-    const { data, error }: SWRResponse<Images, Error> = useSWR(`/api/Movie/getImages/${id}`, fetcher);
+    const { data, error }: SWRResponse<Images, Error> = useSWR(`/api/Movie/${id}/getImages`, fetcher, {
+        revalidateIfStale: false,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false
+    });
 
-    console.log(data);
+    // console.log(data);
 
 
     //TODO: Improve Blur Image CSS

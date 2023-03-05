@@ -4,6 +4,7 @@ import useSWR, { SWRResponse } from 'swr';
 import { PopularResponse, PopularResult } from '../../types/GetPopularMoviesTypes';
 import fetcher from '../../Fetcher';
 import { IndexWidget, IndexWidgetError, IndexWidgetSkeletons, Metrics } from './IndexWidgetBase';
+import { Suspense } from 'react';
 
 export const PopularMovies = ({ className }: { className?: string }): React.ReactElement => {
   return (
@@ -15,7 +16,7 @@ export const PopularMovies = ({ className }: { className?: string }): React.Reac
 
 
 const PopularWidgetContent = (): React.ReactElement => {
-  const { data, error }: SWRResponse<PopularResponse, Error> = useSWR('/api/Movie/getPopularMovies/1', fetcher, {
+  const { data, error }: SWRResponse<PopularResponse, Error> = useSWR('/api/Movie/1/1/getPopularMovies', fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false

@@ -35,6 +35,7 @@ export const MovieReviewsContent = ({ movieID }: { movieID: number; }) => {
     const [page, setPage] = useState(1);
     const { data, error }: SWRResponse<ReviewResponse, Error> = useSWR(`/api/Movie/getMovieReviews/${movieID}/${page}`, fetcher);
 
+    //TODO: Port This Component to use the new API Endpoint, for some reason it currently doesn't work
 
     // console.log(data);
     if (!data && !error) return <ReviewSkeletons />;

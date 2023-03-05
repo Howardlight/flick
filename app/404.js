@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { Navbar } from "../components/Navbar";
 import Magnifier from "../components/SVGComponents/Magnifier";
 
+//TODO: Get the 404 Page to work
 // No longer supported
 // it doesn't work
 

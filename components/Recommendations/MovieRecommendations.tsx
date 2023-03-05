@@ -12,13 +12,13 @@ import { useMediaQuery } from "react-responsive";
 import DownIcon from "../SVGComponents/DownIcon";
 import { Fragment, useEffect, useState } from "react";
 import { Movie } from "../../types/Movie";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export const Recommendations = ({ id }: { id: number; }) => {
 
-    const { data, error }: SWRResponse<MovieRecResponse, Error> = useSWR(`/api/Movie/getRecommendations/${id}`, fetcher);
+    const { data, error }: SWRResponse<MovieRecResponse, Error> = useSWR(`/api/Movie/${id}/getRecommendations`, fetcher);
     const [expand, setExpand] = useState(false);
-    const dynamicRoute = useRouter().asPath;
+    const dynamicRoute = usePathname();
 
     const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
     useEffect(() => setExpand(false), [dynamicRoute]);
