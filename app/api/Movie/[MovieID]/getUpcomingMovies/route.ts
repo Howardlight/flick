@@ -14,7 +14,8 @@ export async function GET(request: NextResponse, { params }: { params: MoviePara
     let data;
 
     const req = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`);
-    data = await request.json();
+    data = await req.json();
+
 
     if (req.status == 401) return NextResponse.json(data, { status: 401 });
     else if (req.status == 404) return NextResponse.json(data, { status: 404 });

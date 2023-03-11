@@ -15,7 +15,7 @@ export const UpcomingMovies = ({ className }: { className?: string }): React.Rea
   );
 };
 const UpcomingWidgetContent = (): React.ReactElement => {
-  const { data, error }: SWRResponse<UpcomingResponse, Error> = useSWR("/api/Movie/1/1/getUpcomingMovies", fetcher, {
+  const { data, error }: SWRResponse<UpcomingResponse, Error> = useSWR("/api/Movie/1/getUpcomingMovies", fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false

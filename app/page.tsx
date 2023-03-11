@@ -23,8 +23,8 @@ const Home: NextPage = () => {
         </div>
 
         <PopularMovies />
-        {/* <UpcomingMovies className={"mt-10"} /> */}
-        {/* <PopularTV className='mt-10' /> */}
+        <UpcomingMovies className={"mt-10"} />
+        <PopularTV className='mt-10' />
       </main>
     </HydrationWrapper>
   )
