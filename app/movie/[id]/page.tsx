@@ -10,9 +10,16 @@ import { Overview } from "../../../components/Movie-TV/Overview";
 import MovieDetailsBox from "../../../components/DetailsBox/MovieDetailsBox";
 import HeroBox from "../../../components/HeroBox/MovieHeroBox";
 import HydrationWrapper from "../../../components/HydrationWrapper";
+import { Metadata } from "next";
 
 interface MoviePageParams {
     id: string;
+}
+
+
+export async function generateMetadata({ params }: { params: MoviePageParams }): Promise<Metadata> {
+    const { data } = await getData(params.id);
+    return { title: `${data.title} - Flick` };
 }
 
 //TODO: Add case for when The movie is not released yet
@@ -20,12 +27,8 @@ export default async function MoviePage({ params }: { params: MoviePageParams })
     const { data, requestStatus, mediaType } = await getData(params.id);
 
     if (requestStatus != 200) return <Custom404 />;
-
     return (
         <HydrationWrapper>
-            <head>
-                <title>{`${data.title} - Flick`}</title>
-            </head>
             <div className="lg:border-b-2 border-red-600" style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />
 

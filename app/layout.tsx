@@ -14,7 +14,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                <title>Flick - Home</title>
+                {/* <title>Flick - Home</title> */}
                 <meta name="description" content="Explore the latest and most popular movies using Flick! Discover details never heard of about your favorite actors! Find your next favorite TV Show using Project Movies!" />
                 <link rel="canonical" href="https://flick.vercel.app" />
 

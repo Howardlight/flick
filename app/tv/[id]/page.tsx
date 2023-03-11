@@ -4,7 +4,6 @@ import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/Movie-TV/CastWidget";
 import { CreatorWidget } from "../../../components/Movie-TV/CreatorWidget";
 import Custom404 from "../../404";
-import { NextSeo } from "next-seo";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import { TVReviews } from "../../../components/Reviews/TVReviews";
 import Recommendations from "../../../components/Recommendations/TVRecommendations";
@@ -13,9 +12,15 @@ import { Overview } from "../../../components/Movie-TV/Overview";
 import HydrationWrapper from "../../../components/HydrationWrapper";
 import HeroBox from "../../../components/HeroBox/TVShowHeroBox";
 import { TVDetailsBox } from "../../../components/DetailsBox/TVShowDetailsBox";
+import { Metadata } from "next";
 
 interface TVShowPageParams {
     id: string;
+}
+
+export async function generateMetadata({ params }: { params: TVShowPageParams }): Promise<Metadata> {
+    const { data } = await getData(params.id);
+    return { title: `${data.name} - Flick` };
 }
 
 export default async function TVShowPage({ params }: { params: TVShowPageParams }) {
@@ -26,9 +31,6 @@ export default async function TVShowPage({ params }: { params: TVShowPageParams 
     if (requestStatus != 200) return <Custom404 />;
     return (
         <HydrationWrapper>
-            <head>
-                <title>{`${data.name} - Flick`}</title>
-            </head>
             <div className="lg:border-b-2 border-red-600" style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />
 

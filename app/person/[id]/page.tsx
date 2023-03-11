@@ -1,14 +1,18 @@
-import { GetServerSidePropsContext, NextPage } from "next";
+import { GetServerSidePropsContext, Metadata, NextPage } from "next";
 import { Person } from "../../../types/Person";
 import { Navbar } from "../../../components/Navbar";
 import React from "react";
 import Custom404 from "../../404";
-import { NextSeo } from "next-seo";
 import HydrationWrapper from "../../../components/HydrationWrapper";
 import { PersonPageContent } from "../../../components/Person/PersonPageContent";
 
 interface PersonPageParams {
     id: string;
+}
+
+export async function generateMetadata({ params }: { params: PersonPageParams }): Promise<Metadata> {
+    const { data } = await getData(params.id);
+    return { title: `${data.name} - Flick` }
 }
 
 export default async function PersonPage({ params }: { params: PersonPageParams }) {

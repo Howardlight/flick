@@ -6,10 +6,17 @@ import Custom404 from "../../../../404";
 import { EpisodeDate, Episodes } from "../../../../../components/Seasons/Episode";
 import SeasonsImage from "../../../../../components/Seasons/SeasonsImage";
 import HydrationWrapper from "../../../../../components/HydrationWrapper";
+import { Metadata } from "next";
 
 interface SeasonsPageParams {
     id: string;
     season_nb: string
+}
+
+
+export async function generateMetadata({ params }: { params: SeasonsPageParams }): Promise<Metadata> {
+    const { data, name } = await getData(params.id, params.season_nb);
+    return { title: `${name} - Season ${data.season_number}` };
 }
 
 //TODO: Find a solution for all the Suspense
@@ -23,9 +30,6 @@ export default async function SeasonPage({ params }: { params: SeasonsPageParams
     if (requestStatus != 200) return <Custom404 />;
     return (
         <HydrationWrapper>
-            <head>
-                <title>{`${name} - Season ${data.season_number}`}</title>
-            </head>
             <main>
                 <Navbar />
                 <div className="flex flex-row gap-2 p-3">

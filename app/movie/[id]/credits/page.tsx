@@ -1,5 +1,5 @@
 import { Tab } from "@headlessui/react";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, Metadata } from "next";
 import React, { Fragment } from "react";
 import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
@@ -7,24 +7,26 @@ import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWid
 import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
 import Custom404 from "../../../404";
 import { Movie } from "../../../../types/Movie";
-import { NextSeo } from "next-seo";
 import MovieCreditsTabs from "../../../../components/Credits/MovieCreditsTabs";
 
 interface MovieCreditsParams {
     id: string;
 }
 
+export async function generateMetadata({ params }: { params: MovieCreditsParams }): Promise<Metadata> {
+    const { movieName } = await getData(params.id);
+    return { title: `${movieName} - Credits` }
+}
+
+
 export async function MovieCredits({ params }: { params: MovieCreditsParams }) {
-    const { data, requestStatus, movieName } = await getData(params.id);
+    const { data, requestStatus } = await getData(params.id);
 
     // console.log(data);
 
     if (requestStatus != 200) return <Custom404 />;
     return (
         <Fragment>
-            <head>
-                <title>{`${movieName} - Credits`}</title>
-            </head>
             <Navbar />
             <MovieCreditsTabs data={data} />
         </Fragment>

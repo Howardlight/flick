@@ -1,12 +1,11 @@
 import { Tab } from "@headlessui/react";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, Metadata } from "next";
 import React, { Fragment } from "react";
 import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
 import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
 import Custom404 from "../../../404";
-import { NextSeo } from "next-seo";
 import { TVShow } from "../../../../types/TVShow";
 import HydrationWrapper from "../../../../components/HydrationWrapper";
 import TVCreditsTab from "../../../../components/Credits/TVCreditsTab";
@@ -16,6 +15,12 @@ interface TVCreditsParams {
 }
 
 
+
+export async function generateMetadata({ params }: { params: TVCreditsParams }): Promise<Metadata> {
+    const { TVShowName } = await getData(params.id);
+    return { title: `${TVShowName} - Credits` };
+}
+
 export default async function TVShowCredits({ params }: { params: TVCreditsParams }) {
     const { data, requestStatus, TVShowName } = await getData(params.id)
 
@@ -24,9 +29,6 @@ export default async function TVShowCredits({ params }: { params: TVCreditsParam
     if (requestStatus != 200) return <Custom404 />;
     return (
         <HydrationWrapper>
-            <head>
-                <title>{`${TVShowName} - Credits`}</title>
-            </head>
             <Navbar />
             <TVCreditsTab data={data} />
         </HydrationWrapper>

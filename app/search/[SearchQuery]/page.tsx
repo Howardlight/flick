@@ -8,6 +8,7 @@ import fetcher from "../../../Fetcher";
 import { SearchContent, SearchBox } from "../../../components/Search/SearchBox";
 import { useState } from "react";
 import HydrationWrapper from "../../../components/HydrationWrapper";
+import { Metadata } from "next";
 
 export function isInPast(release_date: Date) { return moment() > moment(release_date); }
 
@@ -15,6 +16,8 @@ interface SearchParams {
     SearchQuery: string;
     Page: string;
 }
+
+//TODO: Convert this to a Server Component
 
 //TODO: When entering a Query, empty spaces are replaced with %20, fix that
 export default function Search({ params }: { params: SearchParams }) {

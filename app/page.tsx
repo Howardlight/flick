@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { Metadata, NextPage } from 'next'
 import { Navbar } from '../components/Navbar';
 import { PopularMovies } from '../components/Index/PopularMovies';
 import { UpcomingMovies } from '../components/Index/UpcomingMovies';
@@ -6,7 +6,12 @@ import { PopularTV } from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
 import HydrationWrapper from '../components/HydrationWrapper';
 
-const Home: NextPage = () => {
+
+export const metadata: Metadata = {
+  title: "Home - Flick"
+}
+
+export default function Home() {
 
   //TODO: h-[50vh] does not seem to work for some reason, find out why and fix it
   //TODO: you cannot declare <head></head> inside the body of a server component, it must be declared in a layout
@@ -28,5 +33,3 @@ const Home: NextPage = () => {
     </HydrationWrapper>
   )
 }
-
-export default Home;
