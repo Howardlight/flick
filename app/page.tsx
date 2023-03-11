@@ -14,9 +14,6 @@ const Home: NextPage = () => {
 
   return (
     <HydrationWrapper>
-      <head>
-        <title>Home</title>
-      </head>
       <Navbar />
       <main className='bg-black mb-10'>
         <div style={{ height: "50vh" }} className='flex flex-col justify-center bg-black'>
