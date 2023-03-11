@@ -33,7 +33,7 @@ export const MovieReviewsContent = ({ movieID }: { movieID: number; }) => {
     // and more Comments are loaded ON TOP OF THE CURRENT COMMENTS
     //TODO: Change the Fill of the Star SVG, It is too bright of a color for the Theme
     const [page, setPage] = useState(1);
-    const { data, error }: SWRResponse<ReviewResponse, Error> = useSWR(`/api/Movie/getMovieReviews/${movieID}/${page}`, fetcher);
+    const { data, error }: SWRResponse<ReviewResponse, Error> = useSWR(`/api/Movie/${movieID}/${page}/getMovieReviews`, fetcher);
 
     //TODO: Port This Component to use the new API Endpoint, for some reason it currently doesn't work
 
