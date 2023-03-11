@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 
 export const Recommendations = ({ id }: { id: number; }) => {
 
-    const { data, error }: SWRResponse<TVRecResponse, Error> = useSWR(`/api/TV/getRecommendations/${id}`, fetcher);
+    const { data, error }: SWRResponse<TVRecResponse, Error> = useSWR(`/api/TV/${id}/getRecommendations`, fetcher);
     const [expand, setExpand] = useState(false);
     const dynamicRoute = usePathname();
     // console.log(data);

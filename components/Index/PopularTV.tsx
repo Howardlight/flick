@@ -15,7 +15,7 @@ export const PopularTV = ({ className }: { className?: string }): ReactElement =
 }
 
 const PopularTVContent = () => {
-    const { data, error }: SWRResponse<GetPopularTV, Error> = useSWR("/api/TV/getPopularTV/1", fetcher, {
+    const { data, error }: SWRResponse<GetPopularTV, Error> = useSWR("/api/TV/1/getPopularTV", fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false

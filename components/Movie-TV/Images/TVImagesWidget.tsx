@@ -7,7 +7,7 @@ import BlurImage from "./BlurImage";
 import { Widget } from "./Images";
 
 export function Images({ id }: { id: number }) {
-    const { data, error }: SWRResponse<Images, Error> = useSWR(`/api/TV/getImages/${id}`, fetcher);
+    const { data, error }: SWRResponse<Images, Error> = useSWR(`/api/TV/${id}/getImages/`, fetcher);
 
     console.log(data);
 
