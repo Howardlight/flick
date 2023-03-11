@@ -1,6 +1,6 @@
 "use client";
 import { Fragment, ReactElement } from "react";
-import { isInPast } from "../../app/search/[...query]/page";
+import { isInPast } from "../../app/search/[SearchQuery]/page";
 import { Movie } from "../../types/Movie";
 import { DetailsBox } from "../DetailsBox";
 import { Desktop, Mobile } from "../MediaQueries";

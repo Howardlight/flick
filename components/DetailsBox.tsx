@@ -1,6 +1,6 @@
 import moment from "moment"
 import { Fragment, ReactNode } from "react"
-import { isInPast } from "../app/search/[...query]/page"
+import { isInPast } from "../app/search/[SearchQuery]/page"
 
 const DetailsBox = ({ children }: { children: ReactNode }) => {
     return (

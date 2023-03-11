@@ -1,6 +1,6 @@
 "use client";
 import { Fragment } from "react";
-import { isInPast } from "../../app/search/[...query]/page";
+import { isInPast } from "../../app/search/[SearchQuery]/page";
 import Image from "next/image";
 import { Episode } from "../../types/Episode";
 import moment from "moment";
