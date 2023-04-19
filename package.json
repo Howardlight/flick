@@ -10,15 +10,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.4",
+    "@headlessui/react": "^1.7.14",
     "iron-session": "^6.3.1",
     "moment": "^2.29.4",
     "next": "13.2.3",
-    "next-seo": "^5.14.1",
+    "next-seo": "^5.15.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-responsive": "^9.0.0",
-    "swr": "^2.0.4"
+    "react-error-boundary": "^4.0.3",
+    "react-responsive": "^9.0.2",
+    "swr": "^2.1.3"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -26,13 +27,13 @@
     "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
-    "autoprefixer": "^10.4.12",
+    "autoprefixer": "^10.4.14",
     "eslint": "8.25.0",
     "eslint-config-next": "13.2.3",
     "nprogress": "^0.2.0",
-    "postcss": "^8.4.18",
-    "tailwind-scrollbar": "^2.0.1",
-    "tailwindcss": "^3.1.8",
+    "postcss": "^8.4.21",
+    "tailwind-scrollbar": "^2.1.0",
+    "tailwindcss": "^3.3.1",
     "typescript": "4.8.4"
   }
 }
