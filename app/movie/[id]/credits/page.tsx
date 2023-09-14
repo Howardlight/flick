@@ -1,10 +1,7 @@
-import { Tab } from "@headlessui/react";
-import { GetServerSidePropsContext, Metadata } from "next";
+import { Metadata } from "next";
 import React, { Fragment } from "react";
 import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
-import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
-import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
 import Custom404 from "../../../404";
 import { Movie } from "../../../../types/Movie";
 import MovieCreditsTabs from "../../../../components/Credits/MovieCreditsTabs";
@@ -19,7 +16,7 @@ export async function generateMetadata({ params }: { params: MovieCreditsParams 
 }
 
 
-export async function MovieCredits({ params }: { params: MovieCreditsParams }) {
+export default async function MovieCredits({ params }: { params: MovieCreditsParams }) {
     const { data, requestStatus } = await getData(params.id);
 
     // console.log(data);
@@ -37,11 +34,17 @@ async function getData(id: string) {
     let data: CreditsResponse;
     let movieData: Movie;
 
-    const request = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
+    const request = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
+        { next: { revalidate: 4147200 } }
+    );
     data = await request.json();
     // console.log(data);
 
-    const MovieNamerequest = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
+    const MovieNamerequest = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
+        { next: { revalidate: 4147200 } }
+    );
     movieData = await MovieNamerequest.json();
 
     return {
@@ -50,5 +53,3 @@ async function getData(id: string) {
         movieName: movieData.title ? movieData.title : "undefined",
     }
 }
-
-export default MovieCredits;
