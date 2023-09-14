@@ -7,21 +7,12 @@ import SearchBar from '../components/Index/SearchBar';
 import { Fragment, Suspense } from 'react';
 import { UpcomingResponse } from '../types/GetUpcomingTypes';
 import { GetPopularTV } from '../types/GetPopularTVTypes';
-import { IndexWidgetSkeletons } from '../components/Index/IndexWidgetBase';
+import { IndexWidget, IndexWidgetSkeletons } from '../components/Index/IndexWidgetBase';
 import PopularMovies from '../components/Index/PopularMovies';
 
 
 export const metadata: Metadata = {
   title: "Home - Flick"
-}
-
-export async function getPopularMovies(page: number) {
-  const req = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`,
-    { cache: "no-store" }
-  );
-  const data: PopularResponse = await req.json();
-
-  return data;
 }
 
 async function getUpcomingMovies(page: number) {
@@ -60,14 +51,11 @@ export default async function Home() {
         </div>
 
         <PopularMovies />
+        <UpcomingMovies className='mt-10' />
 
-        <Suspense fallback={<IndexWidgetSkeletons />}>
-          <UpcomingMovies className={"mt-10"} upcomingMovies={upcomingMovies} />
-        </Suspense>
-
-        <Suspense fallback={<IndexWidgetSkeletons />}>
+        {/* <Suspense fallback={<IndexWidgetSkeletons />}>
           <PopularTV className='mt-10' popularTV={popularTV} />
-        </Suspense>
+        </Suspense> */}
       </main>
     </Fragment>
   )

@@ -23,7 +23,7 @@ export default function PopularMovies() {
   )
 }
 
-export async function PopularMoviesContent() {
+async function PopularMoviesContent() {
   const popularMovies = await getPopularMovies(1);
 
 
