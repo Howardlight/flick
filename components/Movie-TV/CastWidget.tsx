@@ -7,18 +7,26 @@ import Link from "next/link";
 import { Fragment, Suspense } from "react";
 import { IndexWidgetScrollBar } from "../Index/IndexWidgetBase";
 
-async function getMovieCastData(movieID: string) {
-    const req = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
-        { next: { revalidate: 4147200 } } // one day
-    );
-    const data: CreditsResponse | null = await req.json();
+async function getCastData(contentID: string, mediaType: string) {
+    if (mediaType === "Movie") {
 
-    return data;
+        const req = await fetch(
+            `https://api.themoviedb.org/3/movie/${contentID}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
+            { next: { revalidate: 4147200 } } // one day
+        );
+        const data: CreditsResponse | null = await req.json();
+
+        return data;
+    } else if (mediaType === "TV") {
+        const req = await fetch(`https://api.themoviedb.org/3/tv/${contentID}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
+        const data: CreditsResponse | null = await req.json();
+
+        return data;
+    }
 }
 
 
-export function CastWidget({ movieID, mediaType, className }: { movieID: string, mediaType: string, className?: string }) {
+export function CastWidget({ ID, mediaType, className }: { ID: string, mediaType: string, className?: string }) {
 
     //TODO: Create a universal Scrollbar
     return (
@@ -26,15 +34,15 @@ export function CastWidget({ movieID, mediaType, className }: { movieID: string,
             <p className="font-semibold text-xl text-neutral-100 mb-3">Actors</p>
             <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
                 <Suspense fallback={<ActorSkeletons />}>
-                    <CastWidgetContent movieID={movieID} mediaType={mediaType} />
+                    <CastWidgetContent ID={ID} mediaType={mediaType} />
                 </Suspense>
             </div>
         </div>
     )
 }
 
-async function CastWidgetContent({ movieID, mediaType }: { movieID: string, mediaType: string }) {
-    const castData = await getMovieCastData(movieID);
+async function CastWidgetContent({ ID, mediaType }: { ID: string, mediaType: string }) {
+    const castData = await getCastData(ID, mediaType);
     const showMore = castData!.cast.length > 10 || castData!.crew.length > 0 ? true : false;
     return (
         <Fragment>

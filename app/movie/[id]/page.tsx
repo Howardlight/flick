@@ -56,7 +56,7 @@ export default async function MoviePage({ params }: { params: MoviePageParams })
                 <Overview overview={data.overview} />
                 <br />
 
-                <CastWidget mediaType={mediaType} movieID={params.id} />
+                <CastWidget mediaType={mediaType} ID={params.id} />
                 {/* <Images id={data.id} /> */}
                 {/*</ErrorBoundary>*/}
 
