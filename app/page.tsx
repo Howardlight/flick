@@ -8,6 +8,7 @@ import SearchBar from '../components/Index/SearchBar';
 import { Fragment, Suspense } from 'react';
 import { UpcomingResponse } from '../types/GetUpcomingTypes';
 import { GetPopularTV } from '../types/GetPopularTVTypes';
+import { IndexWidgetSkeletons } from '../components/Index/IndexWidgetBase';
 
 
 export const metadata: Metadata = {
@@ -59,15 +60,15 @@ export default async function Home() {
           <SearchBar />
         </div>
 
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<IndexWidgetSkeletons />}>
           <PopularMovies popularMovies={popularMovies} />
         </Suspense>
 
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<IndexWidgetSkeletons />}>
           <UpcomingMovies className={"mt-10"} upcomingMovies={upcomingMovies} />
         </Suspense>
 
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<IndexWidgetSkeletons />}>
           <PopularTV className='mt-10' popularTV={popularTV} />
         </Suspense>
       </main>
