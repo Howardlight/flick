@@ -5,8 +5,7 @@ import PopularMovies from '../components/Index/PopularMovies';
 import UpcomingMovies from '../components/Index/UpcomingMovies';
 import PopularTV from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
-import HydrationWrapper from '../components/HydrationWrapper';
-import { Suspense } from 'react';
+import { Fragment, Suspense } from 'react';
 import { UpcomingResponse } from '../types/GetUpcomingTypes';
 import { GetPopularTV } from '../types/GetPopularTVTypes';
 
@@ -52,7 +51,7 @@ export default async function Home() {
   // Port all Endpoints to their layout
 
   return (
-    <HydrationWrapper>
+    <Fragment>
       <Navbar />
       <main className='bg-black mb-10'>
         <div style={{ height: "50vh" }} className='flex flex-col justify-center bg-black'>
@@ -72,6 +71,6 @@ export default async function Home() {
           <PopularTV className='mt-10' popularTV={popularTV} />
         </Suspense>
       </main>
-    </HydrationWrapper>
+    </Fragment>
   )
 }
