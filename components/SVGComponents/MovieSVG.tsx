@@ -1,12 +1,12 @@
 import * as React from "react"
 import { SVGProps } from "react"
 
-const MovieSVG = (props: SVGProps<SVGSVGElement>) => (
+const MovieSVG = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="icon icon-tabler icon-tabler-movie"
-    width="1em"
-    height="1em"
+    // className="icon icon-tabler icon-tabler-movie"
+    // width="1em"
+    // height="1em"
     viewBox="0 0 24 24"
     stroke="#ff2825"
     fill="none"
@@ -14,7 +14,7 @@ const MovieSVG = (props: SVGProps<SVGSVGElement>) => (
     strokeLinejoin="round"
     {...props}
   >
-    <path d="M0 0h24v24H0z" stroke="none" />
+    <path d="M0 0h24v24H0z" stroke="none" fill="none" />
     <rect x={4} y={4} width={16} height={16} rx={2} />
     <path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4" />
   </svg>
