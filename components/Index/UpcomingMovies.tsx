@@ -1,32 +1,16 @@
 "use client";
 
-import useSWR, { SWRResponse } from 'swr';
-import fetcher from '../../Fetcher';
 import { UpcomingResponse, UpcomingResult } from '../../types/GetUpcomingTypes';
 import React from 'react';
 import moment from 'moment';
-import { IndexWidget, IndexWidgetError, IndexWidgetSkeletons } from './IndexWidgetBase';
+import { IndexWidget } from './IndexWidgetBase';
 
-export const UpcomingMovies = ({ className }: { className?: string }): React.ReactElement => {
+export default function UpcomingMovies({className, upcomingMovies}: {className?: string, upcomingMovies: UpcomingResponse}) {
   return (
     <IndexWidget className={`${className}`} title='Upcoming Movies' key={"upcoming-movies"}>
-      <UpcomingWidgetContent />
-    </IndexWidget>
-  );
-};
-const UpcomingWidgetContent = (): React.ReactElement => {
-  const { data, error }: SWRResponse<UpcomingResponse, Error> = useSWR("/api/Movie/1/getUpcomingMovies", fetcher, {
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false
-  });
-
-  if (!data && !error) return <IndexWidgetSkeletons />;
-  if (error) return <IndexWidgetError />;
-  return (
-    <IndexWidget.Scrollbar>
+      <IndexWidget.Scrollbar>
       {
-        data!.results.map((item: UpcomingResult) => {
+        upcomingMovies!.results.map((item: UpcomingResult) => {
           return (
             <IndexWidget.Wrapper title={item.title} key={`upcoming-movie-${item.id}`} mediaType='movie' resultID={item.id}>
               <IndexWidget.Poster title={item.title} url={item.poster_path} />
@@ -39,7 +23,6 @@ const UpcomingWidgetContent = (): React.ReactElement => {
         })
       }
     </IndexWidget.Scrollbar>
-  );
-};
-
-export default UpcomingMovies;
+    </IndexWidget>
+  )
+}
