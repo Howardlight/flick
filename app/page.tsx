@@ -3,11 +3,12 @@ import { PopularResponse } from '../types/GetPopularMoviesTypes';
 import { Navbar } from '../components/Navbar';
 import PopularMovies from '../components/Index/PopularMovies';
 import UpcomingMovies from '../components/Index/UpcomingMovies';
-import { PopularTV } from '../components/Index/PopularTV';
+import PopularTV from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
 import HydrationWrapper from '../components/HydrationWrapper';
 import { Suspense } from 'react';
 import { UpcomingResponse } from '../types/GetUpcomingTypes';
+import { GetPopularTV } from '../types/GetPopularTVTypes';
 
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 }
 
 async function getPopularMovies(page: number) {
-  const req = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`, 
+  const req = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`,
     { cache: "no-store" }
   );
   const data: PopularResponse = await req.json();
@@ -32,10 +33,20 @@ async function getUpcomingMovies(page: number) {
   return data;
 }
 
+async function getPopularTV(page: number) {
+  const req = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`,
+    { cache: "no-store" }
+  );
+  const data: GetPopularTV = await req.json();
+
+  return data;
+}
+
 
 export default async function Home() {
   const popularMovies = await getPopularMovies(1);
   const upcomingMovies = await getUpcomingMovies(1);
+  const popularTV = await getPopularTV(1);
   //TODO: h-[50vh] does not seem to work for some reason, find out why and fix it
   //TODO: you cannot declare <head></head> inside the body of a server component, it must be declared in a layout
   // Port all Endpoints to their layout
@@ -48,13 +59,18 @@ export default async function Home() {
           <p className="font-semibold text-neutral-100 self-center text-xl mb-5">All kinds of Shows that you&apos;ll enjoy</p>
           <SearchBar />
         </div>
+
         <Suspense fallback={<p>Loading...</p>}>
           <PopularMovies popularMovies={popularMovies} />
         </Suspense>
+
         <Suspense fallback={<p>Loading...</p>}>
           <UpcomingMovies className={"mt-10"} upcomingMovies={upcomingMovies} />
         </Suspense>
-        <PopularTV className='mt-10' />
+
+        <Suspense fallback={<p>Loading...</p>}>
+          <PopularTV className='mt-10' popularTV={popularTV} />
+        </Suspense>
       </main>
     </HydrationWrapper>
   )
