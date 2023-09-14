@@ -1,17 +1,28 @@
 import type { Metadata, NextPage } from 'next'
+import { PopularResponse } from '../types/GetPopularMoviesTypes';
 import { Navbar } from '../components/Navbar';
 import { PopularMovies } from '../components/Index/PopularMovies';
 import { UpcomingMovies } from '../components/Index/UpcomingMovies';
 import { PopularTV } from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
 import HydrationWrapper from '../components/HydrationWrapper';
+import { Suspense } from 'react';
 
 
 export const metadata: Metadata = {
   title: "Home - Flick"
 }
 
-export default function Home() {
+async function getPopularMovies(page: number) {
+  const req = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`, { cache: "no-store" });
+  const data: PopularResponse = await req.json();
+
+  return data;
+}
+
+
+export default async function Home() {
+  const popularMovies = await getPopularMovies(1);
 
   //TODO: h-[50vh] does not seem to work for some reason, find out why and fix it
   //TODO: you cannot declare <head></head> inside the body of a server component, it must be declared in a layout
@@ -25,8 +36,9 @@ export default function Home() {
           <p className="font-semibold text-neutral-100 self-center text-xl mb-5">All kinds of Shows that you&apos;ll enjoy</p>
           <SearchBar />
         </div>
-
-        <PopularMovies />
+        <Suspense fallback={<p>Loading...</p>}>
+          <PopularMovies popularMovies={popularMovies} />
+        </Suspense>
         <UpcomingMovies className={"mt-10"} />
         <PopularTV className='mt-10' />
       </main>
