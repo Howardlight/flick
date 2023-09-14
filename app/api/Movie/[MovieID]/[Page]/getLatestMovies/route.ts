@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { MovieParams, MovieParamsPage } from "../../paramsType";
 
 /** 
@@ -8,7 +8,7 @@ import { MovieParams, MovieParamsPage } from "../../paramsType";
  * @remarks
  * Language is hard code to Page 1
  */
-export async function GET(request: NextResponse, { params }: { params: MovieParamsPage }) {
+export async function GET(request: NextRequest, { params }: { params: MovieParamsPage }) {
     let data;
 
 
