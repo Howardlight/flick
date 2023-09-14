@@ -13,7 +13,7 @@ export default function SearchBar() {
         event.preventDefault();
 
         // console.log(event, query);
-        router.push(`/search/${query}/1`);
+        router.push(`/search/${query}`);
     }
 
 
