@@ -1,7 +1,6 @@
 import type { Metadata, NextPage } from 'next'
 import { PopularResponse } from '../types/GetPopularMoviesTypes';
 import { Navbar } from '../components/Navbar';
-import PopularMovies from '../components/Index/PopularMovies';
 import UpcomingMovies from '../components/Index/UpcomingMovies';
 import PopularTV from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
@@ -9,13 +8,14 @@ import { Fragment, Suspense } from 'react';
 import { UpcomingResponse } from '../types/GetUpcomingTypes';
 import { GetPopularTV } from '../types/GetPopularTVTypes';
 import { IndexWidgetSkeletons } from '../components/Index/IndexWidgetBase';
+import PopularMovies from '../components/Index/PopularMovies';
 
 
 export const metadata: Metadata = {
   title: "Home - Flick"
 }
 
-async function getPopularMovies(page: number) {
+export async function getPopularMovies(page: number) {
   const req = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`,
     { cache: "no-store" }
   );
@@ -44,7 +44,6 @@ async function getPopularTV(page: number) {
 
 
 export default async function Home() {
-  const popularMovies = await getPopularMovies(1);
   const upcomingMovies = await getUpcomingMovies(1);
   const popularTV = await getPopularTV(1);
   //TODO: h-[50vh] does not seem to work for some reason, find out why and fix it
@@ -60,9 +59,7 @@ export default async function Home() {
           <SearchBar />
         </div>
 
-        <Suspense fallback={<IndexWidgetSkeletons />}>
-          <PopularMovies popularMovies={popularMovies} />
-        </Suspense>
+        <PopularMovies />
 
         <Suspense fallback={<IndexWidgetSkeletons />}>
           <UpcomingMovies className={"mt-10"} upcomingMovies={upcomingMovies} />
