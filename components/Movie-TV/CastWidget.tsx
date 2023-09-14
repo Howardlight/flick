@@ -1,56 +1,44 @@
-"use client";
-
-import useSWR, { SWRResponse } from "swr";
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
-import fetcher from "../../Fetcher";
 import { CreditsResponse } from "../../types/GetCreditsTypes";
 import { Cast } from "../../types/Cast";
 import Placeholder from "../../assets/MovieSVG.svg";
 import Link from "next/link";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, Suspense } from "react";
 import { IndexWidgetScrollBar } from "../Index/IndexWidgetBase";
 
-export const CastWidget = ({ id, mediaType, className }: { id: number, mediaType: string, className?: string }) => {
+async function getMovieCastData(movieID: string) {
+    const req = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
+        { next: { revalidate: 4147200 } } // one day
+    );
+    const data: CreditsResponse | null = await req.json();
+
+    return data;
+}
+
+
+export function CastWidget({ movieID, mediaType, className }: { movieID: string, mediaType: string, className?: string }) {
+
+    //TODO: Create a universal Scrollbar
     return (
         <div className={`${className}`}>
             <p className="font-semibold text-xl text-neutral-100 mb-3">Actors</p>
-            <CastWrapper id={id} mediaType={mediaType} />
+            <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
+                <Suspense fallback={<ActorSkeletons />}>
+                    <CastWidgetContent movieID={movieID} mediaType={mediaType} />
+                </Suspense>
+            </div>
         </div>
-    );
-};
+    )
+}
 
-export const CastWrapper = ({ id, mediaType }: { id: number, mediaType: string }) => {
-
-    const { data, error }: SWRResponse<CreditsResponse, Error> = useSWR(`/api/${mediaType}/${id}/get${mediaType}Credits`, fetcher);
-    // console.log(data);
-
-
-    //TODO: Create a universal Scrollbar
-    if (!data && !error) return <ActorSkeletons />;
-    if (!data) return <Error />;
-    return (
-        <div className="flex flex-row overflow-x-auto md:scrollbar-thin md:scrollbar-track-gray-100 md:scrollbar-thumb-red-600 pb-5 md:ml-2 md:mr-2">
-            {/* <IndexWidgetScrollBar> */}
-            <CastContent data={data} mediaType={mediaType} />
-            {/* </IndexWidgetScrollBar> */}
-        </div>
-    );
-};
-
-const CastContent = ({ data, mediaType }: { data: CreditsResponse, mediaType: string }) => {
-    const [showMore, setShowMore] = useState(false);
-
-    useEffect(() => {
-        if (data.cast.length > 10 || data.crew.length > 0)
-            setShowMore(true);
-
-    }, [data.cast.length, data.crew.length]);
-
-
+async function CastWidgetContent({ movieID, mediaType }: { movieID: string, mediaType: string }) {
+    const castData = await getMovieCastData(movieID);
+    const showMore = castData!.cast.length > 10 || castData!.crew.length > 0 ? true : false;
     return (
         <Fragment>
-            {data.cast.map((cast: Cast, index: number) => {
+            {castData!.cast.map((cast: Cast, index: number) => {
                 if (index <= 10)
                     return (
                         <div key={cast.id} title={cast.name} className="grid auto-cols-max ml-1 mr-1 p-2 hover:bg-neutral-900 rounded-sm transition-all delay-50">
@@ -71,15 +59,16 @@ const CastContent = ({ data, mediaType }: { data: CreditsResponse, mediaType: st
                     );
             })}
             {showMore ?
-                <Link href={`/${mediaType.toLowerCase()}/${data.id}/credits`} className="flex items-center justify-center text-neutral-100 rounded-sm font-medium text-lg hover:bg-neutral-900 pl-12 pr-12" passHref>
+                <Link href={`/${mediaType.toLowerCase()}/${castData!.id}/credits`} className="flex items-center justify-center text-neutral-100 rounded-sm font-medium text-lg hover:bg-neutral-900 pl-12 pr-12" passHref>
                     Show more
-                </Link>
-                : <Fragment />}
+                </Link> :
+                <Fragment />
+            }
         </Fragment>
     );
-};
+}
 
-const ActorSkeletons = () => {
+export const ActorSkeletons = () => {
     return (
         <IndexWidgetScrollBar className="flex flex-row overflow-x-auto gap-2">
             <ActorSkeleton />
@@ -104,7 +93,7 @@ const ActorSkeleton = () => (
     </div>
 )
 
-const Error = () => {
+export const Error = () => {
     return (
         <div className="flex flex-col justify-center items-center w-auto h-[252px]">
             <p className="font-semibold text-3xl text-neutral-100">Something went wrong...</p>
