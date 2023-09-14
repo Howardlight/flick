@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { TVParamsPage } from "../../paramsType";
 
-export async function GET(request: NextResponse, { params }: { params: TVParamsPage }) {
+export async function GET(request: NextRequest, { params }: { params: TVParamsPage }) {
     const TVID = params.TVID;
     const page = params.Page;
     let data;

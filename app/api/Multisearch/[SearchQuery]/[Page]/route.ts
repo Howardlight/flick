@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { SearchParams } from "../../paramsType";
 
 
@@ -9,7 +9,7 @@ import { SearchParams } from "../../paramsType";
  *  
  * @params page - The selected page
  */
-export async function GET(request: NextResponse, { params }: { params: SearchParams }) {
+export async function GET(request: NextRequest, { params }: { params: SearchParams }) {
     const query = params.SearchQuery;
     let page = params.Page;
     if (!page) page = "1";

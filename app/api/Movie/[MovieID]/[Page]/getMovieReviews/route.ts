@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { MovieParamsPage } from "../../paramsType";
 
 
@@ -10,7 +10,7 @@ import { MovieParamsPage } from "../../paramsType";
  * @params movieID - ID of the selected Movie
  * @params page - the selected Page
 */
-export async function GET(request: NextResponse, { params }: { params: MovieParamsPage }) {
+export async function GET(request: NextRequest, { params }: { params: MovieParamsPage }) {
     const movieID = params.MovieID;
     const page = params.Page;
     let data;

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { MovieParams } from "../paramsType";
 
 /**
@@ -8,7 +8,7 @@ import { MovieParams } from "../paramsType";
  * 
  * @params credit_id - Must be the Movie ID
  */
-export async function GET(request: NextResponse, { params }: { params: MovieParams }) {
+export async function GET(request: NextRequest, { params }: { params: MovieParams }) {
     const creditID = params.MovieID;
     let data;
 
