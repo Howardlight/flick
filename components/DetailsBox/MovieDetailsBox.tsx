@@ -1,10 +1,10 @@
 "use client";
 import { Fragment, ReactElement } from "react";
-import { isInPast } from "../../app/search/[SearchQuery]/page";
 import { Movie } from "../../types/Movie";
 import { DetailsBox } from "../DetailsBox";
 import { Desktop, Mobile } from "../MediaQueries";
 import MainPageMetrics from "../Movie-TV/MainPageMetrics";
+import { isInPast } from "../../Utils";
 
 export default function MovieDetailsBox({ data }: { data: Movie }): ReactElement {
     return (

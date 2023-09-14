@@ -4,8 +4,8 @@ import Placeholder from "../../../assets/MovieSVG.svg";
 import moment from "moment";
 import { Fragment, ReactElement } from "react";
 import { Genre } from "../../../types/Movie";
-import { isInPast } from "../../../app/search/[SearchQuery]/page";
 import MainPageMetrics from "../MainPageMetrics";
+import { isInPast } from "../../../Utils";
 
 function DesktopView({ children }: { children: ReactElement[] }) {
     return (

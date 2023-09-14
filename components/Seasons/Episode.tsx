@@ -1,10 +1,10 @@
 "use client";
 import { Fragment } from "react";
-import { isInPast } from "../../app/search/[SearchQuery]/page";
 import Image from "next/image";
 import { Episode } from "../../types/Episode";
 import moment from "moment";
 import Star from "../../assets/Star.svg";
+import { isInPast } from "../../Utils";
 
 export const Episodes = ({ eps }: { eps: Episode[] }) => {
     console.log(eps);

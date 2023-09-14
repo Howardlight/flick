@@ -46,7 +46,7 @@ export default async function TVShowPage({ params }: { params: TVShowPageParams 
 
                 <SeasonsWidget seasons={data.seasons} TVID={data.id} />
 
-                <CastWidget id={data.id} mediaType={mediaType} className={"mt-4"} />
+                <CastWidget ID={data.id.toString()} mediaType={mediaType} className={"mt-4"} />
 
                 {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-4"} /> : <div />}
 
