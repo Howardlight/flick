@@ -1,3 +1,4 @@
+"use client";
 import Placeholder from "./assets/MovieSVG.svg";
 
 //TODO: Figure out width handling
