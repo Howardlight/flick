@@ -1,6 +1,5 @@
 "use client";
 import { MultiSearchResponse } from "../../../types/MultiSearchTypes";
-import moment from "moment";
 import { Navbar } from "../../../components/Navbar";
 import { useRouter } from "next/navigation";
 import useSWR, { SWRResponse } from "swr";
@@ -9,8 +8,6 @@ import { SearchContent, SearchBox } from "../../../components/Search/SearchBox";
 import { useState } from "react";
 import HydrationWrapper from "../../../components/HydrationWrapper";
 import { Metadata } from "next";
-
-export function isInPast(release_date: Date) { return moment() > moment(release_date); }
 
 interface SearchParams {
     SearchQuery: string;

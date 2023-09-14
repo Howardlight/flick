@@ -1,3 +1,6 @@
+"use client";
+import moment from "moment";
+
 /**
  *  Splits a Massive array into multiple 12 Elements Arrays
  * @param arr Array with any type of object
@@ -13,3 +16,5 @@ export function splitElementsInEqualArrays(arr: Array<any>) {
     }
     return out;
 }
+
+export function isInPast(release_date: Date) { return moment() > moment(release_date); }
