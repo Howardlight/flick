@@ -1,10 +1,8 @@
 "use client";
-
-// import useSWR, { SWRResponse } from 'swr';
 import { PopularResponse, PopularResult } from '../../types/GetPopularMoviesTypes';
 import { IndexWidget } from './IndexWidgetBase';
 
-export const PopularMovies = ({ className, popularMovies }: { className?: string, popularMovies: PopularResponse }) => {
+export default function PopularMovies({ className, popularMovies }: { className?: string, popularMovies: PopularResponse }) {
   return (
     <IndexWidget className={`${className}`} title={`Popular Movies`} key={"popular-movies"}>
       <IndexWidget.Scrollbar>

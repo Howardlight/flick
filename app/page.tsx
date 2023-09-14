@@ -1,7 +1,7 @@
 import type { Metadata, NextPage } from 'next'
 import { PopularResponse } from '../types/GetPopularMoviesTypes';
 import { Navbar } from '../components/Navbar';
-import { PopularMovies } from '../components/Index/PopularMovies';
+import PopularMovies from '../components/Index/PopularMovies';
 import UpcomingMovies from '../components/Index/UpcomingMovies';
 import { PopularTV } from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
