@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Backdrop } from "../../../types/Images";
 import BlurImage from "./BlurImage";
 import { Widget } from "./Images";
-import { MediaType } from "../../../types/mediaType";
+import MediaType from "../../../types/MediaType";
 
 async function getImages(ID: number, mediaType: MediaType) {
     let req, data;
