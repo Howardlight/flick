@@ -8,12 +8,12 @@ import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import { TVReviews } from "../../../components/Reviews/TVReviews";
 import Recommendations from "../../../components/Recommendations/TVRecommendations";
 import { Overview } from "../../../components/Movie-TV/Overview";
-import HydrationWrapper from "../../../components/HydrationWrapper";
 import HeroBox from "../../../components/HeroBox/TVShowHeroBox";
 import { TVDetailsBox } from "../../../components/DetailsBox/TVShowDetailsBox";
 import { Metadata } from "next";
 import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
 import MediaType from "../../../types/MediaType";
+import ReviewsWidget from "../../../components/Reviews/MovieReviews";
 
 interface TVShowPageParams {
     id: string;
@@ -67,7 +67,7 @@ export default async function TVShowPage({ params }: { params: TVShowPageParams 
 
                 <Recommendations id={data.id} />
 
-                {data.vote_count > 1 ? <TVReviews tvID={data.id} className={"mt-10"} /> : <Fragment />}
+                {data.vote_count > 1 ? <ReviewsWidget ID={data.id} mediaType={MediaType.tv} /> : <Fragment />}
 
             </div>
         </Fragment>

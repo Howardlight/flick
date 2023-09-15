@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { Movie } from "../../../types/Movie";
 import { Navbar } from "../../../components/Navbar";
 import { CastWidget, } from "../../../components/Movie-TV/CastWidget";
-import { MovieReviews } from "../../../components/Reviews/MovieReviews";
 import { Recommendations } from "../../../components/Recommendations/MovieRecommendations";
 import { Overview } from "../../../components/Movie-TV/Overview";
 import MovieDetailsBox from "../../../components/DetailsBox/MovieDetailsBox";
@@ -11,6 +10,7 @@ import HeroBox from "../../../components/HeroBox/MovieHeroBox";
 import Custom404 from "../../404";
 import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
 import MediaType from "../../../types/MediaType";
+import ReviewsWidget from "../../../components/Reviews/MovieReviews";
 
 interface MoviePageParams {
     id: string;
@@ -62,7 +62,7 @@ export default async function MoviePage({ params }: { params: MoviePageParams })
 
                 <Recommendations id={data.id} />
                 {data.vote_count > 1 ?
-                    <MovieReviews movieID={data.id} />
+                    <ReviewsWidget ID={data.id} mediaType={MediaType.movie} />
                     : <Fragment />
                 }
             </div>
