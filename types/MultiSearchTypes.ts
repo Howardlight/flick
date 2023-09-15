@@ -1,3 +1,4 @@
+import MediaType from "./MediaType";
 import { Movie } from "./Movie";
 import { Person } from "./Person";
 import { TVShow } from "./TVShow";
@@ -16,21 +17,15 @@ export interface ResultElements {
 export type Result = Movie & ResultElements | Person & ResultElements | TVShow & ResultElements;
 
 export function isMovieResult(result: Result): result is Movie & ResultElements {
-    return (result as Movie & ResultElements).media_type === "movie";
+    return (result as Movie & ResultElements).media_type === "Movie";
 }
 
 export function isTVShowResult(result: Result): result is TVShow & ResultElements {
-    return (result as TVShow & ResultElements).media_type === "tv";
+    return (result as TVShow & ResultElements).media_type === "TV";
 }
 
 export function isPersonResult(result: Result): result is TVShow & ResultElements {
-    return (result as Person & ResultElements).media_type === "person";
-}
-
-export enum MediaType {
-    Movie = "movie",
-    Tv = "tv",
-    Person = "person"
+    return (result as Person & ResultElements).media_type === "Person";
 }
 
 export enum OriginalLanguage {

@@ -10,7 +10,7 @@ import MovieDetailsBox from "../../../components/DetailsBox/MovieDetailsBox";
 import HeroBox from "../../../components/HeroBox/MovieHeroBox";
 import Custom404 from "../../404";
 import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
-import { MediaType } from "../../../types/mediaType";
+import MediaType from "../../../types/MediaType";
 
 interface MoviePageParams {
     id: string;

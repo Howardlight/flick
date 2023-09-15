@@ -13,7 +13,7 @@ import HeroBox from "../../../components/HeroBox/TVShowHeroBox";
 import { TVDetailsBox } from "../../../components/DetailsBox/TVShowDetailsBox";
 import { Metadata } from "next";
 import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
-import { MediaType } from "../../../types/mediaType";
+import MediaType from "../../../types/MediaType";
 
 interface TVShowPageParams {
     id: string;
