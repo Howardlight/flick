@@ -1,5 +1,7 @@
+"use client";
 import { useEffect, useState } from "react"
 import Image, { ImageProps } from "next/image"
+import { AvatarLoader } from "../AvatarLoader";
 
 /**
  * **ImageWithFallback**
@@ -28,6 +30,7 @@ export const ImageWithFallback = ({ fallback, alt, src, ...props }: { fallback: 
             //@ts-ignore
             onError={setError}
             src={error ? fallback : src}
+            loader={AvatarLoader}
             {...props}
         />
     )
