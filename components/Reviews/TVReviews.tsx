@@ -35,7 +35,7 @@ export const TVReviewsContent = ({ tvID }: { tvID: number; }) => {
     const [page, setPage] = useState(1);
     const { data, error }: SWRResponse<ReviewResponse, Error> = useSWR(`/api/TV/${tvID}/${page}/getTVReviews`, fetcher);
 
-    console.log(data);
+    // console.log(data);
     if (!data && !error) return <ReviewSkeletons />;
     if (error) return <ReviewError />;
     if (data?.results.length == 0) return <NoReviewsFound />;

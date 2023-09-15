@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: SeasonsPageParams }
 export default async function SeasonPage({ params }: { params: SeasonsPageParams }) {
     const { data, requestStatus, name } = await getData(params.id, params.season_nb);
 
-    console.log(data);
+    // console.log(data);
 
     if (requestStatus != 200) return <Custom404 />;
     return (

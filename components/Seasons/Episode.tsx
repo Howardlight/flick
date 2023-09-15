@@ -7,7 +7,7 @@ import Star from "../../assets/Star.svg";
 import { isInPast } from "../../Utils";
 
 export const Episodes = ({ eps }: { eps: Episode[] }) => {
-    console.log(eps);
+    // console.log(eps);
     return (
         <Fragment>
             {eps.map((ep, index) => (<Episode key={`${ep.episode_number}-${ep.id}-${index}`} ep={ep} />))}
