@@ -1,3 +1,4 @@
+"use client";
 import { Fragment, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -9,7 +10,7 @@ export const Comment = ({ text, className }: { text: string; className?: string;
 
     //TODO: showmore has this ugly area that it takes but because it's shifter up, the area appears empty
     // find a solution for it
-    
+
     const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
 
 
@@ -20,8 +21,7 @@ export const Comment = ({ text, className }: { text: string; className?: string;
 
     }, [text.length]);
 
-    if (!text || text == "")
-        return <Fragment></Fragment>;
+    if (!text || text == "") return <Fragment />;
     return (
         <div className={`${className}`}>
             <p className="inline">
