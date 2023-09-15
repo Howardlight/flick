@@ -7,15 +7,28 @@ import Custom404 from "../../404";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import { TVReviews } from "../../../components/Reviews/TVReviews";
 import Recommendations from "../../../components/Recommendations/TVRecommendations";
-import { Images } from "../../../components/Movie-TV/Images/TVImagesWidget";
 import { Overview } from "../../../components/Movie-TV/Overview";
 import HydrationWrapper from "../../../components/HydrationWrapper";
 import HeroBox from "../../../components/HeroBox/TVShowHeroBox";
 import { TVDetailsBox } from "../../../components/DetailsBox/TVShowDetailsBox";
 import { Metadata } from "next";
+import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
+import { MediaType } from "../../../types/mediaType";
 
 interface TVShowPageParams {
     id: string;
+}
+
+async function getData(id: string) {
+    let data: TVShow;
+    const request = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
+    data = await request.json();
+
+    return {
+        data: data,
+        mediaType: "TV",
+        requestStatus: request.status,
+    }
 }
 
 export async function generateMetadata({ params }: { params: TVShowPageParams }): Promise<Metadata> {
@@ -25,12 +38,12 @@ export async function generateMetadata({ params }: { params: TVShowPageParams })
 
 export default async function TVShowPage({ params }: { params: TVShowPageParams }) {
     const { data, requestStatus, mediaType } = await getData(params.id);
-    console.log(data);
+    // console.log(data);
 
     //TODO:Create a loading page;
     if (requestStatus != 200) return <Custom404 />;
     return (
-        <HydrationWrapper>
+        <Fragment>
             <div className="lg:border-b-2 border-red-600" style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />
 
@@ -50,26 +63,13 @@ export default async function TVShowPage({ params }: { params: TVShowPageParams 
 
                 {data.created_by.length >= 1 ? <CreatorWidget creators={data.created_by} className={"mt-4"} /> : <div />}
 
-                <Images id={data.id} />
+                <Images id={data.id} mediaType={MediaType.tv} />
 
                 <Recommendations id={data.id} />
 
                 {data.vote_count > 1 ? <TVReviews tvID={data.id} className={"mt-10"} /> : <Fragment />}
 
             </div>
-        </HydrationWrapper>
+        </Fragment>
     )
-}
-
-
-async function getData(id: string) {
-    let data: TVShow;
-    const request = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
-    data = await request.json();
-
-    return {
-        data: data,
-        mediaType: "TV",
-        requestStatus: request.status,
-    }
 }

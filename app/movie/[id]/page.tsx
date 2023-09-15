@@ -9,7 +9,8 @@ import { Overview } from "../../../components/Movie-TV/Overview";
 import MovieDetailsBox from "../../../components/DetailsBox/MovieDetailsBox";
 import HeroBox from "../../../components/HeroBox/MovieHeroBox";
 import Custom404 from "../../404";
-
+import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
+import { MediaType } from "../../../types/mediaType";
 
 interface MoviePageParams {
     id: string;
@@ -57,8 +58,7 @@ export default async function MoviePage({ params }: { params: MoviePageParams })
                 <br />
 
                 <CastWidget mediaType={mediaType} ID={params.id} />
-                {/* <Images id={data.id} /> */}
-                {/*</ErrorBoundary>*/}
+                <Images id={data.id} mediaType={MediaType.movie} />
 
                 <Recommendations id={data.id} />
                 {data.vote_count > 1 ?

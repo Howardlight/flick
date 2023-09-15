@@ -1,17 +1,31 @@
-"use client";
-import { Fragment } from "react";
-import useSWR, { SWRResponse } from "swr";
-import fetcher from "../../../Fetcher";
-import { Backdrop, Images } from "../../../types/Images";
+import { Suspense } from "react";
+import { Backdrop } from "../../../types/Images";
 import BlurImage from "./BlurImage";
 import { Widget } from "./Images";
+import { MediaType } from "../../../types/mediaType";
 
-export function Images({ id }: { id: number }) {
-    const { data, error }: SWRResponse<Images, Error> = useSWR(`/api/TV/${id}/getImages/`, fetcher);
+async function getImages(ID: number, mediaType: MediaType) {
+    let req, data;
+    switch (mediaType) {
+        case MediaType.movie:
+            req = await fetch(`https://api.themoviedb.org/3/movie/${ID}/images?api_key=${process.env.TMDB_API_KEY}&language=en`);
+            data = await req.json();
 
-    console.log(data);
+            return data;
+        case MediaType.tv:
+            req = await fetch(`https://api.themoviedb.org/3/tv/${ID}/images?api_key=${process.env.TMDB_API_KEY}&language=en`);
+            data = await req.json();
+
+            return data;
+
+        default:
+            console.error(`[getImages][ERROR] Default case Detected! this error should not occur!`);
+            return undefined;
+    }
+}
 
 
+export function Images({ id, mediaType }: { id: number, mediaType: MediaType }) {
     //TODO: Improve Blur Image CSS
     //TODO: Refactor
     //TODO: Sort Images and pick the ones with the most reviews
@@ -23,20 +37,27 @@ export function Images({ id }: { id: number }) {
     //TODO: Crazy good tailwind modifiers here Check them out
     // more info: https://www.youtube.com/watch?v=BSoRXk1FIw8
 
-    if (!data && !error) return <LoadingSkeletons />;
-    if (error) return <ErrorOccured />;
-    if (data!.posters.length == 0) return <Fragment />;
+    // if (!data && !error) return <LoadingSkeletons />;
+    // if (error) return <ErrorOccured />;
     return (
         <Widget>
             <Widget.Title title="Images" />
             <Widget.ImagesWrapper>
-                {data?.posters.map((image: Backdrop, index: number) => {
-                    if (index < 8) return <BlurImage key={`Poster-${index}`} image={image} />;
-                    return;
-                })}
+                <Suspense fallback={<LoadingSkeletons />}>
+                    <ImagesContent id={id} mediaType={mediaType} />
+                </Suspense>
             </Widget.ImagesWrapper>
         </Widget>
     )
+}
+
+async function ImagesContent({ id, mediaType }: { id: number, mediaType: MediaType }) {
+    const movieImages = await getImages(id, mediaType);
+
+    return movieImages.posters.map((image: Backdrop, index: number) => {
+        if (index < 8) return <BlurImage key={`Poster-${index}`} image={image} />;
+        return;
+    })
 }
 
 //TODO: Move these to a shared library or something
