@@ -1,11 +1,11 @@
-import { ReactElement, Suspense } from "react";
+import { Fragment, ReactElement } from "react";
 import { Movie } from "../../types/Movie";
 import { DesktopView } from "../Movie-TV/Views/DesktopView";
 import { MobileView } from "../Movie-TV/Views/MobileView";
 
 export default function HeroBox({ data }: { data: Movie }): ReactElement {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Fragment>
       <DesktopView>
         <DesktopView.Poster name={data.title} url={data.poster_path} />
         <DesktopView.Wrapper>
@@ -36,6 +36,6 @@ export default function HeroBox({ data }: { data: Movie }): ReactElement {
           <MobileView.Wrapper.Genres genres={data.genres} />
         </MobileView.Wrapper>
       </MobileView>
-    </Suspense>
+    </Fragment>
   );
 }
