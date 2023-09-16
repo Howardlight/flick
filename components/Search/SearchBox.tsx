@@ -1,15 +1,39 @@
 "use client";
 
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
-import { NextRouter } from "next/router";
 import { Dispatch, Fragment, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { isMovieResult, isPersonResult, isTVShowResult, MultiSearchResponse, Result } from "../../types/MultiSearchTypes";
 import { MultiSearchMovieCard, MultiSearchPersonCard, MultiSearchTVShowCard } from "./MultiSearchCards";
+import { useRouter } from "next/navigation";
+import useSWR, { SWRResponse } from "swr";
+import fetcher from "../../Fetcher";
+import { Navbar } from "../Navbar";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
-export function SearchBox(
-    { router, prevQuery, pageLimit, page, setPage }:
-        { router: AppRouterInstance, prevQuery: string, pageLimit: number, page: number, setPage: Dispatch<SetStateAction<number>> }) {
+//TODO: Convert this to a Server Component
 
+//TODO: When entering a Query, empty spaces are replaced with %20, fix that
+export function Search({ searchQuery, startPage }: { searchQuery: string, startPage: number }) {
+    //TODO: Add Filtering
+    const [page, setPage] = useState(startPage);
+    const { data, error }: SWRResponse<MultiSearchResponse, Error> = useSWR(`/api/Multisearch/${searchQuery}/${page}`, fetcher, { loadingTimeout: 2000 });
+    const router = useRouter();
+
+    console.log(data);
+
+    return (
+        <Fragment>
+            <div className="flex flex-col">
+                <Navbar />
+                <SearchBox router={router} prevQuery={searchQuery.replace("%20", " ")} pageLimit={data ? data?.total_pages : 0} setPage={setPage} page={page} />
+                <SearchContent data={data} error={error} />
+            </div>
+        </Fragment>
+    )
+}
+
+
+export function SearchBox({ router, prevQuery, pageLimit, page, setPage }:
+    { router: AppRouterInstance, prevQuery: string, pageLimit: number, page: number, setPage: Dispatch<SetStateAction<number>> }) {
     const [query, setQuery] = useState(prevQuery);
 
     // Used for the shadow Page changing without messing with the actual Page
@@ -20,7 +44,6 @@ export function SearchBox(
     // It is very inefficient
 
     const handlePageButtons = (e: any) => {
-
         //checks ID, depending on ID, Updates Page
         if (e.target.id === 'right') setPage(page + 1);
         else if (e.target.id === "left") setPage(page - 1);
