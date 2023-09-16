@@ -11,21 +11,28 @@ export interface MultiSearchResponse {
 }
 
 export interface ResultElements {
-    media_type: MediaType;
+    media_type: MultiSearchMediaType;
+}
+
+enum MultiSearchMediaType {
+    movie = "movie",
+    person = "person",
+    tv = "tv"
 }
 
 export type Result = Movie & ResultElements | Person & ResultElements | TVShow & ResultElements;
 
 export function isMovieResult(result: Result): result is Movie & ResultElements {
-    return (result as Movie & ResultElements).media_type === "Movie";
+    return (result as Movie & ResultElements).media_type === MultiSearchMediaType.movie;
 }
 
 export function isTVShowResult(result: Result): result is TVShow & ResultElements {
-    return (result as TVShow & ResultElements).media_type === "TV";
+    return (result as TVShow & ResultElements).media_type === MultiSearchMediaType.tv;
 }
 
+//NOTE: Specifies type is TVShow??
 export function isPersonResult(result: Result): result is TVShow & ResultElements {
-    return (result as Person & ResultElements).media_type === "Person";
+    return (result as Person & ResultElements).media_type === MultiSearchMediaType.person;
 }
 
 export enum OriginalLanguage {
