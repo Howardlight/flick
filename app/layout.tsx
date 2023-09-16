@@ -24,6 +24,7 @@ export default function RootLayout({
                 <meta property="og:description" content="Explore the latest and most popular movies using Flick! Discover details never heard of about your favorite actors! Find your next favorite TV Show using Project Movies!" />
                 <meta property="og:site_name" content="Flick" />
 
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
                 {/* Base Image for OpenGraph */}
                 {/* <meta property="og:image" content="https://example.com/ogp.jpg" />
                 <meta property="og:image:secure_url" content="https://secure.example.com/ogp.jpg" />
