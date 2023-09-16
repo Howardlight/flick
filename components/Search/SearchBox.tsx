@@ -98,11 +98,12 @@ export function SearchBox({ router, prevQuery, pageLimit, page, setPage }:
 }
 
 
+//TODO: Add a nice SVG
 const SearchPage404 = () => {
     return (
-        <div className="flex flex-col justify-center items-center grow">
-            <p className="text-3xl text-neutral-200 font-semibold">Nothing found</p>
-            <p className="text-base text-neutral-400">Check the spelling of the movie you searched for</p>
+        <div className="flex flex-col justify-center items-center pt-12 pb-12">
+            <p className="md:text-3xl text-neutral-200 font-semibold">Nothing found</p>
+            <p className="text-xs md:text-base text-neutral-400">Check the spelling of the movie you searched for</p>
         </div>
     )
 }
@@ -127,6 +128,8 @@ export function SearchContent({ data, error }: { data: MultiSearchResponse | und
         </div>
     );
 }
+
+//TODO: Improve the Search Page
 
 const MultiSearchSkeletons = () => {
     return (
