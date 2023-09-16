@@ -9,22 +9,17 @@ import fetcher from "../../Fetcher";
 import { Navbar } from "../Navbar";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
-//TODO: Convert this to a Server Component
-
-//TODO: When entering a Query, empty spaces are replaced with %20, fix that
 export function Search({ searchQuery, startPage }: { searchQuery: string, startPage: number }) {
     //TODO: Add Filtering
     const [page, setPage] = useState(startPage);
-    const { data, error }: SWRResponse<MultiSearchResponse, Error> = useSWR(`/api/Multisearch/${searchQuery}/${page}`, fetcher, { loadingTimeout: 2000 });
+    const { data, error }: SWRResponse<MultiSearchResponse, Error> = useSWR(`/api/Multisearch/${searchQuery.replaceAll("%20", " ")}/${page}`, fetcher, { loadingTimeout: 2000 });
     const router = useRouter();
-
-    console.log(data);
 
     return (
         <Fragment>
             <div className="flex flex-col">
                 <Navbar />
-                <SearchBox router={router} prevQuery={searchQuery.replace("%20", " ")} pageLimit={data ? data?.total_pages : 0} setPage={setPage} page={page} />
+                <SearchBox router={router} prevQuery={searchQuery.replaceAll("%20", " ")} pageLimit={data ? data?.total_pages : 0} setPage={setPage} page={page} />
                 <SearchContent data={data} error={error} />
             </div>
         </Fragment>
