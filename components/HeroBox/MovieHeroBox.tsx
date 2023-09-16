@@ -1,17 +1,13 @@
 "use client";
-import { Fragment, ReactElement, Suspense, useEffect, useState } from "react";
+import { ReactElement, Suspense } from "react";
 import { Movie } from "../../types/Movie";
-import { Default, Desktop, Mobile } from "../MediaQueries";
 import { DesktopView } from "../Movie-TV/Views/DesktopView";
 import { MobileView } from "../Movie-TV/Views/MobileView";
-import dynamic from "next/dynamic";
-
-const MediaQuery = dynamic(() => import("react-responsive"), { ssr: false });
 
 export default function HeroBox({ data }: { data: Movie }): ReactElement {
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      <MediaQuery minWidth={768}>
+      <div className="max-md:hidden">
         <DesktopView>
           <DesktopView.Poster name={data.title} url={data.poster_path} />
           <DesktopView.Wrapper>
@@ -32,8 +28,8 @@ export default function HeroBox({ data }: { data: Movie }): ReactElement {
             </div>
           </DesktopView.Wrapper>
         </DesktopView>
-      </MediaQuery>
-      <MediaQuery maxWidth={767}>
+      </div>
+      <div className="md:hidden">
         <MobileView>
           <MobileView.Poster url={data.poster_path} name={data.title} />
           <MobileView.Wrapper>
@@ -44,7 +40,7 @@ export default function HeroBox({ data }: { data: Movie }): ReactElement {
             <MobileView.Wrapper.Genres genres={data.genres} />
           </MobileView.Wrapper>
         </MobileView>
-      </MediaQuery>
+      </div>
     </Suspense>
   );
 }
