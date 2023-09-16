@@ -12,13 +12,15 @@ async function getCastData(contentID: string, mediaType: string) {
 
         const req = await fetch(
             `https://api.themoviedb.org/3/movie/${contentID}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
-            { next: { revalidate: 4147200 } } // one day
+            { cache: "default" }
         );
         const data: CreditsResponse | null = await req.json();
 
         return data;
     } else if (mediaType === "TV") {
-        const req = await fetch(`https://api.themoviedb.org/3/tv/${contentID}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
+        const req = await fetch(`https://api.themoviedb.org/3/tv/${contentID}/credits?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
+            { cache: "default" }
+        );
         const data: CreditsResponse | null = await req.json();
 
         return data;

@@ -4,16 +4,21 @@ import BlurImage from "./BlurImage";
 import { Widget } from "./Images";
 import MediaType from "../../../types/MediaType";
 
-async function getImages(ID: number, mediaType: MediaType) {
+export async function getImages(ID: number, mediaType: MediaType) {
     let req, data;
     switch (mediaType) {
         case MediaType.movie:
-            req = await fetch(`https://api.themoviedb.org/3/movie/${ID}/images?api_key=${process.env.TMDB_API_KEY}&language=en`);
+            req = await fetch(
+                `https://api.themoviedb.org/3/movie/${ID}/images?api_key=${process.env.TMDB_API_KEY}&language=en`,
+                { next: { revalidate: 24 * 60 * 60 } }
+            );
             data = await req.json();
 
             return data;
         case MediaType.tv:
-            req = await fetch(`https://api.themoviedb.org/3/tv/${ID}/images?api_key=${process.env.TMDB_API_KEY}&language=en`);
+            req = await fetch(`https://api.themoviedb.org/3/tv/${ID}/images?api_key=${process.env.TMDB_API_KEY}&language=en`,
+                { next: { revalidate: 24 * 60 * 60 } }
+            );
             data = await req.json();
 
             return data;
