@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   //TODO: h-[50vh] does not seem to work for some reason, find out why and fix it
-  //TODO: you cannot declare <head></head> inside the body of a server component, it must be declared in a layout
   // Port all Endpoints to their layout
 
   return (
