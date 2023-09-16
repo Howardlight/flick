@@ -15,10 +15,8 @@
     "iron-session": "^6.3.1",
     "moment": "^2.29.4",
     "next": "13.4.19",
-    "next-seo": "^5.15.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-error-boundary": "^4.0.11",
     "react-responsive": "^9.0.2",
     "swr": "^2.2.2"
   },
@@ -31,7 +29,6 @@
     "autoprefixer": "^10.4.15",
     "eslint": "8.25.0",
     "eslint-config-next": "13.2.3",
-    "nprogress": "^0.2.0",
     "postcss": "^8.4.29",
     "tailwind-scrollbar": "^2.1.0",
     "tailwindcss": "^3.3.3",
