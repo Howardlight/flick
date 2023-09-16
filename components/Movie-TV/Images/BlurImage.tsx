@@ -15,9 +15,9 @@ export default function BlurImage({ image }: { image: Backdrop }) {
                 <Image
                     src={image.file_path ? image.file_path : Placeholder.src}
                     loader={PosterLoader}
-                    layout="fill"
+                    fill
+                    style={{ objectFit: "cover" }}
                     alt=""
-                    objectFit="cover"
                     className={cn(
                         'duration-700 ease-in-out group-hover:opacity-75',
                         isLoading
