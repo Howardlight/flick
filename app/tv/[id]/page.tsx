@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/Movie-TV/CastWidget";
 import { CreatorWidget } from "../../../components/Movie-TV/CreatorWidget";
-import Custom404 from "../../not-found";
+import NotFound from "../../not-found";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import Recommendations from "../../../components/Recommendations/TVRecommendations";
 import { Overview } from "../../../components/Movie-TV/Overview";
@@ -40,7 +40,7 @@ export default async function TVShowPage({ params }: { params: TVShowPageParams 
     // console.log(data);
 
     //TODO:Create a loading page;
-    if (requestStatus != 200) return <Custom404 />;
+    if (requestStatus != 200) return <NotFound />;
     return (
         <Fragment>
             <div className="lg:border-b-2 border-red-600" style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>

@@ -1,8 +1,13 @@
 import { IconSearch } from "@tabler/icons-react";
 import { Navbar } from "../components/Navbar";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Not Found - Flick"
+}
 
 //TODO: Fix Text Color Styling, for some reason <p> is not taking text color styles!
-export default function Custom404() {
+export default function NotFound() {
     return (
         <div className="w-[100vw] h-[100vh] flex flex-col">
             <Navbar />

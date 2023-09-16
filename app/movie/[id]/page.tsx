@@ -7,7 +7,7 @@ import { Recommendations } from "../../../components/Recommendations/MovieRecomm
 import { Overview } from "../../../components/Movie-TV/Overview";
 import MovieDetailsBox from "../../../components/DetailsBox/MovieDetailsBox";
 import HeroBox from "../../../components/HeroBox/MovieHeroBox";
-import Custom404 from "../../not-found";
+import NotFound from "../../not-found";
 import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
 import MediaType from "../../../types/MediaType";
 import ReviewsWidget from "../../../components/Reviews/ReviewsWidget";
@@ -41,7 +41,7 @@ async function getData(id: string) {
 export default async function MoviePage({ params }: { params: MoviePageParams }) {
     const { data, requestStatus, mediaType } = await getData(params.id);
 
-    if (requestStatus != 200) return <Custom404 />;
+    if (requestStatus != 200) return <NotFound />;
     return (
         <Fragment>
             <div className="lg:border-b-2 border-red-600"

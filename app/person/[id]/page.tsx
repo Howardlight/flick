@@ -2,7 +2,7 @@ import { GetServerSidePropsContext, Metadata, NextPage } from "next";
 import { Person } from "../../../types/Person";
 import { Navbar } from "../../../components/Navbar";
 import React from "react";
-import Custom404 from "../../not-found";
+import NotFound from "../../not-found";
 import HydrationWrapper from "../../../components/HydrationWrapper";
 import { PersonPageContent } from "../../../components/Person/PersonPageContent";
 
@@ -19,7 +19,7 @@ export default async function PersonPage({ params }: { params: PersonPageParams 
     const { data, requestStatus, } = await getData(params.id);
 
     // console.log(data);
-    if (requestStatus != 200) return <Custom404 />;
+    if (requestStatus != 200) return <NotFound />;
     return (
         <HydrationWrapper>
             <Navbar />

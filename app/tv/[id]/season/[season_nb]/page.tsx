@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Navbar } from "../../../../../components/Navbar";
 import { Season } from "../../../../../types/Season";
 import { TVShow } from "../../../../../types/TVShow";
-import Custom404 from "../../../../not-found";
+import NotFound from "../../../../not-found";
 import { EpisodeDate, Episodes } from "../../../../../components/Seasons/Episode";
 import SeasonsImage from "../../../../../components/Seasons/SeasonsImage";
 import HydrationWrapper from "../../../../../components/HydrationWrapper";
@@ -27,7 +27,7 @@ export default async function SeasonPage({ params }: { params: SeasonsPageParams
 
     // console.log(data);
 
-    if (requestStatus != 200) return <Custom404 />;
+    if (requestStatus != 200) return <NotFound />;
     return (
         <HydrationWrapper>
             <main>

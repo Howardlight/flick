@@ -5,7 +5,7 @@ import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
 import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
-import Custom404 from "../../../not-found";
+import NotFound from "../../../not-found";
 import { TVShow } from "../../../../types/TVShow";
 import HydrationWrapper from "../../../../components/HydrationWrapper";
 import TVCreditsTab from "../../../../components/Credits/TVCreditsTab";
@@ -26,7 +26,7 @@ export default async function TVShowCredits({ params }: { params: TVCreditsParam
 
     // console.log(data);
 
-    if (requestStatus != 200) return <Custom404 />;
+    if (requestStatus != 200) return <NotFound />;
     return (
         <HydrationWrapper>
             <Navbar />

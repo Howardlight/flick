@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import React, { Fragment } from "react";
 import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
-import Custom404 from "../../../not-found";
+import NotFound from "../../../not-found";
 import { Movie } from "../../../../types/Movie";
 import MovieCreditsTabs from "../../../../components/Credits/MovieCreditsTabs";
 
@@ -21,7 +21,7 @@ export default async function MovieCredits({ params }: { params: MovieCreditsPar
 
     // console.log(data);
 
-    if (requestStatus != 200) return <Custom404 />;
+    if (requestStatus != 200) return <NotFound />;
     return (
         <Fragment>
             <Navbar />
