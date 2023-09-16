@@ -9,7 +9,7 @@ import { isInPast } from "../../../Utils";
 
 function DesktopView({ children }: { children: ReactElement[] }) {
     return (
-        <div className="flex flex-row justify-around p-5">
+        <div className="flex flex-row justify-around max-md:hidden p-5">
             {children}
         </div>
     )

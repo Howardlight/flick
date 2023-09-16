@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { TVShow } from "../../../types/TVShow";
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { PosterLoader } from "../../../PosterLoader";
 import { ReactElement } from "react";
@@ -9,7 +8,7 @@ type TwoChilren = [ReactElement, ReactElement];
 
 function MobileView({ children }: { children: ReactElement[] }) {
     return (
-        <div className="flex flex-col justify-center items-center p-5">
+        <div className="flex flex-col justify-center items-center md:hidden p-5">
             {children}
         </div>
     )
