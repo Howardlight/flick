@@ -5,7 +5,7 @@ import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
 import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";
-import Custom404 from "../../../404";
+import Custom404 from "../../../not-found";
 import { TVShow } from "../../../../types/TVShow";
 import HydrationWrapper from "../../../../components/HydrationWrapper";
 import TVCreditsTab from "../../../../components/Credits/TVCreditsTab";

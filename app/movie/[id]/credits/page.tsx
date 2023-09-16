@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import React, { Fragment } from "react";
 import { Navbar } from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
-import Custom404 from "../../../404";
+import Custom404 from "../../../not-found";
 import { Movie } from "../../../../types/Movie";
 import MovieCreditsTabs from "../../../../components/Credits/MovieCreditsTabs";
 

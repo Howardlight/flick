@@ -2,7 +2,7 @@ import { GetServerSidePropsContext, Metadata, NextPage } from "next";
 import { Person } from "../../../types/Person";
 import { Navbar } from "../../../components/Navbar";
 import React from "react";
-import Custom404 from "../../404";
+import Custom404 from "../../not-found";
 import HydrationWrapper from "../../../components/HydrationWrapper";
 import { PersonPageContent } from "../../../components/Person/PersonPageContent";
 

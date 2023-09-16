@@ -7,7 +7,7 @@ import { Recommendations } from "../../../components/Recommendations/MovieRecomm
 import { Overview } from "../../../components/Movie-TV/Overview";
 import MovieDetailsBox from "../../../components/DetailsBox/MovieDetailsBox";
 import HeroBox from "../../../components/HeroBox/MovieHeroBox";
-import Custom404 from "../../404";
+import Custom404 from "../../not-found";
 import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
 import MediaType from "../../../types/MediaType";
 import ReviewsWidget from "../../../components/Reviews/ReviewsWidget";

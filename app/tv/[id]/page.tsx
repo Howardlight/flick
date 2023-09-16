@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/Movie-TV/CastWidget";
 import { CreatorWidget } from "../../../components/Movie-TV/CreatorWidget";
-import Custom404 from "../../404";
+import Custom404 from "../../not-found";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
 import Recommendations from "../../../components/Recommendations/TVRecommendations";
 import { Overview } from "../../../components/Movie-TV/Overview";

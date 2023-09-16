@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Navbar } from "../../../../../components/Navbar";
 import { Season } from "../../../../../types/Season";
 import { TVShow } from "../../../../../types/TVShow";
-import Custom404 from "../../../../404";
+import Custom404 from "../../../../not-found";
 import { EpisodeDate, Episodes } from "../../../../../components/Seasons/Episode";
 import SeasonsImage from "../../../../../components/Seasons/SeasonsImage";
 import HydrationWrapper from "../../../../../components/HydrationWrapper";
