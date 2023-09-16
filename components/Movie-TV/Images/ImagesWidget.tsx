@@ -35,9 +35,7 @@ export function Images({ id, mediaType }: { id: number, mediaType: MediaType }) 
     //TODO: Refactor
     //TODO: Sort Images and pick the ones with the most reviews
     //TODO: Add a lighthouse
-    //TODO: Create a skeleton
-    //TODO: Add this component to TV
-
+    //TODO: Add a No Images component
 
     //TODO: Crazy good tailwind modifiers here Check them out
     // more info: https://www.youtube.com/watch?v=BSoRXk1FIw8

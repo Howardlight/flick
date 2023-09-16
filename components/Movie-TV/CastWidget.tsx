@@ -31,6 +31,7 @@ async function getCastData(contentID: string, mediaType: string) {
 export function CastWidget({ ID, mediaType, className }: { ID: string, mediaType: string, className?: string }) {
 
     //TODO: Create a universal Scrollbar
+    //TODO: Add a No Actors Component
     return (
         <div className={`${className}`}>
             <p className="font-semibold text-xl text-neutral-100 mb-3">Actors</p>
