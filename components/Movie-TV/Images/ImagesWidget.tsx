@@ -58,37 +58,23 @@ async function ImagesContent({ id, mediaType }: { id: number, mediaType: MediaTy
     const movieImages = await getImages(id, mediaType);
 
     return movieImages.posters.map((image: Backdrop, index: number) => {
-        if (index < 8) return <BlurImage key={`Poster-${index}`} image={image} />;
+        if (index < 12) return <BlurImage key={`Poster-${index}`} image={image} />;
         return;
     })
 }
 
 //TODO: Move these to a shared library or something
-export function LoadingSkeletons() {
-    return (
-        <Widget>
-            <Widget.Title title="Images" />
-            <Widget.ImagesWrapper>
-                <LoadingImageSkeleton />
-                <LoadingImageSkeleton />
-                <LoadingImageSkeleton />
-                <LoadingImageSkeleton />
-                <LoadingImageSkeleton />
-                <LoadingImageSkeleton />
-                <LoadingImageSkeleton />
-                <LoadingImageSkeleton />
-            </Widget.ImagesWrapper>
-        </Widget>
-    );
+function LoadingSkeletons() {
+    return Array(12).fill(<LoadingImageSkeleton />);
 };
 
 function LoadingImageSkeleton() {
     return (
         <div className="flex flex-col gap-5 mb-5">
-            <div className="animate-pulse aspect-w-1 aspect-h-1 w-[163px] h-[245px] overflow-hidden rounded-sm bg-gray-500 xl:aspect-w-7 xl:aspect-h-8" />
+            <div className="animate-pulse aspect-w-1 aspect-h-1 w-[163px] h-[245px] overflow-hidden rounded-sm bg-neutral-500 xl:aspect-w-7 xl:aspect-h-8" />
             <div className="flex flex-row justify-between">
-                <div className="animate-pulse bg-gray-500 h-2 rounded-md w-6/12" />
-                <div className="animate-pulse bg-gray-500 h-2 rounded-md w-3/12" />
+                <div className="animate-pulse bg-neutral-500 h-2 rounded-md w-6/12" />
+                <div className="animate-pulse bg-neutral-500 h-2 rounded-md w-3/12" />
             </div>
         </div>
     )
