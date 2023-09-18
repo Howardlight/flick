@@ -5,7 +5,7 @@ import { CastWidget } from "../../../components/Movie-TV/CastWidget";
 import { CreatorWidget } from "../../../components/Movie-TV/CreatorWidget";
 import NotFound from "../../not-found";
 import { SeasonsWidget } from "../../../components/SeasonsWidget";
-import Recommendations from "../../../components/Recommendations/TVRecommendations";
+import Recommendations from "../../../components/Recommendations/Recommendations";
 import { Overview } from "../../../components/Movie-TV/Overview";
 import HeroBox from "../../../components/HeroBox/TVShowHeroBox";
 import { TVDetailsBox } from "../../../components/DetailsBox/TVShowDetailsBox";
@@ -64,7 +64,7 @@ export default async function TVShowPage({ params }: { params: TVShowPageParams 
 
                 <Images id={data.id} mediaType={MediaType.tv} />
 
-                <Recommendations id={data.id} />
+                <Recommendations id={data.id} mediaType={MediaType.tv} />
 
                 {data.vote_count > 1 ? <ReviewsWidget ID={data.id} mediaType={MediaType.tv} /> : <Fragment />}
 

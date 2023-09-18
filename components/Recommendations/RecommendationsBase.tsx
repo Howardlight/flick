@@ -47,8 +47,8 @@ export { RecommendationsCard };
 export const RecommendationsError = () => {
     return (
         <div className="flex flex-col items-center justify-center h-[326px] w-auto">
-            <p className="text-lg text-neutral-100">Could not load Recommendations</p>
-            <p className="text-base text-neutral-400">Try again later</p>
+            <p className="text-lg font-semibold text-neutral-100">Could not load Recommendations</p>
+            <p className="text-sm font-normal text-neutral-400">Try again later</p>
         </div>
     );
 };
@@ -63,16 +63,13 @@ export const NoRecommendations = () => {
 };
 export const RecommendationSkeletons = () => {
     return (
-        <div className="mt-4">
-            <div className="animate-pulse bg-neutral-200 w-4/12 h-2 mb-3 rounded-sm"></div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 justify-items-center">
-                <RecommendationSkeleton />
-                <RecommendationSkeleton />
-                <RecommendationSkeleton />
-                <RecommendationSkeleton />
-                <RecommendationSkeleton />
-                <RecommendationSkeleton />
-            </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 justify-items-center" >
+            <RecommendationSkeleton />
+            <RecommendationSkeleton />
+            <RecommendationSkeleton />
+            <RecommendationSkeleton />
+            <RecommendationSkeleton />
+            <RecommendationSkeleton />
         </div>
     );
 };
