@@ -5,7 +5,6 @@ import { FormEventHandler, useState } from "react";
 
 //TODO: Finish autocomplete in the future
 export default function SearchBar() {
-
     const [query, setQuery] = useState("");
     const router = useRouter();
 
@@ -23,14 +22,12 @@ export default function SearchBar() {
                 type="text"
                 className="block grow md:grow-0 px-4 py-2 md:w-[80%] rounded-tl-sm rounded-bl-sm text-red-600 bg-white"
                 id="query"
-                placeholder="..."
+                placeholder="Breaking Bad"
                 onChange={(e) => setQuery(e.target.value)}
-                required
-            />
+                required />
             <button
                 className="transition-all delay-50 px-4 text-white bg-red-600 rounded-tr-sm rounded-br-sm hover:bg-red-800"
-                type={"submit"}
-            >
+                type={"submit"}>
                 Search
             </button>
         </form>
