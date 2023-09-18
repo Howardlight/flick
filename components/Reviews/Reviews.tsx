@@ -60,7 +60,7 @@ export const ReviewError = () => {
 export const NoReviewsFound = () => {
     return (
         <div className="flex flex-col items-center justify-center w-auto h-64">
-            <p className="font-semibold text-lg">No comments found</p>
+            <p className="font-semibold text-lg text-neutral-100">No comments found</p>
             <p className="font-normal text-sm text-neutral-400">Why don&apos;t you be the first?</p>
         </div>
     )
