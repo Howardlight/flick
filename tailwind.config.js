@@ -6,7 +6,12 @@ module.exports = {
     "./app/**/*.{js,ts,tsx,jsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "main-page-image": "url('/cinema.jpg')",
+        "hero": "linear-gradient(to right bottom, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url('/cinema.jpg')"
+      }
+    },
   },
   plugins: [
     require("tailwind-scrollbar"),
