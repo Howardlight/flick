@@ -1,15 +1,10 @@
-// import '../pages/styles/globals.css';
 import "../styles/globals.css";
-import UserContextProvider from '../components/TopTreeComponents/UserContextProvider';
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import Provider from "./context/client-provider";
 
-export default function RootLayout({
-    // Layouts must accept a children prop.
-    // This will be populated with nested layouts or pages
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+    const session = await getServerSession(authOptions);
 
     return (
         <html lang="en">
@@ -34,9 +29,9 @@ export default function RootLayout({
                 <meta property="og:image:alt" content="A shiny red apple with a bite taken out" /> */}
             </head>
             <body>
-                <UserContextProvider>
+                <Provider session={session}>
                     {children}
-                </UserContextProvider>
+                </Provider>
             </body>
         </html>
     );
