@@ -1,5 +1,5 @@
 import { IconSearch } from "@tabler/icons-react";
-import { Navbar } from "../components/Navbar";
+import Navbar from "../components/Navbar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

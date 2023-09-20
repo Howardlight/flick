@@ -1,5 +1,5 @@
-import type { Metadata, NextPage } from 'next'
-import { Navbar } from '../components/Navbar';
+import type { Metadata } from 'next'
+import Navbar from '../components/Navbar';
 import UpcomingMovies from '../components/Index/UpcomingMovies';
 import PopularTV from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';

@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext, Metadata, NextPage } from "next";
 import { Person } from "../../../types/Person";
-import { Navbar } from "../../../components/Navbar";
+import Navbar from "../../../components/Navbar";
 import React from "react";
 import NotFound from "../../not-found";
 import HydrationWrapper from "../../../components/HydrationWrapper";

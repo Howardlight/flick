@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Navbar } from "../../../../../components/Navbar";
+import Navbar from "../../../../../components/Navbar";
 import { Season } from "../../../../../types/Season";
 import { TVShow } from "../../../../../types/TVShow";
 import NotFound from "../../../../not-found";

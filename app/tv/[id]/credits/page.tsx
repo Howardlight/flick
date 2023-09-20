@@ -1,7 +1,7 @@
 import { Tab } from "@headlessui/react";
 import { GetServerSidePropsContext, Metadata } from "next";
 import React, { Fragment } from "react";
-import { Navbar } from "../../../../components/Navbar";
+import Navbar from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import { CreditsCastWidget } from "../../../../components/Credits/CreditsCastWidget";
 import { CreditsCrewWidget } from "../../../../components/Credits/CreditsCrewWidget";

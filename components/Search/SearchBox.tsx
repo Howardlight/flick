@@ -6,7 +6,7 @@ import { MultiSearchMovieCard, MultiSearchPersonCard, MultiSearchTVShowCard } fr
 import { useRouter } from "next/navigation";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../Fetcher";
-import { Navbar } from "../Navbar";
+import Navbar from "../Navbar";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
 export function Search({ searchQuery, startPage }: { searchQuery: string, startPage: number }) {

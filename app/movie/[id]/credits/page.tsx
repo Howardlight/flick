@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import React, { Fragment } from "react";
-import { Navbar } from "../../../../components/Navbar";
+import Navbar from "../../../../components/Navbar";
 import { CreditsResponse } from "../../../../types/GetCreditsTypes";
 import NotFound from "../../../not-found";
 import { Movie } from "../../../../types/Movie";

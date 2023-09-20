@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Fragment } from "react";
 import { Movie } from "../../../types/Movie";
-import { Navbar } from "../../../components/Navbar";
 import { CastWidget, } from "../../../components/Movie-TV/CastWidget";
 import { Overview } from "../../../components/Movie-TV/Overview";
 import MovieDetailsBox from "../../../components/DetailsBox/MovieDetailsBox";
@@ -11,6 +10,7 @@ import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
 import MediaType from "../../../types/MediaType";
 import ReviewsWidget from "../../../components/Reviews/ReviewsWidget";
 import Recommendations from "../../../components/Recommendations/Recommendations";
+import Navbar from "../../../components/Navbar";
 
 interface MoviePageParams {
     id: string;

@@ -1,4 +1,4 @@
-import { Navbar } from "../../../components/Navbar";
+import Navbar from "../../../components/Navbar";
 import { Fragment } from "react";
 import { TVShow } from "../../../types/TVShow";
 import { CastWidget } from "../../../components/Movie-TV/CastWidget";
