@@ -5,6 +5,9 @@ import { NextApiRequest, NextApiResponse } from "next";
  * 
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    res.status(403).json({ message: "Access Denied" });
+    return;
+
     let data;
     const body = JSON.parse(req.body);
 

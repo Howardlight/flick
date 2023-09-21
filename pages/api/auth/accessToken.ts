@@ -10,6 +10,10 @@ interface accessTokenBody {
  * 
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+
+    res.status(403).json({ message: "Access Denied" });
+    return;
+
     let data;
     const body: accessTokenBody = JSON.parse(req.body);
 
