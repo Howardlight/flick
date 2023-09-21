@@ -40,7 +40,7 @@ function UserElement({ status }: { status: "authenticated" | "loading" | "unauth
         </button>);
 
     return (
-        <button onClick={() => signIn()} className="font-semibold hover:text-neutral-100">
+        <button onClick={() => signIn("credentials")} className="font-semibold hover:text-neutral-100">
             Log in
         </button>
     );
