@@ -20,21 +20,24 @@ export default function SignIn() {
     //TODO: Make form Responsive to bigger Screens, looks ok for small screens, needs alot of work
 
     return (
-        <div className="h-screen w-auto p-10">
-            <div className="flex flex-row items-center">
-                <Suspense fallback={<p>Loading</p>}>
-                    <Image
-                        src={MovieSVG}
-                        alt={"Flick logo"}
-                        height={32}
-                        width={32}
-                        className=""
-                    />
-                    <p className="font-semibold text-2xl">Sign in to Flick</p>
-                </Suspense>
-            </div>
-            <div className="mt-10">
-                <SignInForm />
+        <div className="h-screen w-auto bg-hero">
+            <div className="flex w-full h-full md:items-center justify-center p-4">
+
+                <div className="flex flex-col items-center max-w-lg w-full mt-10 md:gap-4 gap-6">
+                    <div className="flex flex-row self-start items-center gap-2">
+                        <Image
+                            src={MovieSVG}
+                            alt={"Flick logo"}
+                            height={64}
+                            width={64}
+                        />
+                        <p className="font-bold text-2xl">Sign in to Flick</p>
+                    </div>
+                    <div className="w-full bg-black rounded-md p-5">
+                        <SignInForm />
+                    </div>
+                </div>
+
             </div>
         </div>
     )
