@@ -10,14 +10,11 @@ export const metadata: Metadata = {
 
 export default function SignIn() {
 
+    //TODO: Make the Sign in Form nicer
+    //TODO: Add a nicer background
     //TODO: Flesh this out properly
-    // Add a nice Background
-    // Add a nice top Header
-    // Mention this registration being by TMDB
-    // Link TMDB and their registration
     //TODO: Handle Errors more swiftly
-    //TODO: Fix Error that occurs with hydration, specifically with form appearing new div
-    //TODO: Make form Responsive to bigger Screens, looks ok for small screens, needs alot of work
+    //TODO: Add a remember me Integration, where you destroy the session when the user closes the window/ tweak max age of session
 
     return (
         <div className="h-screen w-auto bg-hero">
