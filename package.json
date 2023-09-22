@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@tabler/icons-react": "^2.34.0",
+    "@vercel/analytics": "^1.0.2",
     "formik": "^2.4.5",
     "iron-session": "^6.3.1",
     "moment": "^2.29.4",
