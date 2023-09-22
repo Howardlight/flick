@@ -42,6 +42,8 @@ export const authOptions: AuthOptions = {
         })
     ],
     session: { strategy: "jwt" },
+
+    //More on pages: https://next-auth.js.org/configuration/pages
     pages: {
         signIn: "/sign-in"
     }
