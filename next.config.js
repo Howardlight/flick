@@ -7,9 +7,6 @@ const nextConfig = {
       "https://image.tmdb.org",
       "image.tmdb.org"
     ]
-  },
-  experimental: {
-    appDir: true,
   }
 }
 
