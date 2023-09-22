@@ -32,16 +32,18 @@ function UserElement({ status }: { status: "authenticated" | "loading" | "unauth
                 <Spinner className={"w-8 h-auto"} />
             </div>
             Loading...
-        </button>);
+        </button>
+    );
 
     if (status === "authenticated") return (
         <button className="flex flex-row items-center gap-2 font-semibold hover:text-neutral-100" onClick={() => signOut()}>
-            Log out
-        </button>);
+            Sign out
+        </button>
+    );
 
     return (
         <button onClick={() => signIn("credentials")} className="font-semibold hover:text-neutral-100">
-            Log in
+            Sign in
         </button>
     );
 }
