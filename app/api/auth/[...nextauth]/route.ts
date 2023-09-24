@@ -106,24 +106,31 @@ async function validateWithLogin(username: string, password: string, request_tok
 }
 
 async function createSession(request_token: string) {
-    const url = 'https://api.themoviedb.org/3/authentication/session/new';
-    const options = {
-        method: 'POST',
-        headers: {
-            accept: 'application/json',
-            'content-type': 'application/json',
-            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
-        },
-        body: JSON.stringify({ request_token: request_token })
-    };
+    try {
+        const url = 'https://api.themoviedb.org/3/authentication/session/new';
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
+            },
+            body: JSON.stringify({ request_token: request_token })
+        };
 
-    const res = await fetch(url, options);
-    if (res.status !== 200) return null;
+        const res = await fetch(url, options);
+        if (res.status !== 200) throw new Error(`Response status is not 200 | ${res.status} - ${res.statusText}`);
 
-    const data: SessionRequest = await res.json();
-    if (!data.success) return null;
+        const data: SessionRequest = await res.json();
+        if (!data.success) throw new Error("Data is not successful");
 
-    return data;
+        return data;
+    } catch (error: any) {
+        logError(error, "createSession");
+        return null;
+    }
+}
+
 }
 
 const handler = NextAuth(authOptions)
