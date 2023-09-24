@@ -76,28 +76,33 @@ async function createRequestToken() {
 }
 
 async function validateWithLogin(username: string, password: string, request_token: string): Promise<RequestToken | null> {
-    const url = 'https://api.themoviedb.org/3/authentication/token/validate_with_login';
-    const options = {
-        method: 'POST',
-        headers: {
-            accept: 'application/json',
-            'content-type': 'application/json',
-            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
-        },
-        body: JSON.stringify({
-            username: username,
-            password: password,
-            request_token: request_token
-        })
-    };
+    try {
+        const url = 'https://api.themoviedb.org/3/authentication/token/validate_with_login';
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+                request_token: request_token
+            })
+        };
 
-    const res = await fetch(url, options);
-    if (res.status !== 200) return null;
+        const res = await fetch(url, options);
+        if (res.status !== 200) throw new Error(`Response Status is not 200 | ${res.status} - ${res.statusText}`);
 
-    const data: RequestToken = await res.json();
-    if (!data.success) return null;
+        const data: RequestToken = await res.json();
+        if (!data.success) throw new Error("Data is not successful");
 
-    return data;
+        return data;
+    } catch (error: any) {
+        logError(error, "validateWithLogin");
+        return null;
+    }
 }
 
 async function createSession(request_token: string) {
