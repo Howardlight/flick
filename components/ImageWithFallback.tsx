@@ -31,6 +31,7 @@ export const ImageWithFallback = ({ fallback, alt, src, ...props }: { fallback: 
             onError={setError}
             src={error ? fallback : src}
             loader={AvatarLoader}
+            unoptimized
             {...props}
         />
     )
