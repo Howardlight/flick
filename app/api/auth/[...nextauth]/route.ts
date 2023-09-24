@@ -105,6 +105,7 @@ export const authOptions: AuthOptions = {
             return session;
         },
     },
+    secret: process.env.NEXTAUTH_SECRET,
     session: { strategy: "jwt" },
 
     //More on pages: https://next-auth.js.org/configuration/pages
