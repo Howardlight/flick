@@ -131,6 +131,32 @@ async function createSession(request_token: string) {
     }
 }
 
+async function deleteSession(session_id: string) {
+    try {
+
+        const url = 'https://api.themoviedb.org/3/authentication/session';
+        const options = {
+            method: 'DELETE',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDRmYTU3M2ZhNWRhNWFlMjNhOTNjNTkxZmI3NTMyZiIsInN1YiI6IjYyMDBkZmVkZTU0ZDVkMDA2YmMwYzU3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VIS0dGlUU9YrljnIMC6noQ7sUVWL6dQ36vUSBiG7g4I'
+            },
+            body: JSON.stringify({ session_id: session_id })
+        };
+
+        const res = await fetch(url, options);
+        if (res.status != 200) throw new Error(`Response status is not 200 | ${res.status} - ${res.statusText}`);
+
+        const data = await res.json();
+        if (!data.success) throw new Error("Delete session attempt was not successful");
+        else console.log("Session Deleted Successfully");
+        return;
+    } catch (error: any) {
+        logError(error, "deleteSession");
+    }
+}
+
 }
 
 const handler = NextAuth(authOptions)
