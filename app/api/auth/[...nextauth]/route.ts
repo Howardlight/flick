@@ -14,6 +14,41 @@ interface SessionRequest {
     session_id: string
 }
 
+interface UserDetailsResponse {
+    avatar: {
+        gravatar: {
+            hash: string
+        },
+        tmdb: {
+            avatar_path: string
+        }
+    },
+    id: number,
+    iso_639_1: string,
+    iso_3166_1: string,
+    name: string,
+    include_adult: boolean,
+    username: string,
+}
+
+interface User {
+    avatar: {
+        gravatar: {
+            hash: string
+        },
+        tmdb: {
+            avatar_path: string
+        }
+    },
+    id: string,
+    iso_639_1: string,
+    iso_3166_1: string,
+    name: string,
+    include_adult: boolean,
+    username: string,
+    session_id: string
+}
+
 //TODO: Create a custom Page
 export const authOptions: AuthOptions = {
     providers: [
