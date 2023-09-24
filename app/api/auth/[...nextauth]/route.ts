@@ -157,6 +157,26 @@ async function deleteSession(session_id: string) {
     }
 }
 
+async function getAccountDetails(session_id: string, username: string) {
+    try {
+        const url = `https://api.themoviedb.org/3/account/${username}?session_id=${session_id}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
+            }
+        };
+
+        const res = await fetch(url, options);
+        if (res.status != 200) throw new Error(`Response status is not 200 | ${res.status} - ${res.statusText}`);
+
+        const data: UserDetailsResponse = await res.json();
+        return data;
+    } catch (error: any) {
+        logError(error, "getAccountDetails");
+        return null;
+    }
 }
 
 const handler = NextAuth(authOptions)
