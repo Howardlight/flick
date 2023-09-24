@@ -58,22 +58,28 @@ export const authOptions: AuthOptions = {
                 username: { label: "Username", type: "text" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials, req) {
-                if (typeof credentials !== "undefined") {
+            async authorize(credentials, req): Promise<User | null> {
+                if (typeof credentials !== "undefined" && (credentials.password && credentials.username)) {
+                    let user: UserDetailsResponse | null = null;
 
-                    // const res = await authenticate(credentials.username, credentials.password, )
                     const requestTokenData = await createRequestToken();
-                    if (requestTokenData === null) return null;
+                    if (!requestTokenData) return null;
 
                     const validRequestToken = await validateWithLogin(credentials.username, credentials.password, requestTokenData.request_token);
                     if (!validRequestToken) return null;
 
                     const session = await createSession(validRequestToken.request_token);
+                    console.log("session: ", session);
+                    if (!session) return null;
 
-                    if (session !== null) return { name: credentials!.username, id: session.session_id };
+                    user = await getAccountDetails(session.session_id, credentials.username);
+                    // console.log("user: ", user);
+                    // NOTE: CONTENTS OTHER THAN PREDEFINED PROPERTIES WILL NOT BE USABLE 
+                    // UNLESS AVAILABLE THROUGH JWT AND SESSION CALLBACKS
+                    if (user) return { ...user, id: user.id.toString(), session_id: session.session_id } as User;
 
-                    else return null
-                } else return null
+                    else return null;
+                } return null;
             }
         })
     ],
