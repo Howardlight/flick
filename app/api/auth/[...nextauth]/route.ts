@@ -77,6 +77,14 @@ export const authOptions: AuthOptions = {
             }
         })
     ],
+    events: {
+        signOut(message) {
+            console.log(message);
+            //TODO: Delete Session on sign out
+            // await deleteSession(message.session.session_id)
+        },
+
+    },
     session: { strategy: "jwt" },
 
     //More on pages: https://next-auth.js.org/configuration/pages
