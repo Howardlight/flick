@@ -19,6 +19,19 @@ const initialValue = {
 
 const BtnBaseStyles = "transition duration-150 ease-in-out p-2 rounded-sm shadow-sm bg-red-500 text-neutral-100 hover:bg-red-600 h-12";
 
+enum SignInErrors {
+    OAuthSignin = "OAuthSignin",
+    OAuthCallback = "OAuthCallback",
+    OAuthCreateAccount = "OAuthCreateAccount",
+    EmailCreateAccount = "EmailCreateAccount",
+    Callback = "Callback",
+    OAuthAccountNotLinked = "OAuthAccountNotLinked",
+    EmailSignin = "EmailSignin",
+    CredentialsSignin = "CredentialsSignin",
+    SessionRequired = "SessionRequired",
+    Default = "Default"
+}
+
 export default function SignInForm() {
     let callbackUrl = "/";
     const searchParams = useSearchParams();
