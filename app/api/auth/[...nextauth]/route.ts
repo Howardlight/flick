@@ -85,6 +85,26 @@ export const authOptions: AuthOptions = {
         },
 
     },
+    callbacks: {
+        async jwt({ token, user }) {
+            // console.log("[JWT] token: ", token);
+            // console.log("[JWT] user: ", user);
+
+            // Dump contents of user (which have been specified in authorize) into token
+            if (user) token = { ...user };
+
+            return token;
+        },
+
+        async session({ session, token }) {
+            let newSession: Session = { user: undefined, expires: session.expires };
+
+            if (token) newSession.user = { ...token };
+            else newSession.user = session.user;
+
+            return session;
+        },
+    },
     session: { strategy: "jwt" },
 
     //More on pages: https://next-auth.js.org/configuration/pages
