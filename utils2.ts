@@ -17,3 +17,8 @@ export function splitElementsInEqualArrays(arr: Array<any>) {
 }
 
 export function isInPast(release_date: Date) { return moment() > moment(release_date); }
+
+
+export function logError(error: Error, context: string) {
+    console.error(`[${context}] Error: `, error);
+}
