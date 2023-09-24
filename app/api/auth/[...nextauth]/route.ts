@@ -51,21 +51,28 @@ export const authOptions: AuthOptions = {
 
 
 async function createRequestToken() {
-    const url = 'https://api.themoviedb.org/3/authentication/token/new';
-    const options = {
-        method: 'GET', headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
-        }
-    };
+    try {
+        const url = 'https://api.themoviedb.org/3/authentication/token/new';
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
+            }
+        };
 
-    const req = await fetch(url, options);
-    if (req.status !== 200) return null;
+        const req = await fetch(url, options);
+        if (req.status !== 200) throw new Error(`Response status is not 200 | status: ${req.status} - ${req.statusText} `);
 
-    const data: RequestToken = await req.json();
-    if (!data.success) return null;
+        const data: RequestToken = await req.json();
+        if (!data.success) throw new Error("Data is not successful");
 
-    return data;
+        return data;
+
+    } catch (error: any) {
+        logError(error, "createRequestToken");
+        return null;
+    }
 }
 
 async function validateWithLogin(username: string, password: string, request_token: string): Promise<RequestToken | null> {
