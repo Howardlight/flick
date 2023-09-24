@@ -33,10 +33,11 @@ enum SignInErrors {
 }
 
 export default function SignInForm() {
-    let callbackUrl = "/";
-    const searchParams = useSearchParams();
+    let callbackUrl = "/", searchParams = useSearchParams();
     if (searchParams) callbackUrl = searchParams.get("callbackUrl") != null ? searchParams.get("callbackUrl") as string : "/";
+    const [responseError, setResponseError] = useState<string | undefined>(undefined);
     const router = useRouter();
+
 
     return (
         <Fragment>
@@ -44,10 +45,27 @@ export default function SignInForm() {
                 initialValues={initialValue}
                 validationSchema={SignInSchema}
                 onSubmit={async (values, { setSubmitting }) => {
-                    const response = await signIn("credentials", { redirect: false, username: values.username, password: values.password })
-                    if (response?.ok && response.status == 200) router.push(callbackUrl);
-                    setSubmitting(false);
+                    if (!values.password || !values.username) return;
+
+
+                    const response = await signIn("credentials", { redirect: false, username: values.username, password: values.password });
                     console.log(response);
+                    if (!response) {
+
+                        return;
+                    }
+
+                    if (response.error) {
+                        switch (response.error) {
+                            case SignInErrors.CredentialsSignin: setResponseError("Unexpected error occured, please try again");
+                            default: setResponseError("Unexpected Error");
+                        }
+
+                        return;
+                    }
+                    console.log("Response: ", response);
+                    if (response.ok && response.status == 200) router.push(callbackUrl);
+                    setSubmitting(false);
                     //TODO: On certain instances, loading takes time and the user could still access the interface, fix that
                 }}
             >
@@ -92,6 +110,9 @@ export default function SignInForm() {
                         >
                             <ButtonContent isSubmitting={formik.isSubmitting} />
                         </button>
+                        {responseError ?
+                            <p className="mt-1 text-red-600 text-sm font-medium">{responseError}</p>
+                            : <Fragment />}
                     </form>
                 )}
             </Formik>
