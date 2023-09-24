@@ -3,7 +3,7 @@ import React, { Fragment, useMemo, useState } from "react";
 import { Cast } from "../../types/Cast";
 import PageBox from "./PageBox";
 import Link from "next/link";
-import { splitElementsInEqualArrays } from "../../Utils";
+import { splitElementsInEqualArrays } from "../../utils";
 import Image from "next/image";
 import { PosterLoader } from "../../PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";

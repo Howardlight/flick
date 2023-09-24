@@ -4,7 +4,7 @@ import { Movie } from "../../types/Movie";
 import { DetailsBox } from "../DetailsBox";
 import { Desktop, Mobile } from "../MediaQueries";
 import MainPageMetrics from "../Movie-TV/MainPageMetrics";
-import { isInPast } from "../../Utils";
+import { isInPast } from "../../utils";
 
 export default function MovieDetailsBox({ data }: { data: Movie }): ReactElement {
     return (

@@ -5,7 +5,7 @@ import { TVShow } from "../../types/TVShow";
 import { DetailsBox } from "../DetailsBox";
 import { Default } from "../MediaQueries";
 import { MainPageMetrics } from "../Movie-TV/MainPageMetrics";
-import { isInPast } from "../../Utils";
+import { isInPast } from "../../utils";
 
 export function TVDetailsBox({ data }: { data: TVShow }) {
     return (

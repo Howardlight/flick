@@ -5,7 +5,7 @@ import moment from "moment";
 import { Fragment, ReactElement } from "react";
 import { Genre } from "../../../types/Movie";
 import MainPageMetrics from "../MainPageMetrics";
-import { isInPast } from "../../../Utils";
+import { isInPast } from "../../../utils";
 
 function DesktopView({ children }: { children: ReactElement[] }) {
     return (

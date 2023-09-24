@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Episode } from "../../types/Episode";
 import moment from "moment";
 import Star from "../../assets/Star.svg";
-import { isInPast } from "../../Utils";
+import { isInPast } from "../../utils";
 
 export const Episodes = ({ eps }: { eps: Episode[] }) => {
     // console.log(eps);
