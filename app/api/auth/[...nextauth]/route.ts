@@ -108,7 +108,7 @@ export const authOptions: AuthOptions = {
             if (token) newSession.user = { ...token };
             else newSession.user = session.user;
 
-            return session;
+            return newSession;
         },
     },
     secret: process.env.NEXTAUTH_SECRET,
