@@ -1,7 +1,7 @@
-import NextAuth from "next-auth"
-import type { AuthOptions, Session } from "next-auth"
+import NextAuth, { AuthOptions, Session, User } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { logError } from "../../../../utils"
+import { JWT } from "next-auth/jwt"
 
 interface RequestToken {
     success: boolean,
@@ -31,24 +31,6 @@ interface UserDetailsResponse {
     username: string,
 }
 
-interface User {
-    avatar: {
-        gravatar: {
-            hash: string
-        },
-        tmdb: {
-            avatar_path: string
-        }
-    },
-    id: string,
-    iso_639_1: string,
-    iso_3166_1: string,
-    name: string,
-    include_adult: boolean,
-    username: string,
-    session_id: string
-}
-
 //TODO: Create a custom Page
 export const authOptions: AuthOptions = {
     providers: [
@@ -69,7 +51,7 @@ export const authOptions: AuthOptions = {
                     if (!validRequestToken) return null;
 
                     const session = await createSession(validRequestToken.request_token);
-                    console.log("session: ", session);
+                    // console.log("session: ", session);
                     if (!session) return null;
 
                     user = await getAccountDetails(session.session_id, credentials.username);
@@ -92,20 +74,21 @@ export const authOptions: AuthOptions = {
 
     },
     callbacks: {
-        async jwt({ token, user }) {
+        async jwt({ token, user }: { token: JWT, user?: User }) {
+
             // console.log("[JWT] token: ", token);
             // console.log("[JWT] user: ", user);
-
-            // Dump contents of user (which have been specified in authorize) into token
-            if (user) token = { ...user };
-
-            return token;
+            return { ...token, ...user } as unknown as JWT;
         },
 
-        async session({ session, token }) {
+        async session({ session, token }: { session: Session, token: JWT }) {
             let newSession: Session = { user: undefined, expires: session.expires };
+            // console.log("[Session] token: ", token);
+            // console.log("[Session] session: ", session);
 
-            if (token) newSession.user = { ...token };
+
+            // session contains expires + base user properties {name, email, image}
+            if (token) newSession.user = { ...token } as unknown as User;
             else newSession.user = session.user;
 
             return newSession;
