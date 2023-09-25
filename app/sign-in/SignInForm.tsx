@@ -104,6 +104,7 @@ export default function SignInForm() {
                         </div>
 
                         <button
+                            title="Sign in"
                             className={[formik.isSubmitting ? "disabled:bg-red-600 cursor-not-allowed" : "", BtnBaseStyles].join(" ")}
                             type="submit"
                             disabled={formik.isSubmitting}
