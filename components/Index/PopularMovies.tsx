@@ -33,7 +33,8 @@ async function PopularMoviesContent() {
   const popularMovies = await getPopularMovies(1);
 
 
-
+  //TODO:Push scrollbar into PopularMoviesContent and IndexWidgetSKeletons
+  // because when Component fails, Error loads inside scrollbar, looks terrible
   try {
     return popularMovies!.results.map((item: PopularResult) => {
       return (
