@@ -194,7 +194,7 @@ async function deleteSession(session_id: string) {
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDRmYTU3M2ZhNWRhNWFlMjNhOTNjNTkxZmI3NTMyZiIsInN1YiI6IjYyMDBkZmVkZTU0ZDVkMDA2YmMwYzU3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VIS0dGlUU9YrljnIMC6noQ7sUVWL6dQ36vUSBiG7g4I'
+                Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
             },
             body: JSON.stringify({ session_id: session_id })
         };
