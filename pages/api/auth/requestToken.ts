@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json;charset=utf-8");
-    myHeaders.append("Authorization", `Bearer ${process.env.TMDB_ACCESS_TOKEN}`);
+    myHeaders.append("Authorization", `Bearer ${process.env.ACCESS_TOKEN}`);
 
     const raw = {
         "redirect_to": body.redirect_to

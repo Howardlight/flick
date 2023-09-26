@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json;chartset=utf-8");
-    myHeaders.append("Authorization", `Bearer ${process.env.TMDB_ACCESS_TOKEN}`);
+    myHeaders.append("Authorization", `Bearer ${process.env.ACCESS_TOKEN}`);
 
     var raw = `{\r\n    \"request_token\": \"${body.request_token}\"\r\n}`;
 
