@@ -1,39 +1,22 @@
 "use client";
-import { Fragment, useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
+import ShowMoreText from "react-show-more-text";
+import CommentProps from "./Comment.types";
 
-//TODO: Check Performance and use callback or memoization
-export const Comment = ({ text, className }: { text: string; className?: string; }): React.ReactElement => {
-    // logic clarification: is showMoreButton needed?
-    // yes, substring and button. 
-    // no, dump the bio
-
-    //TODO: showmore has this ugly area that it takes but because it's shifter up, the area appears empty
-    // find a solution for it
-
-    const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
-
-
-    const [showMore, setShowMore] = useState(false);
-    useEffect(() => {
-        if (text.length > 250)
-            setShowMore(true);
-
-    }, [text.length]);
-
-    if (!text || text == "") return <Fragment />;
-    return (
-        <div className={`${className}`}>
-            <p className="inline">
-                {
-                    showMore ?
-                        isMobile ?
-                            `${text.substring(0, 250)}`
-                            : `${text.substring(0, 750)}`
-                        : text
-                }
-            </p>
-            {showMore ? <div className="flex items-center justify-center z-10 relative font-semibold bottom-6 backdrop-blur-sm hover:cursor-pointer hover:contrast-150" onClick={() => setShowMore(false)}>Show more</div> : <Fragment />}
-        </div>
-    );
+const Comment = (props: CommentProps): React.ReactElement => {
+  if (!props.text || props.text == "") return <></>;
+  return (
+    <ShowMoreText
+      lines={3}
+      more="Show more"
+      less="Show less"
+      className={props?.className}
+      anchorClass="text-red-600 cursor-pointer"
+      expanded={false}
+      truncatedEndingComponent={"... "}
+    >
+      {props.text}
+    </ShowMoreText>
+  );
 };
+
+export default Comment;
