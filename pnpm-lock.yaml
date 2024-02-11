@@ -38,6 +38,9 @@ dependencies:
   react-show-more-text:
     specifier: ^1.7.1
     version: 1.7.1(react@18.2.0)
+  swiper:
+    specifier: ^11.0.6
+    version: 11.0.6
   swr:
     specifier: ^2.2.2
     version: 2.2.2(react@18.2.0)
@@ -2606,6 +2609,11 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /swiper@11.0.6:
+    resolution: {integrity: sha512-W/Me7MQl5rNgdM5x9i3Gll76WsyVpnHn91GhBOyL7RCFUeg62aVnflzlVfIpXzZ/87FtJOfAoDH79ZH2Yq76zA==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /swr@2.2.2(react@18.2.0):
     resolution: {integrity: sha512-CbR41AoMD4TQBQw9ic3GTXspgfM9Y8Mdhb5Ob4uIKXhWqnRLItwA5fpGvB7SmSw3+zEjb0PdhiEumtUvYoQ+bQ==}

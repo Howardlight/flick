@@ -3,8 +3,10 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Provider from "./context/client-provider";
 import { Analytics } from "@vercel/analytics/react";
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const session = await getServerSession(authOptions);
 
     return (

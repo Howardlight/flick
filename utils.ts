@@ -22,3 +22,38 @@ export function isInPast(release_date: Date) { return moment() > moment(release_
 export function logError(error: Error, context: string) {
     console.error(`[${context}] Error: `, error);
 }
+
+
+/**
+ * Object containing breakpoints for the landing page.
+ */
+export const landingBreakpoints = {
+    320: {
+        slidesPerView: 1.5,
+        spaceBetween: 20
+    },
+    425: {
+        slidesPerView: 1.5,
+        spaceBetween: 20
+    },
+    640: {
+        slidesPerView: 2,
+        spaceBetween: 20
+    },
+    768: {
+        slidesPerView: 3,
+        spaceBetween: 40
+    },
+    1024: {
+        slidesPerView: 4,
+        spaceBetween: 50
+    },
+    1440: {
+        slidesPerView: 5,
+        spaceBetween: 50
+    },
+    2560: {
+        slidesPerView: 8,
+        spaceBetween: 50
+    }
+};
