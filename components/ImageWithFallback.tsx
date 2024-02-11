@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react"
-import Image, { ImageProps } from "next/image"
+import Image from "next/image"
 import { AvatarLoader } from "../AvatarLoader";
+import ImageWithFallbackProps from "./SVGComponents/ImageWithFallback.types";
 
 /**
  * **ImageWithFallback**
@@ -17,22 +18,22 @@ import { AvatarLoader } from "../AvatarLoader";
  * @param props the remainder of next/image's props
  * @returns ReactElement 
  */
-export const ImageWithFallback = ({ fallback, alt, src, ...props }: { fallback: any, alt: string, src: string, props: ImageProps }) => {
+export const ImageWithFallback = ({ ...props }: ImageWithFallbackProps) => {
     const [error, setError] = useState(null)
 
     useEffect(() => {
         setError(null)
-    }, [src])
+    }, [props.src])
 
     return (
         <Image
-            alt={alt}
+            {...props}
             //@ts-ignore
             onError={setError}
-            src={error ? fallback : src}
+            src={error ? props.fallback : props.src}
             loader={AvatarLoader}
             unoptimized
-            {...props}
+            alt={props.alt}
         />
     )
 }
