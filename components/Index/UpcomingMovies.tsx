@@ -13,7 +13,7 @@ async function getUpcomingMovies(page: number) {
 }
 
 
-export default function UpcomingMovies({ className }: { className?: string }) {
+export default function UpcomingMovies({ className }: Readonly<{ className?: string }>) {
   return (
     <IndexWidget className={`${className}`} title='Upcoming Movies' key={"upcoming-movies"}>
       <IndexWidget.Scrollbar>
@@ -32,8 +32,8 @@ async function UpcomingMoviesContent() {
       <IndexWidget.Wrapper title={item.title} key={`upcoming-movie-${item.id}`} mediaType='movie' resultID={item.id}>
         <IndexWidget.Poster title={item.title} url={item.poster_path} />
         <div className='flex flex-col justify-end grow mt-2 max-w-[250px]'>
-          <p className='font-medium text-lg ml-2 pb-2 text-gray-100 truncate'>{item.title}</p>
-          <p className='font-medium text-md ml-2 pb-2 text-gray-300 justify-end'>{moment(item.release_date).startOf("day").fromNow()}</p>
+          <p className='pb-2 ml-2 text-lg font-medium text-gray-100 truncate'>{item.title}</p>
+          <p className='justify-end pb-2 ml-2 font-medium text-gray-300 text-md'>{moment(item.release_date).startOf("day").fromNow()}</p>
         </div>
       </IndexWidget.Wrapper>
     );
