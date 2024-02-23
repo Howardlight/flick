@@ -1,0 +1,20 @@
+
+#popular-movies .swiper-button-next {
+    color: var(--red-600) !important;
+    margin-top: 0;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 4%;
+    border-radius: 0.125rem;
+}
+
+#popular-movies .swiper-button-prev {
+    color: var(--red-600) !important;
+    margin-top: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 4%;
+    border-radius: 0.125rem;
+}
