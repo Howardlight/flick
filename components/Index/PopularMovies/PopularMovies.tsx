@@ -7,7 +7,7 @@ import { logError } from '../../../utils';
 async function getPopularMovies(page: number) {
   try {
     const req = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`,
-      { cache: "no-store" }
+      { cache: "default", next: { revalidate: 90000 } }
     );
     const data: PopularResponse = await req.json();
 
@@ -18,6 +18,8 @@ async function getPopularMovies(page: number) {
   }
 }
 
+//TODO: Simplify this interface
+// remove the content function if it is not needed
 export default function PopularMovies() {
   return (
     <IndexWidget title={`Popular Movies`} key={"popular-movies"}>
