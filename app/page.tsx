@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Navbar from '../components/Navbar';
-import UpcomingMovies from '../components/Index/UpcomingMovies/UpcomingMovies';
-import PopularTV from '../components/Index/PopularTV/PopularTV';
+import UpcomingMovies from '../components/Molecules/UpcomingMovies/UpcomingMovies';
+import PopularTV from '../components/Molecules/PopularTV/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
-import PopularMovies from '../components/Index/PopularMovies/PopularMovies';
+import PopularMovies from '../components/Molecules/PopularMovies/PopularMovies';
 
 export const metadata: Metadata = {
   title: "Home - Flick"

@@ -1,6 +1,6 @@
 import { UpcomingResponse } from '../../../types/GetUpcomingTypes';
 import React, { Suspense } from 'react';
-import { IndexWidget, IndexWidgetSkeletons } from '../IndexWidgetBase';
+import { IndexWidget, IndexWidgetSkeletons } from '../../Index/IndexWidgetBase';
 import UpcomingMoviesWidget from './UpcomingMoviesWidget';
 
 //TODO: Simplify this interface

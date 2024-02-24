@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { PopularResponse } from '../../../types/GetPopularMoviesTypes';
-import { IndexWidget, IndexWidgetSkeletons } from '../IndexWidgetBase';
+import { IndexWidget, IndexWidgetSkeletons } from '../../Index/IndexWidgetBase';
 import PopularMoviesWidget from './PopularMoviesWidget';
 import { logError } from '../../../utils';
 

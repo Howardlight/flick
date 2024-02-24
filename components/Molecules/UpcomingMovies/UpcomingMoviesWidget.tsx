@@ -1,7 +1,7 @@
 'use client';
 import { Fragment } from "react";
 import { UpcomingResponse, UpcomingResult } from "../../../types/GetUpcomingTypes";
-import { IndexWidget } from "../IndexWidgetBase";
+import { IndexWidget } from "../../Index/IndexWidgetBase";
 import moment from 'moment';
 import { landingBreakpoints } from "../../../utils";
 import { Navigation } from "swiper/modules";

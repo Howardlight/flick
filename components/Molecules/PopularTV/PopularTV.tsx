@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { GetPopularTV } from "../../../types/GetPopularTVTypes";
-import { IndexWidget, IndexWidgetSkeletons } from "../IndexWidgetBase";
+import { IndexWidget, IndexWidgetSkeletons } from "../../Index/IndexWidgetBase";
 import PopularTVWidget from "./PopularTVWidget";
 
 async function getPopularTV(page: number) {

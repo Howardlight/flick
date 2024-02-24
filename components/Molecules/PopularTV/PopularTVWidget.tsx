@@ -1,7 +1,7 @@
 'use client';
 import { Swiper, SwiperSlide } from "swiper/react"
 import { GetPopularTV, TVResult } from "../../../types/GetPopularTVTypes"
-import { IndexWidget } from "../IndexWidgetBase"
+import { IndexWidget } from "../../Index/IndexWidgetBase"
 import { Fragment } from "react"
 import { landingBreakpoints } from "../../../utils";
 import { Navigation } from "swiper/modules";
