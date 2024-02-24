@@ -9,6 +9,7 @@ import Logo from './../../../assets/MovieSVG.svg';
 import { landingBreakpoints } from '../../../utils';
 import { Fragment } from 'react';
 import './PopularMovies.css';
+import ViewMore from '../../Atoms/ViewMore/ViewMore';
 
 const PopularMoviesWidget = ({ popularMovies }: { popularMovies: PopularResponse | null }) => {
     if (!popularMovies) return <Fragment />;
@@ -35,10 +36,7 @@ const PopularMoviesWidget = ({ popularMovies }: { popularMovies: PopularResponse
             })}
 
             <SwiperSlide>
-                <Link href="./view-more" className='me-16 flex flex-col h-[463px] w-[252px] rounded-sm justify-center items-center bg-black-100 hover:bg-neutral-900 transition delay-50 ease-in-out'>
-                    <Image src={Logo} width={128} height={128} alt='Movie Logo' />
-                    <p className='text-2xl font-bold text-center text-neutral-300'>View More</p>
-                </Link>
+                <ViewMore href='/view-more' />
             </SwiperSlide>
         </Swiper>
     )
