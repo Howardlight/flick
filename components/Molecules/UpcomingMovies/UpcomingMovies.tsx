@@ -7,7 +7,7 @@ import UpcomingMoviesWidget from './UpcomingMoviesWidget';
 // remove the content function if it is
 async function getUpcomingMovies(page: number) {
   const req = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`,
-    { cache: "default", next: { revalidate: 90000 } }
+    { next: { revalidate: 90000 } }
   );
   const data: UpcomingResponse = await req.json();
 

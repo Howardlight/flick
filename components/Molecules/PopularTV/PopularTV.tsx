@@ -5,7 +5,7 @@ import PopularTVWidget from "./PopularTVWidget";
 
 async function getPopularTV(page: number) {
     const req = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`,
-        { cache: "no-store" }
+        { next: { revalidate: 90000 } }
     );
     const data: GetPopularTV = await req.json();
 

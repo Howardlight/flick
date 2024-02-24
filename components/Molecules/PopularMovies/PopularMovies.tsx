@@ -7,7 +7,7 @@ import { logError } from '../../../utils';
 async function getPopularMovies(page: number) {
   try {
     const req = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`,
-      { cache: "default", next: { revalidate: 90000 } }
+      { next: { revalidate: 90000 } }
     );
     const data: PopularResponse = await req.json();
 
