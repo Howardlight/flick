@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Navbar from '../components/Navbar';
-import UpcomingMovies from '../components/Index/UpcomingMovies';
+import UpcomingMovies from '../components/Index/UpcomingMovies/UpcomingMovies';
 import PopularTV from '../components/Index/PopularTV';
 import SearchBar from '../components/Index/SearchBar';
 import PopularMovies from '../components/Index/PopularMovies/PopularMovies';
