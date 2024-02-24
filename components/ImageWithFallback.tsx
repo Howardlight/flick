@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { AvatarLoader } from "../AvatarLoader";
+import { AvatarLoader } from "../utils/AvatarLoader";
 import ImageWithFallbackProps from "./SVGComponents/ImageWithFallback.types";
 
 /**

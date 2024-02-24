@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PosterLoader } from "../../PosterLoader";
+import { PosterLoader } from "../../utils/PosterLoader";
 import { CreditsResponse } from "../../types/GetCreditsTypes";
 import { Cast } from "../../types/Cast";
 import Placeholder from "../../assets/MovieSVG.svg";

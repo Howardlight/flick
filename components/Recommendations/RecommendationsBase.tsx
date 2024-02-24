@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Fragment, ReactElement } from "react";
-import { PosterLoader } from "../../PosterLoader";
+import { PosterLoader } from "../../utils/PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";
 import moment from "moment";
 

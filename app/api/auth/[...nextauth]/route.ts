@@ -1,6 +1,6 @@
 import NextAuth, { AuthOptions, Session, User } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { logError } from "../../../../utils"
+import { logError } from "../../../../utils/utils"
 import { JWT } from "next-auth/jwt"
 
 interface RequestToken {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { ReactNode } from "react";
 import Image from "next/image";
-import { PosterLoader } from "../../PosterLoader";
+import { PosterLoader } from "../../utils/PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";
 import styles from "../../styles/IndexWidget.module.css";
 

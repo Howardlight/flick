@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { PopularResponse, PopularResult } from '../../../types/GetPopularMoviesTypes';
 import { IndexWidget } from '../../Index/IndexWidgetBase';
-import { landingBreakpoints, logError } from '../../../utils';
+import { landingBreakpoints, logError } from '../../../utils/utils';
 import { Fragment } from 'react';
 import ViewMore from '../../Atoms/ViewMore/ViewMore';
 import { ErrorBoundary } from 'react-error-boundary';

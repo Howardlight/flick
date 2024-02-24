@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { PopularResponse } from '../../../types/GetPopularMoviesTypes';
 import { IndexWidget, IndexWidgetSkeletons } from '../../Index/IndexWidgetBase';
 import PopularMoviesWidget from './PopularMoviesWidget';
-import { logError } from '../../../utils';
+import { logError } from '../../../utils/utils';
 
 async function getPopularMovies(page: number) {
   try {

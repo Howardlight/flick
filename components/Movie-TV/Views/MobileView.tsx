@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Placeholder from "../../../assets/MovieSVG.svg";
-import { PosterLoader } from "../../../PosterLoader";
+import { PosterLoader } from "../../../utils/PosterLoader";
 import { ReactElement } from "react";
 import { Genre } from "../../../types/Movie";
 

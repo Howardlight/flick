@@ -2,7 +2,7 @@
 import { Fragment } from "react";
 import { Person } from "../../types/Person";
 import Image from "next/image";
-import { PosterLoader } from "../../PosterLoader";
+import { PosterLoader } from "../../utils/PosterLoader";
 import React from "react";
 import Placeholder from "../../assets/MovieSVG.svg";
 import { Biography } from "./Biography";

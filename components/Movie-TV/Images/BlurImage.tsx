@@ -3,7 +3,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Placeholder from "../../../assets/MovieSVG.svg";
 import { Backdrop } from "../../../types/Images";
-import { PosterLoader } from "../../../PosterLoader";
+import { PosterLoader } from "../../../utils/PosterLoader";
 import Star from "../../SVGComponents/Star";
 
 export default function BlurImage({ image }: { image: Backdrop }) {

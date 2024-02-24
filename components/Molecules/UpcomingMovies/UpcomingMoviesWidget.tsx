@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { UpcomingResponse, UpcomingResult } from "../../../types/GetUpcomingTypes";
 import { IndexWidget } from "../../Index/IndexWidgetBase";
 import moment from 'moment';
-import { landingBreakpoints } from "../../../utils";
+import { landingBreakpoints } from "../../../utils/utils";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ViewMore from "../../Atoms/ViewMore/ViewMore";

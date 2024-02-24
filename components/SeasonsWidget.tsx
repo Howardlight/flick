@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import { PosterLoader } from "../PosterLoader";
+import { PosterLoader } from "../utils/PosterLoader";
 import moment from "moment";
 import Placeholder from "../assets/MovieSVG.svg";
 import { Season } from "../types/TVShow";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PosterLoader } from "../../PosterLoader";
+import { PosterLoader } from "../../utils/PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";
 import moment from "moment";
 import { TVShow } from "../../types/TVShow";

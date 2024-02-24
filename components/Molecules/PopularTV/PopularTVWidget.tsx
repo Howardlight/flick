@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { GetPopularTV, TVResult } from "../../../types/GetPopularTVTypes"
 import { IndexWidget } from "../../Index/IndexWidgetBase"
 import { Fragment } from "react"
-import { landingBreakpoints } from "../../../utils";
+import { landingBreakpoints } from "../../../utils/utils";
 import { Navigation } from "swiper/modules";
 import ViewMore from "../../Atoms/ViewMore/ViewMore";
 import './PopularTV.css';

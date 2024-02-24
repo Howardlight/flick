@@ -1,6 +1,6 @@
 import moment from "moment"
 import { Fragment, ReactNode } from "react"
-import { isInPast } from "../utils"
+import { isInPast } from "../utils/utils"
 
 const DetailsBox = ({ children }: { children: ReactNode }) => {
     return (

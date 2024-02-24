@@ -1,11 +1,11 @@
 "use client";
 import { Fragment, ReactElement } from "react";
-import { Mobile } from "../../Breakpoints";
+import { Mobile } from "../../utils/Breakpoints";
 import { TVShow } from "../../types/TVShow";
 import { DetailsBox } from "../DetailsBox";
 import { Default } from "../MediaQueries";
 import { MainPageMetrics } from "../Movie-TV/MainPageMetrics";
-import { isInPast } from "../../utils";
+import { isInPast } from "../../utils/utils";
 
 export function TVDetailsBox({ data }: { data: TVShow }) {
     return (

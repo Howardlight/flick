@@ -1,11 +1,11 @@
 import Image from "next/image"
-import { PosterLoader } from "../../../PosterLoader"
+import { PosterLoader } from "../../../utils/PosterLoader"
 import Placeholder from "../../../assets/MovieSVG.svg";
 import moment from "moment";
 import { Fragment, ReactElement } from "react";
 import { Genre } from "../../../types/Movie";
 import MainPageMetrics from "../MainPageMetrics";
-import { isInPast } from "../../../utils";
+import { isInPast } from "../../../utils/utils";
 
 function DesktopView({ children }: { children: ReactElement[] }) {
     return (

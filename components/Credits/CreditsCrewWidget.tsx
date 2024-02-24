@@ -2,10 +2,10 @@
 import Link from "next/link";
 import React, { Fragment, useMemo, useState } from "react";
 import { Crew } from "../../types/Crew";
-import { splitElementsInEqualArrays } from "../../utils";
+import { splitElementsInEqualArrays } from "../../utils/utils";
 import PageBox from "./PageBox";
 import Image from "next/image";
-import { PosterLoader } from "../../PosterLoader";
+import { PosterLoader } from "../../utils/PosterLoader";
 import Placeholder from "../../assets/MovieSVG.svg";
 import CreditsSkeletons from "./CreditsSkeletons";
 
