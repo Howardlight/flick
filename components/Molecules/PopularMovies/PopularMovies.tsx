@@ -3,11 +3,12 @@ import { PopularResponse } from '../../../types/GetPopularMoviesTypes';
 import { IndexWidget, IndexWidgetSkeletons } from '../../Index/IndexWidgetBase';
 import PopularMoviesWidget from './PopularMoviesWidget';
 import { logError } from '../../../utils/utils';
+import constants from '../../../utils/constants';
 
 async function getPopularMovies(page: number) {
   try {
     const req = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`,
-      { next: { revalidate: 90000 } }
+      { next: { revalidate: constants.cacheRevalidation.landing } }
     );
     const data: PopularResponse = await req.json();
 

@@ -2,10 +2,11 @@ import { Suspense } from "react";
 import { GetPopularTV } from "../../../types/GetPopularTVTypes";
 import { IndexWidget, IndexWidgetSkeletons } from "../../Index/IndexWidgetBase";
 import PopularTVWidget from "./PopularTVWidget";
+import constants from "../../../utils/constants";
 
 async function getPopularTV(page: number) {
     const req = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`,
-        { next: { revalidate: 90000 } }
+        { next: { revalidate: constants.cacheRevalidation.landing } }
     );
     const data: GetPopularTV = await req.json();
 

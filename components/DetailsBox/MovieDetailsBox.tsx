@@ -7,6 +7,7 @@ import MainPageMetrics from "../Movie-TV/MainPageMetrics";
 import { isInPast } from "../../utils/utils";
 
 export default function MovieDetailsBox({ data }: { data: Movie }): ReactElement {
+    console.log(data);
     return (
         <Fragment>
             <Mobile>

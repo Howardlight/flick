@@ -11,6 +11,7 @@ import MediaType from "../../../types/MediaType";
 import ReviewsWidget from "../../../components/Reviews/ReviewsWidget";
 import Recommendations from "../../../components/Recommendations/Recommendations";
 import Navbar from "../../../components/Navbar";
+import constants from "../../../utils/constants";
 
 interface MoviePageParams {
     id: string;
@@ -23,9 +24,9 @@ export async function generateMetadata({ params }: { params: MoviePageParams }):
 
 async function getData(id: string) {
     const request = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
+        `${constants.baseAPI}movie/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`,
         {
-            cache: "no-cache"
+            next: { revalidate: constants.cacheRevalidation.mediaDetails }
         }
     );
     const data: Movie = await request.json();
@@ -44,7 +45,7 @@ export default async function MoviePage({ params }: { params: MoviePageParams })
     if (requestStatus != 200) return <NotFound />;
     return (
         <Fragment>
-            <div className="lg:border-b-2 border-red-600"
+            <div className="border-red-600 lg:border-b-2"
                 style={{
                     backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})`,
                 }}>

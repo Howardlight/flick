@@ -13,6 +13,7 @@ import { Metadata } from "next";
 import { Images } from "../../../components/Movie-TV/Images/ImagesWidget";
 import MediaType from "../../../types/MediaType";
 import ReviewsWidget from "../../../components/Reviews/ReviewsWidget";
+import constants from "../../../utils/constants";
 
 interface TVShowPageParams {
     id: string;
@@ -20,7 +21,9 @@ interface TVShowPageParams {
 
 async function getData(id: string) {
     let data: TVShow;
-    const request = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`);
+    const request = await fetch(`${constants.baseAPI}/tv/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`, {
+        next: { revalidate: constants.cacheRevalidation.mediaDetails }
+    });
     data = await request.json();
 
     return {
@@ -43,7 +46,7 @@ export default async function TVShowPage({ params }: { params: TVShowPageParams 
     if (requestStatus != 200) return <NotFound />;
     return (
         <Fragment>
-            <div className="lg:border-b-2 border-red-600" style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
+            <div className="border-red-600 lg:border-b-2" style={{ backgroundImage: `linear-gradient(to right, rgba(24, 26, 27, 0.84), rgba(0,0,0, 0.8)), url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
                 <Navbar />
 
                 <HeroBox data={data} />

@@ -2,12 +2,13 @@ import { UpcomingResponse } from '../../../types/GetUpcomingTypes';
 import React, { Suspense } from 'react';
 import { IndexWidget, IndexWidgetSkeletons } from '../../Index/IndexWidgetBase';
 import UpcomingMoviesWidget from './UpcomingMoviesWidget';
+import constants from '../../../utils/constants';
 
 //TODO: Simplify this interface
 // remove the content function if it is
 async function getUpcomingMovies(page: number) {
   const req = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`,
-    { next: { revalidate: 90000 } }
+    { next: { revalidate: constants.cacheRevalidation.landing } }
   );
   const data: UpcomingResponse = await req.json();
 
