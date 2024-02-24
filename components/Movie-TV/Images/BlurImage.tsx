@@ -24,12 +24,12 @@ export default function BlurImage({ image }: { image: Backdrop }) {
                             ? 'scale-110 blur-2xl grayscale'
                             : 'scale-100 blur-0 grayscale-0'
                     )}
-                    onLoadingComplete={() => setLoading(false)}
+                    onLoad={() => setLoading(false)}
                 />
             </div>
             <div className="flex flex-row items-center justify-between mt-2">
                 <p className="mt-1 text-base text-neutral-400">{image.vote_count} Reviews</p>
-                <div className="flex flex-row gap-2 justify-center">
+                <div className="flex flex-row justify-center gap-2">
                     <h3 className="text-base font-medium text-neutral-100">{Math.round(image.vote_average * 10) / 10}</h3>
                     <Star className="self-end mb-[10%]" />
                 </div>
