@@ -32,12 +32,5 @@ export default function PopularMovies() {
 
 async function PopularMoviesContent() {
   const popularMovies = await getPopularMovies(1);
-
-  try {
-    return <PopularMoviesWidget popularMovies={popularMovies} />
-
-  } catch (error: any) {
-    logError(error, "<PopularMoviesContent />")
-    return <p>Could not fetch Popular Movies</p>
-  }
+  return <PopularMoviesWidget popularMovies={popularMovies} />;
 }
