@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: { params: MovieParam
     const page = params.MovieID;
     let data;
 
-    const req = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`);
+    const req = await fetch(`movie/upcoming?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`);
     data = await req.json();
 
 

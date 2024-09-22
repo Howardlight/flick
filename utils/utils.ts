@@ -23,6 +23,21 @@ export function logError(error: Error, context: string) {
     console.error(`[${context}] Error: `, error);
 }
 
+/**
+ * Debounces a function by delaying its execution until a certain amount of time has passed without any further calls.
+ * @param cb The function to be debounced.
+ * @param wait The number of milliseconds to wait before executing the debounced function.
+ * @returns The debounced function.
+ */
+export function debounce<T extends (...args: any[]) => any>(cb: T, wait: number) {
+    let h: any;
+    const callable = (...args: any) => {
+        clearTimeout(h);
+        h = setTimeout(() => cb(...args), wait);
+    };
+    return <T>(<any>callable);
+}
+
 
 /**
  * Object containing breakpoints for the landing page.

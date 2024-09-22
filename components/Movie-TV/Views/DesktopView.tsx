@@ -6,20 +6,22 @@ import { Fragment, ReactElement } from "react";
 import { Genre } from "../../../types/Movie";
 import MainPageMetrics from "../MainPageMetrics";
 import { isInPast } from "../../../utils/utils";
+import { cn } from "../Images/BlurImage";
 
-function DesktopView({ children }: { children: ReactElement[] }) {
+function DesktopView({ className, children }: { className?: string, children: ReactElement[] }) {
     return (
-        <div className="flex flex-row justify-around max-md:hidden p-5">
+        <div className={cn(className ?? "", "flex flex-row justify-around p-5 max-md:hidden")}>
             {children}
         </div>
     )
 }
 
-const Poster = ({ url, name }: { url: string | undefined | null, name: string }) => {
+const Poster = ({ shouldRender = true, url, name }: { shouldRender?: boolean, url: string | undefined | null, name: string }) => {
+    if (!shouldRender) return <Fragment />;
     return (
         <Image
             title={name}
-            src={url ? url : Placeholder.src}
+            src={url ?? Placeholder.src}
             loader={PosterLoader}
             alt={`${name} Poster`}
             width={250}
@@ -32,7 +34,7 @@ const Poster = ({ url, name }: { url: string | undefined | null, name: string })
 
 const ContentWrapper = ({ children }: { children: ReactElement[] }) => {
     return (
-        <div className="flex flex-col justify-between grow ml-5">
+        <div className="flex flex-col justify-between ml-5 grow">
             {children}
         </div>
     )
@@ -43,18 +45,19 @@ const Description = ({ name, tagline, className }: { name: string, tagline: stri
 
         // mb-5
         <div className={`${className}`}>
-            <p className="font-bold text-3xl self-center text-neutral-100">{name}</p>
-            <p className="text-sm self-center text-neutral-300">{tagline}</p>
+            <p className="self-center text-3xl font-bold text-neutral-100">{name}</p>
+            <p className="self-center text-sm text-neutral-300">{tagline}</p>
         </div>
     )
 }
 
-const Genres = ({ genres }: { genres: Genre[] }) => {
+const Genres = ({ shouldRender = true, genres }: { shouldRender?: boolean, genres: Genre[] }) => {
+    if (!shouldRender) return <Fragment />;
     return (
         <div className="flex flex-row gap-1 mb-2">
             {genres.map((genre) => {
                 return (
-                    <div className="rounded-md border-2 border-red-600 font-medium text-sm p-1" key={genre.id}>
+                    <div className="p-1 text-sm font-medium border-2 border-red-600 rounded-md" key={genre.id}>
                         {genre.name}
                     </div>
                 )
@@ -75,14 +78,14 @@ const AirDates = ({ firstAirDate, lastAirDate }: { firstAirDate: Date, lastAirDa
 const EpNum = ({ epNum }: { epNum: number }) => {
     return (
         <div>
-            <p className="font-semibold text-sm inline text-red-600">{epNum}</p>
-            <p className="text-sm inline"> Episodes</p>
+            <p className="inline text-sm font-semibold text-red-600">{epNum}</p>
+            <p className="inline text-sm"> Episodes</p>
         </div>
     )
 }
 
-const Rating = ({ firstAirDate, voteAverage, voteCount }: { firstAirDate: Date, voteAverage: number, voteCount: number }) => {
-    if (!isInPast(firstAirDate)) return <Fragment />;
+const Rating = ({ shouldRender = true, firstAirDate, voteAverage, voteCount }: { shouldRender?: boolean, firstAirDate: Date, voteAverage: number, voteCount: number }) => {
+    if (!shouldRender || !isInPast(firstAirDate)) return <Fragment />;
     return <MainPageMetrics vote_average={voteAverage} vote_count={voteCount} />;
 }
 

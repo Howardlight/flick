@@ -38,6 +38,8 @@ export default function SignInForm() {
     const [responseError, setResponseError] = useState<string | undefined>(undefined);
     const router = useRouter();
 
+    console.log('callbackUrl: ', callbackUrl);
+
 
     return (
         <Fragment>
@@ -72,10 +74,10 @@ export default function SignInForm() {
                 {formik => (
                     <form
                         onSubmit={formik.handleSubmit}
-                        className="flex flex-col mb-10 max-w-lg"
+                        className="flex flex-col max-w-lg mb-10"
                     >
                         <div className="flex flex-col mb-5">
-                            <label className="text-base mb-2 font-semibold" htmlFor="username">Username</label>
+                            <label className="mb-2 text-base font-semibold" htmlFor="username">Username</label>
                             <input
                                 id="username"
                                 type="text"
@@ -83,14 +85,14 @@ export default function SignInForm() {
                                 {...formik.getFieldProps("username")}
                             />
                             {formik.touched.username && formik.errors.username ?
-                                <p className="mt-1 text-red-600 text-sm font-medium">{formik.errors.username}</p>
+                                <p className="mt-1 text-sm font-medium text-red-600">{formik.errors.username}</p>
                                 : <Fragment />
                             }
                         </div>
 
 
                         <div className="flex flex-col mb-5">
-                            <label className="text-base font-semibold mb-2" htmlFor="password">Password</label>
+                            <label className="mb-2 text-base font-semibold" htmlFor="password">Password</label>
                             <input
                                 id="password"
                                 type="password"
@@ -98,7 +100,7 @@ export default function SignInForm() {
                                 {...formik.getFieldProps("password")}
                             />
                             {formik.touched.password && formik.errors.password ?
-                                <p className="mt-1 text-red-600 text-sm font-medium">{formik.errors.password}</p>
+                                <p className="mt-1 text-sm font-medium text-red-600">{formik.errors.password}</p>
                                 : <Fragment />
                             }
                         </div>
@@ -112,7 +114,7 @@ export default function SignInForm() {
                             <ButtonContent isSubmitting={formik.isSubmitting} />
                         </button>
                         {responseError ?
-                            <p className="mt-1 text-red-600 text-sm font-medium">{responseError}</p>
+                            <p className="mt-1 text-sm font-medium text-red-600">{responseError}</p>
                             : <Fragment />}
                     </form>
                 )}
@@ -135,9 +137,9 @@ function ButtonContent({ isSubmitting }: { isSubmitting: boolean }) {
 
 function Register() {
     return (
-        <div className="inline-flex flex-row text-sm text-neutral-400 gap-1">
+        <div className="inline-flex flex-row gap-1 text-sm text-neutral-400">
             <p className="">Not a member? </p>
-            <Link className="hover:text-neutral-200 underline" href="https://www.themoviedb.org/signup">Sign up with TMDB™</Link>
+            <Link className="underline hover:text-neutral-200" href="https://www.themoviedb.org/signup">Sign up with TMDB™</Link>
         </div>
     )
 }

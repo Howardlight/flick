@@ -9,12 +9,12 @@ export default function NavbarProfile() {
     const { data: session, status } = useSession();
 
     return (
-        <div className="flex flex-row gap-2 items-center">
+        <div className="flex flex-row items-center gap-2">
 
             <UserElement status={status} />
             {session?.user && status === "authenticated" == true ?
-                <Link href={"#"} className="hover:text-neutral-100 rounded-md" passHref>
-                    <div className="flex scale-90 items-center hover:bg-neutral-900 justify-center w-8 h-auto rounded-md text-lg border-2 font-semibold border-red-600">
+                <Link href={"#"} className="rounded-md hover:text-neutral-100" passHref>
+                    <div className="flex items-center justify-center w-8 h-auto text-lg font-semibold scale-90 border-2 border-red-600 rounded-md hover:bg-neutral-900">
                         {session.user.name!.charAt(0)}
                     </div>
                 </Link>
@@ -27,7 +27,7 @@ export default function NavbarProfile() {
 
 function UserElement({ status }: { status: "authenticated" | "loading" | "unauthenticated" }) {
     if (status === "loading") return (
-        <button className="flex flex-row items-center gap-2 cursor-default rounded-md font-semibold">
+        <button className="flex flex-row items-center gap-2 font-semibold rounded-md cursor-default">
             <div className="animate-spin">
                 <Spinner className={"w-8 h-auto"} />
             </div>

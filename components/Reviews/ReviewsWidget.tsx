@@ -13,30 +13,36 @@ import {
 import Placeholder from "../../assets/MovieSVG.svg";
 import { IconStarFilled, IconStar } from "@tabler/icons-react";
 import MediaType from "../../types/MediaType";
+import { logError } from "../../utils/utils";
 
 async function getReviews(ID: number, mediaType: MediaType) {
     let req, data: ReviewResponse, page = 1;
-    switch (mediaType) {
-        case MediaType.movie:
-            req = await fetch(
-                `https://api.themoviedb.org/3/movie/${ID}/reviews?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`
-            );
-            data = await req.json();
+    try {
+        switch (mediaType) {
+            case MediaType.movie:
+                req = await fetch(
+                    `https://api.themoviedb.org/3/movie/${ID}/reviews?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`
+                );
+                data = await req.json();
 
-            return data;
-        case MediaType.tv:
-            req = await fetch(
-                `https://api.themoviedb.org/3/tv/${ID}/reviews?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`
-            );
-            data = await req.json();
+                return data;
+            case MediaType.tv:
+                req = await fetch(
+                    `https://api.themoviedb.org/3/tv/${ID}/reviews?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=${page}`
+                );
+                data = await req.json();
 
-            return data;
+                return data;
 
-        default:
-            console.error(
-                `[getImages][ERROR] Default case Detected! this error should not occur!`
-            );
-            return undefined;
+            default:
+                console.error(
+                    `[getImages][ERROR] Default case Detected! this error should not occur!`
+                );
+                return undefined;
+        }
+    } catch (error) {
+        logError(error as Error, "[getReview]");
+        return undefined;
     }
 }
 
@@ -56,7 +62,7 @@ async function ReviewsContent(props: Readonly<ReviewsContentProps>) {
 
                 <div className="flex flex-col gap-4 mt-8 mb-8" key={`${review.id}-${index}`}>
                     <div className="flex flex-row justify-between">
-                        <div className="flex flex-row justify-start items-center gap-2">
+                        <div className="flex flex-row items-center justify-start gap-2">
                             <ImageWithFallback
                                 alt={`${review.author}'s Avatar`}
                                 src={review.author_details.avatar_path ?? Placeholder.src}
@@ -66,14 +72,14 @@ async function ReviewsContent(props: Readonly<ReviewsContentProps>) {
                                 className={"rounded-md w-16 h-16"}
                             />
                             <div className="flex flex-col">
-                                <p className="text-ellipsis w-36 overflow-x-hidden whitespace-nowrap">{review.author}</p>
+                                <p className="overflow-x-hidden text-ellipsis w-36 whitespace-nowrap">{review.author}</p>
                                 <p className="text-base font-medium text-neutral-400">
                                     {moment(review.created_at).format("LL")}
                                 </p>
                             </div>
                         </div>
                         {review.author_details.rating ? (
-                            <div className="flex flex-row items-center justify-center text-2xl font-semibold gap-2">
+                            <div className="flex flex-row items-center justify-center gap-2 text-2xl font-semibold">
                                 <p className="text-2xl font-bold">
                                     {review.author_details.rating} / 10
                                 </p>
