@@ -1,8 +1,11 @@
 import Logo from '../../../assets/MovieSVG.svg';
 import Link from "next/link";
 import Image from "next/image";
-import { ViewMoreProps } from './ViewMore.types';
 import { cn } from '../../Movie-TV/Images/BlurImage';
+export interface ViewMoreProps {
+    className?: string;
+    href: string;
+}
 
 
 function ViewMore(props: Readonly<ViewMoreProps>) {

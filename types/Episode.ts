@@ -1,6 +1,6 @@
 import { Crew } from "./Crew";
 
-export interface Episode {
+export interface IEpisode {
     air_date:        Date;
     episode_number:  number;
     id:              number;

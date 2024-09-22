@@ -1,9 +1,9 @@
-import { Episode } from "./Episode";
+import { IEpisode } from "./Episode";
 
 export interface Season {
     _id:           string;
     air_date:      Date;
-    episodes:      Episode[];
+    episodes:      IEpisode[];
     name:          string;
     overview:      string;
     id:            number;

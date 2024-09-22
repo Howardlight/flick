@@ -9,20 +9,15 @@ export const Biography = ({ biography }: { biography: string; }): React.ReactEle
     // logic clarification: is showMoreButton needed?
     // yes, substring and button. 
     // no, dump the bio
-    const [showMore, setShowMore] = useState(false);
-    useEffect(() => {
-        if (biography.length > 250)
-            setShowMore(true);
-
-    }, []);
+    const [showMore, setShowMore] = useState(biography?.length > 250);
 
     if (!biography || biography == "")
         return <Fragment></Fragment>;
     return (
         <div className="mt-4">
-            <p className="font-semibold text-2xl">Biography</p>
+            <p className="text-2xl font-semibold">Biography</p>
             <p className="inline">{showMore ? `${biography.substring(0, 250)}` : biography}</p>
-            {showMore ? <button className="ml-1 font-medium text-lg text-red-600 inline" onClick={() => setShowMore(false)}>Show more</button> : <Fragment />}
+            {showMore ? <button className="inline ml-1 text-lg font-medium text-red-600" onClick={() => setShowMore(false)}>Show more</button> : <Fragment />}
         </div>
     );
 };
