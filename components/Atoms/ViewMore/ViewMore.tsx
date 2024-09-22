@@ -1,7 +1,7 @@
 import Logo from '../../../assets/MovieSVG.svg';
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from '../../Movie-TV/Images/BlurImage';
+import { cn } from "../../Movie-TV/Images/cn";
 export interface ViewMoreProps {
     className?: string;
     href: string;

@@ -7,7 +7,7 @@ import Navbar from "../../Navbar";
 // import { debounce } from "../../../utils/utils";
 // import placeholder from '../../../assets/MovieSVG.svg';
 import styles from './MediaDetailsHero.module.css';
-import { cn } from "../../Movie-TV/Images/BlurImage";
+import { cn } from "../../Movie-TV/Images/cn";
 import './MediaDetailsHero.css';
 // import Controls from "../../Molecules/Controls/Controls";
 

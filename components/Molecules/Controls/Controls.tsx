@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import ControlsProps from './Controls.types';
-import { cn } from '../../Movie-TV/Images/BlurImage';
+import { cn } from "../../Movie-TV/Images/cn";
 import { IconPlayerPauseFilled, IconPlayerPlayFilled, IconVolume, IconVolumeOff } from '@tabler/icons-react';
 
 const defaultProps: ControlsProps = {

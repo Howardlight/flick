@@ -5,6 +5,7 @@ import Placeholder from "../../../assets/MovieSVG.svg";
 import { Backdrop } from "../../../types/Images";
 import { PosterLoader } from "../../../utils/PosterLoader";
 import Star from "../../SVGComponents/Star";
+import { cn } from "./cn";
 
 export default function BlurImage({ image }: { image: Backdrop }) {
     const [isLoading, setLoading] = useState(true)
@@ -36,8 +37,4 @@ export default function BlurImage({ image }: { image: Backdrop }) {
             </div>
         </a >
     )
-}
-
-export function cn(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
 }

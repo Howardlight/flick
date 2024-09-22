@@ -6,9 +6,9 @@ import { Fragment, ReactElement } from "react";
 import { Genre } from "../../../types/Movie";
 import MainPageMetrics from "../MainPageMetrics";
 import { isInPast } from "../../../utils/utils";
-import { cn } from "../Images/BlurImage";
+import { cn } from "../Images/cn";
 
-function DesktopView({ className, children }: { className?: string, children: ReactElement[] }) {
+function DesktopView({ className, children }: Readonly<{ className?: string, children: ReactElement[] }>) {
     return (
         <div className={cn(className ?? "", "flex flex-row justify-around p-5 max-md:hidden")}>
             {children}

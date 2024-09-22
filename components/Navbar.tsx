@@ -3,7 +3,7 @@ import MovieSVG from "../assets/MovieSVG.svg";
 import Image from "next/image";
 import Link from "next/link";
 import NavbarProfile from "./NavbarProfile";
-import { cn } from "./Movie-TV/Images/BlurImage";
+import { cn } from "./Movie-TV/Images/cn";
 
 export default function Navbar({ classNameOverride }: { classNameOverride?: string }) {
     return (

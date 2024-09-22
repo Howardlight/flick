@@ -21,7 +21,7 @@ interface TVShowPageParams {
 
 async function getData(id: string) {
     let data: TVShow;
-    const request = await fetch(`${constants.baseAPI}/tv/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`, {
+    const request = await fetch(`${constants.baseAPI}tv/${id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`, {
         next: { revalidate: constants.cacheRevalidation.mediaDetails }
     });
     data = await request.json();
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: TVShowPageParams })
     return { title: `${data.name} - Flick` };
 }
 
-export default async function TVShowPage({ params }: { params: TVShowPageParams }) {
+export default async function TVShowPage({ params }: Readonly<{ params: TVShowPageParams }>) {
     const { data, requestStatus, mediaType } = await getData(params.id);
     // console.log(data);
 

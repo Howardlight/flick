@@ -3,7 +3,7 @@ import Placeholder from "../../../assets/MovieSVG.svg";
 import { PosterLoader } from "../../../utils/PosterLoader";
 import { ReactElement } from "react";
 import { Genre } from "../../../types/Movie";
-import { cn } from "../Images/BlurImage";
+import { cn } from "../Images/cn";
 
 type TwoChilren = [ReactElement, ReactElement];
 
