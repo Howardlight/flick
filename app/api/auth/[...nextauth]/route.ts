@@ -32,7 +32,7 @@ interface UserDetailsResponse {
 }
 
 //TODO: Create a custom Page
-export const authOptions: AuthOptions = {
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "TMDB",

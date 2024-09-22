@@ -1,17 +1,17 @@
 "use client";
 
-import { signIn, signOut, useSession } from "next-auth/react";
+// import { signIn, signOut, useSession } from "next-auth/react";
 import { Fragment } from "react";
 import Spinner from "./SVGComponents/Spinner";
 import Link from "next/link";
 
 export default function NavbarProfile() {
-    const { data: session, status } = useSession();
+    // const { data: session, status } = useSession();
 
     return (
         <div className="flex flex-row items-center gap-2">
 
-            <UserElement status={status} />
+            {/* <UserElement status={status} />
             {session?.user && status === "authenticated" == true ?
                 <Link href={"#"} className="rounded-md hover:text-neutral-100" passHref>
                     <div className="flex items-center justify-center w-8 h-auto text-lg font-semibold scale-90 border-2 border-red-600 rounded-md hover:bg-neutral-900">
@@ -19,7 +19,7 @@ export default function NavbarProfile() {
                     </div>
                 </Link>
                 : <Fragment />
-            }
+            } */}
 
         </div>
     )
@@ -35,14 +35,14 @@ function UserElement({ status }: { status: "authenticated" | "loading" | "unauth
         </button>
     );
 
-    if (status === "authenticated") return (
-        <button className="flex flex-row items-center gap-2 font-semibold hover:text-neutral-100" onClick={() => signOut()}>
-            Sign out
-        </button>
-    );
+    // if (status === "authenticated") return (
+    //     <button className="flex flex-row items-center gap-2 font-semibold hover:text-neutral-100" onClick={() => signOut()}>
+    //         Sign out
+    //     </button>
+    // );
 
     return (
-        <button onClick={() => signIn()} className="font-semibold hover:text-neutral-100">
+        <button onClick={() => {}} className="font-semibold hover:text-neutral-100">
             Sign in
         </button>
     );

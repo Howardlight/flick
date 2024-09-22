@@ -1,13 +1,13 @@
 import "../styles/globals.css";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+// import { getServerSession } from "next-auth";
+// import { authOptions } from "./api/auth/[...nextauth]/route";
 import Provider from "./context/client-provider";
 import { Analytics } from "@vercel/analytics/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-    const session = await getServerSession(authOptions);
+    // const session = await getServerSession(authOptions);
 
     return (
         <html lang="en">
@@ -41,9 +41,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <meta property="og:image:alt" content="A shiny red apple with a bite taken out" /> */}
             </head>
             <body>
-                <Provider session={session}>
-                    {children}
-                </Provider>
+                {/* <Provider session={session}> */}
+                {children}
+                {/* </Provider> */}
                 <Analytics />
             </body>
         </html>
